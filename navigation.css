@@ -1,0 +1,88 @@
+
+div.metro_nav{
+	position : relative;
+	font-family : 'Segoe UI Semibold', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'; 
+	font-size : 16px;
+	height : 170px;
+	overflow: hidden;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	cursor : default;
+}
+
+
+div.metro_nav>div.nav_title{
+	position : relative;
+	float : none;
+	width :auto;
+	background-color : transparent;
+	color : white;
+	font-size : 29px;
+	text-align : center;
+	height : 30px;
+	line-height : 30px;
+	margin: 5px;
+	margin: 5px 40px;
+}
+
+div.metro_nav>ul{
+	position: relative;
+	height : 126px;
+	margin: 0;
+	margin-top : 15px;
+	padding : 0;
+	list-style : none;
+	white-space : nowrap;
+	overflow : hidden;
+	margin: 15px 0 0 40px;
+}
+
+div.metro_nav>ul>li{
+	position: relative;
+	width : 156px;
+	height : 120px;
+	margin: 0;
+	top: 0px;
+	display : inline-block;
+}
+
+div.metro_nav>ul>li>ul{
+	display : none;
+}
+
+div.metro_nav>ul>li>a{
+	display : block;
+	height : 110px;
+	width : 150px;
+	position:relative;
+	left : 3px;
+	top: 3px;
+	cursor : default;
+	text-decoration : none;
+}
+
+div.metro_nav>ul>li>a>img{
+	height : 50%;
+	display: block;
+	margin: auto;
+	position: relative;
+	top : 10px;
+}
+
+div.metro_nav>ul>li>a>span{
+	display : block;
+	color: white;
+    font-size: 19px;
+    margin-left: 5px;
+    top: 20px;
+    position: relative;
+}
+
+
+div.metro_nav>.scroll_bar{
+	position:absolute;
+	bottom : 0;
+	width: 100%;
+	height : 15px;
+}
