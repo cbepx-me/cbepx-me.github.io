@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Bin 加载器</title>
+<link rel="stylesheet prefetch" href="Style.css">
+</head>
+<body>
+<script src="exploit.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<div id="title" class="title"><script>document.write(document.title);</script></div>
+	<div id=loader class=loader><div>漏洞载入中...</div></div>
+  <div id="awaiting" class="info" style="display:none;">等待发送 Payload...</div>
+  <div id="allset" class="info" style=display:none>漏洞载入成功，<div class=ib>按 </div><div id=PSBUTTON></div><div class=ib> 键退出！</div></div>
+	<div id=fail class=info style=display:none>漏洞利用失败 !</div>
+  <div id="badfw" class="info" style="display:none;">仅支持 4.74 版本固件!</div>
+  </div>
+<script src="rop.js"></script>
+<script src="syscalls.js"></script>
+<script src="expl.js"></script>
+<script src="userland2.js"></script>
+<pre id="console"></pre>
+</body>
+</html>
