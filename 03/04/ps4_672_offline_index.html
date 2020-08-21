@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+	<html lang="en" manifest="672.manifest">
+  	<head>
+    	<title>ESP8266 破解服务 by c0d3m4st4 - 6.72 - 离线模式</title>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+		<link rel="icon" type="image/x-icon" href="favicon.ico">		
+		<link rel="stylesheet" href="owl.carousel.min.css">
+		
+		<style type="text/css">
+
+			html, body {
+				font-family:Impact, Charcoal, sans-serif;
+				text-align: center;	
+			}
+
+
+			h1 {
+				font-family: Impact, Charcoal, sans-serif;
+				font-size: 6rem;	
+				color: #4d4dff;
+				margin:5px;
+			}
+
+			main {
+				justify-content: space-around;	
+				-webkit-justify-content: space-around;
+			}
+
+			.owl-carousel{
+				display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+				display: -ms-flexbox;  /* TWEENER - IE 10 */
+				display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+				display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+				flex-flow: row wrap;
+				justify-content: space-around;	
+				-webkit-justify-content: space-around;
+			}
+
+			#infoWrapper{
+				width:100%;
+				display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+				display: -ms-flexbox;  /* TWEENER - IE 10 */
+				display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+				display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+				justify-content: space-around;	
+				-webkit-justify-content: space-around;
+			}
+
+			.divExploitOption {
+				margin: 10px;
+				border-radius: 10px;
+				border: 5px solid #000;
+				width: 195px;
+			}
+
+			.divExploitInfo {
+				margin: 10px;
+				border-radius: 10px;
+				border: 5px solid #000;
+				width: 95%;
+			}
+
+			.divMenuHeader {
+				font-family: Impact, Charcoal, sans-serif;
+				font-size: 30px;
+				padding: 0px;
+				text-align: center;
+				background: #f0f0f5;	
+				border-radius: 5px;
+				border: 1px solid black;
+				align:center;	
+			}
+
+			#exploitInfo {
+				font-family: Impact, Charcoal, sans-serif;
+				font-size: 25px;
+				text-align: left;
+				margin: 20px;
+			}
+
+			.divMenuBody {
+				margin: 10px;
+				text-align: center;	
+			}
+
+			footer {
+				font-family: Impact, Charcoal, sans-serif;
+				font-size: 25px;
+				text-align: center;
+			}
+
+			.nav {	
+				height: 100px;
+				width: 100px;	
+			}
+
+			.nav:hover {	
+				fill: #f00;	
+			}
+
+			.owl-carousel {
+				width: 90%;
+				margin: auto;
+			}
+		
+			#svg-nav-672-prev, #svg-nav-672-next {
+				width: 50px;
+				height: 50px;
+			}
+
+			.owl-prev-672 {
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				top: 40%;
+				left: -60px;
+				display: block!IMPORTANT;
+				background-color: Transparent;
+				border: none;
+			}
+
+			.owl-next-672 {
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				top: 40%;
+				right: -40px;
+				display: block!IMPORTANT;
+				background-color: Transparent;
+				border: none;
+			}
+			
+			@media screen and (max-width: 1024px) {
+				h1 {
+					font-family: Impact, Charcoal, sans-serif;
+					font-size: 2.5rem;	
+					color: #4d4dff;		
+				}
+			}
+
+			@media screen and (max-width: 480px) {
+				h1 {
+					font-family: Impact, Charcoal, sans-serif;
+					font-size: 2.5rem;	
+					color: #4d4dff;		
+				}
+			}
+
+			svg {
+				height: 150px;
+				width: 150px;
+			}
+
+			#back svg {
+				height: 75px;
+				width: 75px;
+			}			
+			
+			svg:hover path { fill: #f00; }
+			svg:hover polygon { fill: #f00; }
+
+			button:hover svg {
+				fill: #f00;
+			}
+
+
+			/* Progress bar */
+			
+			#bar {	
+				width: 0%;
+				height: 30px;
+				background: lightgreen;
+			}		
+		
+			#progressBar  {
+				position: absolute;
+				margin: auto;
+				top: 50px;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				width: 700px;
+				height: 30px;
+				border: 2px solid black;							
+			}
+
+			#progressPercent{
+				position: absolute;
+				margin: auto;
+				top: 0px;				
+				font-size: 20px;
+			}
+		
+			#installDialog {
+				z-index: 100;
+				margin: 10px;
+				border-radius: 10px;
+				border: 5px solid black;			
+				position: fixed;
+				margin: auto;
+				top: 12px;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				width: 800px;
+				height: 200px;
+				background-color: #ffffff;			
+				opacity: 1;
+				visibility:hidden;
+			}
+		
+			#modalOverlay {
+				 visibility: hidden;
+				 position: absolute;
+				 left: 0px;
+				 top: 0px;
+				 width:100%;
+				 height:100%;
+				 text-align:center;
+				 z-index: 50;
+				 background: rgba(0, 0, 0, 0.5);
+			}		
+		
+			#closeButton {
+				visibility:hidden;
+				border-radius: 8px;
+				border: 2px solid black;
+				background-color: #e7e7e7; 
+				color: black;
+				padding: 5px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 4px;
+			}
+		
+			/* Ribbons */
+
+			.corner-ribbon{
+				font-size: 25px;
+				width: 200px;
+				background: #e43;
+				position: absolute;
+				top: 25px;
+				left: -50px;
+				text-align: center;
+				line-height: 50px;
+				letter-spacing: 1px;
+				color: #f0f0f0;
+				transform: rotate(-45deg);
+				-webkit-transform: rotate(-45deg);
+			}
+
+			/* Custom styles */
+
+			.corner-ribbon.sticky{
+			  position: fixed;
+			}
+
+			.corner-ribbon.shadow{
+			  box-shadow: 0 0 3px rgba(0,0,0,.3);
+			}
+
+			/* Different positions */
+
+			.corner-ribbon.top-left{
+			  top: 25px;
+			  left: -50px;
+			  transform: rotate(-45deg);
+			  -webkit-transform: rotate(-45deg);
+			}
+
+			.corner-ribbon.top-right{
+			  top: 25px;
+			  right: -50px;
+			  left: auto;
+			  transform: rotate(45deg);
+			  -webkit-transform: rotate(45deg);
+			}
+
+			.corner-ribbon.bottom-left{
+			  top: auto;
+			  bottom: 25px;
+			  left: -50px;
+			  transform: rotate(45deg);
+			  -webkit-transform: rotate(45deg);
+			}
+
+			.corner-ribbon.bottom-right{
+			  top: auto;
+			  right: -50px;
+			  bottom: 25px;
+			  left: auto;
+			  transform: rotate(-45deg);
+			  -webkit-transform: rotate(-45deg);
+			}
+
+			/* Colors */
+
+			.corner-ribbon.white{background: #f0f0f0; color: #555;}
+			.corner-ribbon.black{background: #333;}
+			.corner-ribbon.grey{background: #999;}
+			.corner-ribbon.blue{background: #4d4dff;}
+			.corner-ribbon.green{background: #2c7;}
+			.corner-ribbon.turquoise{background: #1b9;}
+			.corner-ribbon.purple{background: #95b;}
+			.corner-ribbon.red{background: #e43;}
+			.corner-ribbon.orange{background: #e82;}
+			.corner-ribbon.yellow{background: #ec0;}		
+		
+		
+		</style>
+		
+		<script src="jquery-3.3.1.min.js"></script>			
+		<script src="owl.carousel.min.js"></script>		
+		
+		<script>
+
+			var bNegativeTheme = !(localStorage.getItem("negativeTheme") === null);
+			var exploitVer = localStorage.getItem("exploitVer");
+		
+			$(function(){				
+				
+				var owl = $('.owl-carousel');
+
+				owl.owlCarousel({
+					loop:false,
+					margin:10,
+					autoWidth:false,
+					dots:false,
+					nav:true,
+					navText: ['<div><svg id="svg-nav-672-prev" xmlns="http://www.w3.org/2000/svg" width="445" height="445" viewBox="0 0 444.5 444.5"><path d="M213.1 222.4L351.9 83.7c7.1-7 10.6-15.7 10.6-25.8 0-10.2-3.5-18.8-10.6-25.8l-21.4-21.4C323.4 3.5 314.8 0 304.6 0s-18.8 3.5-25.8 10.6L92.6 196.4c-7 7-10.6 15.7-10.6 25.8s3.5 18.8 10.6 25.8l186.1 185.9c7.1 7 15.7 10.6 25.8 10.6s18.8-3.5 25.8-10.6l21.4-21.4c7.1-7 10.6-15.6 10.6-25.7 0-10.1-3.5-18.7-10.6-26L213.1 222.4z"/></svg></div>', '<div><svg id="svg-nav-672-next" xmlns="http://www.w3.org/2000/svg" width="445" height="445" viewBox="0 0 444.8 444.8"><path d="M352 196.7L165.9 10.8C159 3.6 150.5 0 140.2 0c-10.3 0-18.8 3.6-25.7 10.8L92.8 32.3c-7 7-10.6 15.6-10.6 25.7 0 9.9 3.5 18.6 10.6 26l138.8 138.5L92.8 361.2c-7 7-10.6 15.6-10.6 25.7 0 9.9 3.5 18.6 10.6 26l21.7 21.4c7 7 15.6 10.6 25.7 10.6 10.1 0 18.7-3.5 25.7-10.6l186.1-185.9c7-7.4 10.6-16.1 10.6-26C362.6 212.3 359.1 203.8 352 196.7z"/></svg></div>'],
+					navClass: ['owl-prev-672','owl-next-672'],
+					items:5
+				})				
+
+				owl.on('changed.owl.carousel', function(event) {
+					beep();
+				})				
+				
+				$(document).on('keydown', function(e){
+
+					switch(e.keyCode) {
+					
+						//case 39: //keyboard right
+						case 117: //PS4 R1
+							$('#svg-nav-672-next path').css('fill','#f00');
+							owl.trigger('next.owl');
+							if (bNegativeTheme) {
+								setTimeout(function(){ $('#svg-nav-672-next path').css('fill','#eee'); }, 120);
+							}else{
+								setTimeout(function(){ $('#svg-nav-672-next path').css('fill','#000'); }, 120);
+							}
+							break;
+						
+						//case 37: // keyboard left
+						case 116: //PS4 L1
+							$('#svg-nav-672-prev path').css('fill','#f00');							
+							owl.trigger('prev.owl');
+							if (bNegativeTheme) {
+								setTimeout(function(){ $('#svg-nav-672-prev path').css('fill','#eee'); }, 120);
+							}else{
+								setTimeout(function(){ $('#svg-nav-672-prev path').css('fill','#000'); }, 120);
+							}
+							break;
+
+						//case 38: // keyboard up
+						case 118: //PS4 L2
+						case 119: //PS4 R2
+							//switch to dark theme
+							bNegativeTheme = !bNegativeTheme;
+							if (!bNegativeTheme) {
+								localStorage.removeItem("negativeTheme");
+							}else{
+								localStorage.setItem("negativeTheme",bNegativeTheme);
+							}
+							setNegativeTheme(bNegativeTheme);
+							break;							
+					} 					
+							
+				});				
+
+				setNegativeTheme(bNegativeTheme);				
+				
+				$.ajax({
+					url: 'version.json',
+					dataType : 'json',
+					type:  'get',
+					success:  function (response) {			
+						$("#version").html(response.version);
+					},
+					error: function(){ // will fire when timeout is reached
+						$("#version").html("错误");
+					},
+					timeout: 5000 // sets timeout to 5 seconds
+				});				
+				
+				$("#closeButton").click(function(e) {
+					$('#installDialog').css("visibility","hidden");
+					$('#modalOverlay').css("visibility","hidden");
+					$('#closeButton').css("visibility","hidden");
+					
+					return false;
+				});
+				
+				$("#year").html(new Date().getFullYear());
+				
+			});
+			
+			function beep() {
+				//$("#beep")[0].pause();
+				//$("#beep")[0].currentTime=0;
+				$("#beep")[0].play();			
+			}			
+
+			function setNegativeTheme(bNegative) {
+			
+				if (bNegative) {
+					$('body').css("background-color","#111");
+					$('.divExploitOption').css("border-color","#eee");
+					$('.divExploitInfo').css("border-color","#eee");
+					$('h1').css("color","#eee");
+					$('h2').css("color","#eee");
+					$('footer').css("color","#eee");
+					$('#exploitInfo').css("color","#eee");				
+					$('svg path').css("fill","#eee");
+					$('svg polygon').css("fill","#eee");
+					$('svg').hover(
+						function(){$(this).find('path').css('fill', '#f00');}, 
+						function(){$(this).find('path').css('fill', '#eee');}				
+					);
+					$('svg').hover(
+						function(){$(this).find('polygon').css('fill', '#f00');}, 
+						function(){$(this).find('polygon').css('fill', '#eee');}				
+					);					
+					$('button').hover(
+						function(){$(this).find('path').css('fill', '#f00');}, 
+						function(){$(this).find('path').css('fill', '#eee');}					
+					);
+				}else{
+					$('body').css("background-color","#fff");
+					$('.divExploitOption').css("border-color","#000");
+					$('.divExploitInfo').css("border-color","#000");
+					$('h1').css("color","#4d4dff");
+					$('h2').css("color","#000");
+					$('footer').css("color","#000");
+					$('#exploitInfo').css("color","#000");				
+					$('svg path').css("fill","#000");
+					$('svg polygon').css("fill","#000");
+					$('svg').hover(
+						function(){$(this).find('path').css('fill', '#f00');}, 
+						function(){$(this).find('path').css('fill', '#000');}					
+					);
+					$('svg').hover(
+						function(){$(this).find('polygon').css('fill', '#f00');}, 
+						function(){$(this).find('polygon').css('fill', '#000');}				
+					);						
+					$('button').hover(
+						function(){$(this).find('path').css('fill', '#f00');}, 
+						function(){$(this).find('path').css('fill', '#000');}					
+					);				
+				}
+			}			
+			
+
+			//appCache
+			var appCache = window.applicationCache;
+			var cachedFiles = 0;
+			
+			function handleEvent(e) {
+				if (e.type) {
+					$("#status").html(e.type);
+				}
+			}
+			
+			// The resources listed in the manifest have been fully downloaded, and the application is now cached locally.
+			appCache.addEventListener('cached', cachingFinished, false);
+
+			// The browser is checking for an update, or is attempting to download the cache manifest for the first time. This is always the first event in the sequence.
+			appCache.addEventListener('checking', handleEvent, false);
+
+			// The browser has started to download the cache manifest, either for the first time or because changes have been detected.
+			appCache.addEventListener('downloading', manifestUpdated, false);
+
+			// An error occurred at some point - this could be caused by a number of things. This will always be the last event in the sequence.
+			appCache.addEventListener('error', handleEvent, false);
+
+			// The cache manifest hadn't changed.
+			appCache.addEventListener('noupdate', handleEvent, false);
+
+			// The cache manifest file could not be found, indicating that the cache is no longer needed. The application cache is being deleted.
+			appCache.addEventListener('obsolete', handleEvent, false);
+
+			// The browser had downloaded and cached an asset. This is fired once for every file that is downloaded (including the current page which is cached implicitly).
+			appCache.addEventListener('progress', progressEvent, false);
+
+			// The resources listed in the manifest have been newly redownloaded, and the script can use swapCache() to switch to the new cache.
+			appCache.addEventListener('updateready', updateCacheEvent, false);
+
+			function manifestUpdated(e) {
+				$('#installDialog').css("visibility","visible");
+				$('#modalOverlay').css("visibility","visible");
+				
+				$("#status").html("清单文件已更新... 正在下载资源");
+				
+				localStorage.removeItem("offlineAppInstalled");
+			}
+			
+			// after everything is correctly cached...
+			function cachingFinished(e) {
+				localStorage.setItem("offlineAppInstalled",true);
+				$("#status").html("离线缓存完成");
+				$('#closeButton').css("visibility","visible");
+			}			
+			
+			//fires every time a file is loaded
+			function progressEvent(e) {
+			
+				//$("#status").html(e.type);
+				$("#status").html("正在下载文件");
+			
+				numFiles = Number(e.total);
+				cachedFiles ++;
+								
+				// cached files / total files 
+				$('#progressPercent').text((cachedFiles - 1) + "/" + numFiles);
+
+				// update progress bar width
+				$('#bar').css("width",(((700 * (cachedFiles -1)) / numFiles)  + "px"));
+				
+				// when all files are cached
+				//if(cachedFiles >= numFiles) {
+				//	cachingFinished();
+				//}
+			}
+			
+			
+			//fires every time a file is loaded
+			function updateCacheEvent(e) {
+			
+				//$('#installDialog').css("visibility","visible");
+				//$('#modalOverlay').css("visibility","visible");
+			
+				//$("#status").html(e.type);				
+				appCache.swapCache();
+				
+				$("#status").html("缓存已更新");
+				//$('#closeLink').css("visibility","visible");
+				cachingFinished();
+				
+			}			
+			
+			var exploitInfo = {
+				"Mira-Unofficial":"HEN 对应 PS4 FW 6.72 <br><br>Mira (非官方) 由 Al Azif 和 OpenOrbis 团队开发",
+				"SiSTR0":"SiSTR0's HEN 2.1.3 对应 6.72<br><br>功能:<br><br><ul><li>越狱, Sandbox 脱出 & 启用自制程序</li><li>Debug Settings</li><li>支持远程软件包安装, 恢复模式唤醒 & 支持外置 HDD 7.xx 格式</li><li>伪装固件版本到 7.51</li><li>支持调试奖杯</li><li>sys_dynlib_dlsym 补丁</li><li>启用 UART</li><li>永不禁用屏幕截图</li><li>启用远程播放</li></ul>",
+				"Dumper":"xvortex dumper 1.8 由 Al Azif 适配 6.72<br><br>将游戏转储到外置 USB 存储设备. 使用说明:<ol><li>启动主机, 插入游戏光盘 (或运行 psn 游戏), 安装好所有的游戏补丁.</li><li>插入 USB 存储设备, 运行这个 ps4-转储游戏 payload (.bin 或独立功能).</li><li>运行游戏, 确定已进入游戏主界面, 最小化游戏 (按 PS 键).</li><li>等待程序完成. 该过程完成后指示灯会停止闪烁, 主机将会自动关闭 (这是正常的现象, 不是断电).</li><li>启动主机, 取出光盘, 卸载已安装的游戏 (目的是为进一步测试).</li><li>转至 PC 操作: 插入 USB 存储设备, 运行 gengp4.exe, 指向 CUSAxxxxx 路径然后按 Generate .GP4, 您应该会看到 'Done.', 然后按 Save .GP4.</li><li>在 orbis-pub-gen 路径中打开 .gp4 并构建 .pkg 文件 (您可以通过 PKG_Fake_Generator 获得 orbis-pub-gen 工具).</li><li>运行 PS4HEN payload, 安装并测试您的 .pkg 文件.</li></ol>",			
+				"DB-SG Backup":"Stooged DB-SG Backup v3 由 Al Azif 适配 6.72<br><br>将 addcont.db， app.db 和 gameaves 备份到外部 USB 存储设备.<br>该 payload 将保存的数据转储到名为 GameSaves 的文件夹中, 并将 addcont.db 和 app.db 文件转储到 USB 上的名为 DB_Dackup 的文件夹中.<br>执行中请不要关闭浏览器, 直到提示完成为止.",
+				"DB Restore":"Stooged DB Restore v2 由 Al Azif 适配 6.72<br><br>从 USB 恢复使用 DBSG 备份 进行的数据库备份.",
+				"AppToUSB":"Stooged AppToUSB v5 由 Al Azif 适配 6.72<br><br>搜索整个 /user/app 文件夹内所有已安装的 fpkg 游戏并从系统驱动器复制到 USB 存储设备和创建快捷方式链接. 该功能需要使用 USB0 端口.<br>如果您要安装更多游戏, 只需再次运行该功能, 它会将所有新安装游戏复制到 USB.<br><br>请参阅 AppToUsb.ini 中包含的说明以获取更多信息.<br><br>重要提示: 您需要将 .ini 文件复制到 usb0:\PS4\AppToUsb.ini",
+				"Disable Updates":"LightningMods_ Disable Updates payload 由 Al Azif 适配 6.72",
+				"Enable Updates":"LightningMods_ Enable Updates payload 由 Al Azif 适配 6.72",
+				"ToDEX":"@notzecoxao 开发的 ToDEX 改编自 @Zer0xFF's 的 ReactPSPlus. <br><br>这个转换不是永久性的, 只需重新启动主机即可恢复零售机模式."
+			};
+
+			function showInfo(key) {
+				$("#exploitInfo").html(exploitInfo[key]);
+			}
+
+			function clearInfo() {
+				$("#exploitInfo").html("请选择任意选项以获取详细信息.");
+			}
+		</script>		
+		
+  	</head>
+	
+  	<body>
+  		<header>			
+  			<h1>ESP8266 破解服务</h1>
+			<h2>Playstation 4 - FW 6.72 - 离线模式</h2>
+  		</header>
+  		<main>
+			<div id="version" class="corner-ribbon top-right sticky blue"></div>
+			<div class="owl-carousel" id="exploits_672">
+				<div class="divExploitOption"><div class="divMenuHeader">Mira (非官方)</div><div class="divMenuBody"><a href="672_mira_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Mira-Unofficial');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"><path d="M400 0h-66.7c-55.1 0-100 44.9-100 100v100H25c-13.7 0-25 11.3-25 25v250c0 13.8 11.3 25 25 25h283.3c13.8 0 25-11.2 25-25V225c0-13.7-11.2-25-25-25H300V100c0-18.4 15-33.3 33.3-33.3H400c18.4 0 33.3 15 33.3 33.3v100H500V100C500 44.9 505.1 0 400 0zM200 433.3h-66.7l14.5-72.5c-8.8-6-14.5-16.1-14.5-27.5 0-18.4 14.9-33.3 33.3-33.3S200 314.9 200 333.3c0 11.4-5.7 21.5-14.5 27.5L200 433.3z"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">HEN 2.1.3</div><div class="divMenuBody"><a href="672_sistro_hen_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('SiSTR0');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"><path d="M400 0h-66.7c-55.1 0-100 44.9-100 100v100H25c-13.7 0-25 11.3-25 25v250c0 13.8 11.3 25 25 25h283.3c13.8 0 25-11.2 25-25V225c0-13.7-11.2-25-25-25H300V100c0-18.4 15-33.3 33.3-33.3H400c18.4 0 33.3 15 33.3 33.3v100H500V100C500 44.9 505.1 0 400 0zM200 433.3h-66.7l14.5-72.5c-8.8-6-14.5-16.1-14.5-27.5 0-18.4 14.9-33.3 33.3-33.3S200 314.9 200 333.3c0 11.4-5.7 21.5-14.5 27.5L200 433.3z"/></svg></a></div></div>				
+				<div class="divExploitOption"><div class="divMenuHeader">Dumper</div><div class="divMenuBody"><a href="672_dumper_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Dumper');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 439.2 439.2"><path d="M219.6 263.3c11.2 0 22.4-4.3 30.9-12.8 8.3-8.3 12.8-19.3 12.8-30.9 0-11.7-4.6-22.7-12.8-30.9 -17.1-17.1-44.8-17.1-61.9 0s-17.1 44.8 0 61.9C197.2 259.1 208.4 263.3 219.6 263.3zM199.3 199.3c5.6-5.6 13-8.4 20.3-8.4 7.4 0 14.7 2.8 20.3 8.4 5.4 5.4 8.4 12.7 8.4 20.3 0 7.7-3 14.9-8.4 20.3 0 0 0 0 0 0 -11.2 11.2-29.5 11.2-40.7 0C188 228.7 188 210.5 199.3 199.3z"/><path d="M219.6 292.1c19.4 0 37.6-7.5 51.3-21.3 28.3-28.3 28.3-74.3 0-102.6s-74.3-28.3-102.6 0c-13.7 13.7-21.3 31.9-21.3 51.3s7.5 37.6 21.3 51.3C182 284.6 200.2 292.1 219.6 292.1zM178.9 178.9c11.2-11.2 26-16.8 40.7-16.8 14.7 0 29.5 5.6 40.7 16.8 22.4 22.4 22.4 59 0 81.4 -10.9 10.9-25.3 16.9-40.7 16.9s-29.8-6-40.7-16.9C156.5 237.9 156.5 201.3 178.9 178.9z"/><path d="M374.9 64.3C333.4 22.8 278.2 0 219.6 0c-58.7 0-113.8 22.8-155.3 64.3S0 160.9 0 219.6s22.8 113.8 64.3 155.3 96.6 64.3 155.3 64.3c58.7 0 113.8-22.8 155.3-64.3 41.5-41.5 64.3-96.6 64.3-155.3S416.3 105.8 374.9 64.3zM74.9 74.9C113.6 36.3 164.9 15 219.6 15c52.1 0 101.3 19.4 139.3 54.7l-82.8 82.8c-2.9 2.9-2.9 7.7 0 10.6 1.5 1.5 3.4 2.2 5.3 2.2s3.8-0.7 5.3-2.2l82.8-82.8c17.5 18.8 30.8 40.1 39.9 62.8l-12.7 12.8c-2.9 2.9-2.9 7.7 0 10.6 1.5 1.5 3.4 2.2 5.3 2.2s3.8-0.7 5.3-2.2l7.7-7.7c1.7 5.3 3.1 10.7 4.3 16.2L174.8 419.3c-5.5-1.2-10.9-2.7-16.2-4.3l217-217c2.9-2.9 2.9-7.7 0-10.6 -2.9-2.9-7.7-2.9-10.6 0L143 409.4c-22.9-9.2-44.2-22.7-62.7-40l81.9-81.9c2.9-2.9 2.9-7.7 0-10.6 -2.9-2.9-7.7-2.9-10.6 0l-81.9 81.9C-4.8 278.7-3.1 152.9 74.9 74.9zM364.3 364.3c-38.6 38.6-90 59.9-144.7 59.9 -9 0-17.9-0.6-26.7-1.7L422.4 193C430.3 253.9 410.9 317.6 364.3 364.3z"/><path d="M379 180c0.2 0.5 0.4 0.9 0.7 1.3 0.3 0.4 0.6 0.8 0.9 1.1 0.3 0.4 0.7 0.7 1.1 0.9 0.4 0.3 0.8 0.5 1.3 0.7 0.5 0.2 0.9 0.3 1.4 0.4 0.5 0.1 1 0.1 1.5 0.1s1 0 1.5-0.1c0.5-0.1 1-0.2 1.4-0.4s0.9-0.4 1.3-0.7c0.4-0.3 0.8-0.6 1.1-0.9 0.4-0.3 0.7-0.7 0.9-1.1 0.3-0.4 0.5-0.8 0.7-1.3 0.2-0.4 0.3-0.9 0.4-1.4 0.1-0.5 0.2-1 0.2-1.5 0-0.5 0-1-0.1-1.5 -0.1-0.5-0.2-0.9-0.4-1.4 -0.2-0.4-0.4-0.9-0.7-1.3 -0.3-0.4-0.6-0.8-0.9-1.1 -0.3-0.3-0.7-0.7-1.1-0.9 -0.4-0.3-0.8-0.5-1.3-0.7 -0.4-0.2-0.9-0.3-1.4-0.4 -1-0.2-2-0.2-2.9 0 -0.5 0.1-0.9 0.2-1.4 0.4 -0.4 0.2-0.9 0.4-1.3 0.7s-0.8 0.6-1.1 0.9c-0.4 0.3-0.7 0.7-0.9 1.1 -0.3 0.4-0.5 0.8-0.7 1.3 -0.2 0.5-0.3 0.9-0.4 1.4 -0.1 0.5-0.1 1-0.1 1.5 0 0.5 0.1 1 0.2 1.5C378.6 179.1 378.8 179.6 379 180z"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">转换 DEX</div><div class="divMenuBody"><a href="672_todex_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('ToDEX');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><polygon points="512 197.82 325.96 185.58 255.9 9.569 185.84 185.58 0 197.82 142.53 318.84 95.762 502.43 255.9 401.21 416.04 502.43 369.26 318.84"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">备份数据</div><div class="divMenuBody"><a href="672_dbsgbackup_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('DB-SG Backup');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="m437.6 251c-21.1-23.4-49.6-38.3-80.6-42.2-1.1-2.1-2.7-5.1-3.2-5.9l-1.2-2.2c4.8-7.3 7.2-15 7.2-22.7v-45c0-6.7-1.8-13.3-5.4-19.8l-0.4-0.7c1.4-3.5 2.1-6.8 2.1-10 0-18.3-17.5-33.6-50.7-44.5-28.2-9.2-66.5-14.5-105-14.5-38.5 0-76.8 5.3-105 14.5-33.1 10.8-50.7 26.2-50.7 44.5 0 3.2 0.7 6.5 2.1 10l-0.4 0.7c-3.6 6.6-5.4 13.2-5.4 19.9v45c0 7.8 2.4 15.4 7.2 22.7l-1.3 2.2c-4 6.9-6 13.9-6 20.8v45.1c0 7.6 2.3 15 6.9 22.1l-0.9 1.6c-4 6.9-6 13.9-6 20.8v45.1c0 20.6 16.7 39.6 47.1 53.4 29.6 13.5 69.5 21 112.4 21 15.7 0 31.6-1.1 47.2-3.3 24.8 25.3 57.8 39.2 93.1 39.2 71.9 0 130.4-58.5 130.4-130.4 0-32.2-11.9-63.2-33.5-87.2zM101.7 79.5c26-8.6 61-13.4 98.6-13.4 37.6 0 72.6 4.7 98.6 13.4 23.7 7.9 34.3 17.2 34.3 23 0 5.8-10.6 15.1-34.3 23-26 8.6-61 13.4-98.6 13.4-37.6 0-72.6-4.7-98.6-13.4C78 117.6 67.4 108.2 67.4 102.4 67.4 96.7 78 87.3 101.7 79.5Zm-38.1 67.1c25.9 17.9 78.3 29.2 136.7 29.2 58.4 0 110.8-11.3 136.7-29.2v31.5c0 11.6-13.9 24.4-37.1 34.3-26.5 11.2-61.8 17.4-99.6 17.4-37.7 0-73.1-6.2-99.5-17.4-23.3-9.8-37.1-22.7-37.1-34.3zm136.7 263.4c-37.7 0-73.1-6.2-99.5-17.4-23.3-9.8-37.1-22.6-37.1-34.2v-35.9c28 21.8 79.4 35.1 136.7 35.1 3.9 0 7.6-0.2 11.3-0.4 2.7 18.2 9.3 35.8 19.2 51.4-10.1 1-20.4 1.5-30.5 1.5zm11.2-90c-3.6 0.2-7.4 0.4-11.2 0.4-37.7 0-73.1-6.2-99.5-17.4C77.5 293.1 63.7 280.3 63.7 268.8v-36c27.9 21.8 79.4 35.1 136.7 35.1 10 0 20.4-0.5 31.6-1.6-10.7 16.1-17.7 34.5-20.4 53.7zm129.1 116.8c-54.3 0-98.6-44.2-98.6-98.6 0-54.3 44.2-98.6 98.6-98.6 54.3 0 98.6 44.2 98.6 98.6 0 54.3-44.2 98.6-98.6 98.6zm4.4-52.9v-20.3h-58.7c-2.4 0-4.4-1.9-4.4-4.4v-42c0-2.4 2-4.4 4.4-4.4h58.7V292.5c0-1.8 1.1-3.4 2.7-4 1.6-0.7 3.5-0.3 4.7 0.9l45.6 45.6c0.8 0.8 1.3 1.9 1.3 3.1 0 1.2-0.5 2.3-1.3 3.1l-45.6 45.6c-1.2 1.2-3.1 1.6-4.7 0.9-1.6-0.7-2.7-2.3-2.7-4z"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">恢复备份</div><div class="divMenuBody"><a href="672_dbrestore_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('DB Restore');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="M336.3 383.8v-20.3h58.7c2.4 0 4.4-1.9 4.4-4.4v-42c0-2.4-2-4.4-4.4-4.4h-58.7V292.5c0-1.8-1.1-3.4-2.7-4 -1.6-0.7-3.5-0.3-4.7 0.9l-45.6 45.6c-0.8 0.8-1.3 1.9-1.3 3.1 0 1.2 0.5 2.3 1.3 3.1l45.6 45.6c1.2 1.2 3.1 1.6 4.7 0.9C335.3 387.2 336.3 385.6 336.3 383.8z"/><path d="M437.6 251c-21.1-23.4-49.6-38.3-80.6-42.2 -1.1-2.1-2.7-5.1-3.2-5.9l-1.2-2.2c4.8-7.3 7.2-15 7.2-22.7v-45c0-6.7-1.8-13.3-5.4-19.8l-0.4-0.7c1.4-3.5 2.1-6.8 2.1-10 0-18.3-17.5-33.6-50.7-44.5 -28.2-9.2-66.5-14.5-105-14.5 -38.5 0-76.8 5.3-105 14.5 -33.1 10.8-50.7 26.2-50.7 44.5 0 3.2 0.7 6.5 2.1 10l-0.4 0.7c-3.6 6.6-5.4 13.2-5.4 19.9v45c0 7.8 2.4 15.4 7.2 22.7l-1.3 2.2c-4 6.9-6 13.9-6 20.8v45.1c0 7.6 2.3 15 6.9 22.1l-0.9 1.6c-4 6.9-6 13.9-6 20.8v45.1c0 20.6 16.7 39.6 47.1 53.4 29.6 13.5 69.5 21 112.4 21 15.7 0 31.6-1.1 47.2-3.3 24.8 25.3 57.8 39.2 93.1 39.2 71.9 0 130.4-58.5 130.4-130.4C471.1 306 459.2 275 437.6 251zM101.7 79.5c26-8.6 61-13.4 98.6-13.4 37.6 0 72.6 4.7 98.6 13.4 23.7 7.9 34.3 17.2 34.3 23 0 5.8-10.6 15.1-34.3 23 -26 8.6-61 13.4-98.6 13.4 -37.6 0-72.6-4.7-98.6-13.4 -23.7-7.9-34.3-17.2-34.3-23C67.4 96.7 78 87.3 101.7 79.5zM63.7 146.5c25.9 17.9 78.3 29.2 136.7 29.2 58.4 0 110.8-11.3 136.7-29.2v31.5c0 11.6-13.9 24.4-37.1 34.3 -26.5 11.2-61.8 17.4-99.6 17.4 -37.7 0-73.1-6.2-99.5-17.4 -23.3-9.8-37.1-22.7-37.1-34.3L63.7 146.5 63.7 146.5zM200.3 409.9c-37.7 0-73.1-6.2-99.5-17.4 -23.3-9.8-37.1-22.6-37.1-34.2v-35.9c28 21.8 79.4 35.1 136.7 35.1 3.9 0 7.6-0.2 11.3-0.4 2.7 18.2 9.3 35.8 19.2 51.4C220.7 409.4 210.5 409.9 200.3 409.9zM211.5 320c-3.6 0.2-7.4 0.4-11.2 0.4 -37.7 0-73.1-6.2-99.5-17.4 -23.3-9.8-37.1-22.6-37.1-34.2v-36c27.9 21.8 79.4 35.1 136.7 35.1 10 0 20.4-0.5 31.6-1.6C221.2 282.4 214.2 300.8 211.5 320zM340.7 436.7c-54.3 0-98.6-44.2-98.6-98.6 0-54.3 44.2-98.6 98.6-98.6 54.3 0 98.6 44.2 98.6 98.6C439.2 392.5 395 436.7 340.7 436.7z"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">AppToUSB</div><div class="divMenuBody"><a href="672_app2usb_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('AppToUSB');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286 286"><path d="M286 217.5c0-7.2-5.8-13-13-13H13c-7.2 0-13 5.8-13 13v52c0 7.2 5.8 13 13 13h260c7.2 0 13-5.8 13-13V217.5zM52 256.5H17v-27h35V256.5zM102 256.5H67v-27h35V256.5z"/><path d="M13.4 181.5h259.9c3.6 0 6.9-1.4 9-4.1 2.1-2.7 2.9-6.1 2.1-9.7l-34.8-152.7C248 8.4 241.6 3.5 234.9 3.5H51.8c-6.7 0-13.2 4.9-14.7 11.5L2.3 167.8c-0.8 3.5-0.1 7 2.1 9.6C6.5 180.1 9.8 181.5 13.4 181.5zM102.4 54.1c0.5-5.4 6.1-9.7 12.6-9.7 6.4 0 11.5 4.3 11.3 9.7 -0.2 4-3.2 7.6-7.4 9.2l-0.8 15 20 8.5 0.6-51.3h-7.4c-1.2 0-2.2-0.6-2.7-1.4 -0.5-0.8-0.4-1.8 0.3-2.6l12.1-12.7c0.6-0.6 1.5-0.9 2.4-0.9 1 0 1.9 0.3 2.4 0.9l12.1 12.6c0.7 0.7 0.8 1.8 0.3 2.6 -0.5 0.8-1.6 1.4-2.7 1.4h-7.4l0.5 41.8 19.6-8.3L167.6 56.5h-3.7c-1.8 0-3.3-1-3.4-2.5l-0.5-13.1c-0.1-1.4 1.3-2.4 3-2.4h16.7c1.7 0 3.2 1.1 3.4 2.4l1.3 13.1c0.1 1.5-1.2 2.5-3 2.5h-3.7l1.2 15.3c0.1 1.7-0.9 3.4-2.7 4.2l-27.4 11.6 0.3 30.4c8.5 2.4 15.1 10 15.5 19.4 0.5 11.8-9 21.9-21.2 21.9 -12.2 0-21.7-10-21.2-21.9 0.4-9.4 6.9-17 15.5-19.4l0.2-20.5 -27.9-12c-1.8-0.8-2.9-2.5-2.7-4.3l1.4-17.9C104.6 61.7 102 58.2 102.4 54.1z"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">屏蔽更新</div><div class="divMenuBody"><a href="672_disable_upd_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Disable Updates');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 426.67 426.67"><path d="m213.33 0c-117.87 0-213.33 95.467-213.33 213.33s95.467 213.33 213.33 213.33 213.33-95.466 213.33-213.33-95.467-213.33-213.33-213.33zm-170.67 213.33c0-94.293 76.373-170.67 170.67-170.67 39.467 0 75.627 13.547 104.53 35.947l-239.25 239.25c-22.4-28.907-35.946-65.067-35.946-104.53zm170.67 170.67c-39.467 0-75.627-13.547-104.53-35.947l239.25-239.25c22.4 28.907 35.947 65.067 35.947 104.53 0 94.294-76.373 170.67-170.67 170.67z"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">恢复更新</div><div class="divMenuBody"><a href="672_enable_upd_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Enable Updates');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.87 477.87"><path d="m238.93 0c-131.96 0-238.93 106.97-238.93 238.93s106.97 238.93 238.93 238.93 238.93-106.97 238.93-238.93c-0.14-131.9-107.03-238.79-238.93-238.93zm0 443.73c-113.11 0-204.8-91.692-204.8-204.8s91.692-204.8 204.8-204.8 204.8 91.692 204.8 204.8c-0.122 113.06-91.742 204.68-204.8 204.8z"/><path d="m370.05 141.53c-6.614-6.388-17.099-6.388-23.712 0l-158.6 158.6-56.201-56.201c-6.548-6.78-17.353-6.967-24.132-0.419-6.78 6.548-6.967 17.353-0.419 24.132 0.137 0.142 0.277 0.282 0.419 0.419l68.267 68.267c6.664 6.663 17.468 6.663 24.132 0l170.67-170.67c6.548-6.779 6.36-17.583-0.42-24.131z"/></svg></a></div></div>				
+			</div>			
+			
+			<div id="infoWrapper">			
+				<div class="divExploitInfo"><div class="divMenuHeader">信息</div><div class="divMenuBody"></div><div id="exploitInfo">请选择任意选项以获取详细信息.</div></div>
+			</div>			
+			
+		</main>
+		<footer>
+			@c0d3m4st4 - &copy;<span id="year"></span><br>汉化 by 上帝之右手
+			<video id='beep' src='click.mp4' width='0' height='0' preload='auto'>
+		</footer>
+		<div id="modalOverlay">
+			<div id="installDialog">
+				<div class="divMenuHeader">离线破解安装器</div>
+				<div class="divMenuBody">
+					<h2>状态: <span id="status"></span></h2>
+					<div id="progressBar">						
+						<div id="bar"></div>						
+						<span id="progressPercent"></span>
+					</div><br><br>
+					<button id="closeButton" type="button">关闭</button></div>
+				</div>
+			</div>		
+		</div>
+	</body>
+	
+</html>

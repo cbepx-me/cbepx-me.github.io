@@ -1,0 +1,36 @@
+CACHE MANIFEST
+# random: f86889c0eb12cbaea769fa45811ae5bb
+
+CACHE:
+common/exploit.js
+common/helpers.js
+common/malloc.js
+common/rop.js
+common/syscalls.js
+common/syscalls2.js
+fakeusb.html
+fakeusb.js
+ftp.html
+ftp.js
+index.html
+jb.html
+jb/c-code.js
+linux.html
+linux.js
+mira-nohb.html
+mira.html
+mira/c-code.js
+mira/mira.js
+mira/mira2-nohb.js
+mira/mira2.js
+netcat.html
+oldjb/c-code.js
+ps4-hen-vtx.html
+ps4-hen-vtx.js
+spoofer.html
+spoofer.js
+todex.html
+todex.js
+
+NETWORK:
+*

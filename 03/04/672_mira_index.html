@@ -1,0 +1,32 @@
+<html>
+<head>
+	<script>
+		const qsParams = new URLSearchParams(window.location.search);
+		const xplVer = qsParams.get('xpl') + ".js";	
+	
+		function load_mira() {
+			document.write('<script src="672_mira_loader.js"><\/scr' + 'ipt><script src="672_mira_payload.js"><\/scr' + 'ipt><script src="672_mira_c-code.js"><\/scr' + 'ipt><script>mira_finished();<\/scr' + 'ipt>');
+		}
+	
+		function mira_finished() {
+			document.write("<h1 style='color:blue;font-size: 45px;'>Mira 加载完成! 全部完成! <br> 请使用 PS 按钮退出此窗口. <br> 好好享受 :P</h1>");
+			//read_ptr_at(0);
+		}
+
+		function check_jb_finished() {
+			if (main_ret == 179 || main_ret == 0) {
+				document.write("<h1 style='color:blue;font-size: 45px;'>漏洞利用完成! 正在加载 Mira...</h1>");
+				//read_ptr_at(0);	
+				setTimeout(function(){ load_mira() }, 2000);
+			} else {
+				document.write("<h1 style='color:red;font-size: 45px;'>漏洞利用完成! <br> 请重启您的 PS4 并再试一次.</h1>");
+			}
+		}		
+	</script>	 
+</head>
+<body>
+	<script>
+		document.write('<script src="672_exploit.js"><\/scr' + 'ipt><script src="672_helpers.js"><\/scr' + 'ipt><script src="672_malloc.js"><\/scr' + 'ipt><script src="672_rop.js"><\/scr' + 'ipt><script src="672_syscalls.js"><\/scr' + 'ipt><script src="' + xplVer + '"><\/scr' + 'ipt><script>check_jb_finished();<\/scr' + 'ipt>');
+	</script>
+</body>
+</html>
