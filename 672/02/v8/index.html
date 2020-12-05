@@ -1,0 +1,168 @@
+<html manifest="cache.manifest"><!--  -->
+<head>
+<title>6.72 破解 v8 - Leeful</title>
+<script>
+function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));window.msgs.innerHTML="正在安装离线缓存: " + Percent + "%";}
+function DisplayCacheProgress(){setTimeout(function(){window.msgs.innerHTML="缓存安装顺利完成";},1000);setTimeout(function(){window.msgs.innerHTML="请关闭并重新打开您的浏览器";},3000);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+</script>
+<script src="exp_webkit.js"></script>
+</head>
+<body style="background-color:#3462a8;color:white;">
+<h1 id=msgs style='font-size:25px;text-align:center;'>6.72 破解菜单 V8</h1>
+<hr><br>
+<h1 style='font-size:18px;text-align:center;'>加载越狱</h1>
+<div style="text-align:center">
+<button onclick="load_exploit_HEN(); return false"> 越狱 + HEN v2.1.3b </button>
+<br>
+<div text-align= center>成功 = <span id=passCounter></span>&nbsp;&nbsp;:&nbsp;&nbsp;失败 = <span id=failCounter></span></div>
+<br><br>
+<h1 style='font-size:18px;text-align:center;'>其它功能</h1>
+<button onclick="load_binloader(); return false"> Bin 加载器 </button>
+<button onclick="load_ftp(); return false"> FTP 服务器 </button>
+<button onclick="load_dumper(); return false"> 转储游戏 </button>
+<button onclick="load_linux(); return false"> Linux 加载器 </button>
+<button onclick="load_app2usb(); return false"> App2USB </button>
+<button onclick="load_kerneldump(); return false"> 转储核心 </button>
+<button onclick="load_webrte(); return false"> 网页金手指 </button>
+<button onclick="load_ps4debug(); return false"> PS4 调试器 </button>
+<br><br>
+<button onclick="load_todex(); return false"> 转为 DEX </button>
+<button onclick="load_historyblock(); return false"> 历时拦截器 </button>
+<button onclick="load_updatesdisable(); return false"> 屏蔽升级 </button>
+<button onclick="load_updatesenable(); return false"> 恢复升级 </button>
+<button onclick="load_dbBackup(); return false"> 备份数据 </button>
+<button onclick="load_dbRestore(); return false"> 恢复备份 </button>
+<br><br><br>
+<button onclick="load_fanthresh(); return false"> 设置风扇温度阈值 </button><select id="tempC"></select>&#176;C<br>PS4 默认温度值为 79&#176;C
+<h1 style='font-size:18px;text-align:center;'>开发: Leeful<br />汉化: 上帝之右手</h1>
+<script>
+for(var i=40; i<=79; i++){
+    var select = document.getElementById("tempC");
+    var option = document.createElement("OPTION");
+	select.options.add(option);
+	option.text = i;
+	option.value = i;
+}
+tempC.value=60;
+</script>
+<br>
+</div>
+<script>
+if (localStorage.passcount == null) localStorage.passcount=0;
+window.passCounter.innerHTML=localStorage.passcount;
+if (localStorage.failcount == null) localStorage.failcount=0;
+window.failCounter.innerHTML=localStorage.failcount;
+
+function load_exploit_HEN(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 Exploit And HEN ...</h1>";
+LoadedMSG="Exploit And HEN 加载成功 ✔ - Press Circle To Exit";
+function getScript(source,callback){var gs=document.createElement('script');gs.src=source;gs.onload=callback;gs.async=false;document.body.appendChild(gs);}
+function loadScript(){getScript("exp_kernelHEN.js",function(){setTimeout(jailbreak,500);});}loadScript();
+}
+
+function load_binloader(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 Bin Loader ...</h1>";
+LoadedMSG="请通过端口 9021 发送 Payload";
+var script = document.createElement('script');script.src = "exp_BinLoader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_ftp(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 FTP ...</h1>";
+LoadedMSG="FTP 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_ftp.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_dumper(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 Dumper ...</h1>";
+LoadedMSG="Dumper 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_dumper.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_linux(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 Linux ...</h1>";
+LoadedMSG="Linux 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_linux.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_app2usb(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 AppToUSB ...</h1>";
+LoadedMSG="AppToUSB 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_app2usb.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_kerneldump(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 Kernel Dumper ...</h1>";
+LoadedMSG="Kernel Dumper 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_kernelDumper.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_webrte(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 WebRTE ...</h1>";
+LoadedMSG="WebRTE 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_WebRTE.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_ps4debug(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 PS4Debug ...</h1>";
+LoadedMSG="PS4Debug 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_ps4debug.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_todex(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 ToDEX ...</h1>";
+LoadedMSG="ToDEX 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_ToDEX.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_historyblock(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 History Blocker ...</h1>";
+LoadedMSG="History Blocker 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_historyBlocker.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_updatesdisable(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 Disable Updates ...</h1>";
+LoadedMSG="Disable Updates 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_updatesDisable.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_updatesenable(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 Enable Updates ...</h1>";
+LoadedMSG="Enable Updates 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_updatesEnable.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_dbBackup(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 DB Backup ...</h1>";
+LoadedMSG="DB Backup 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_dbBackup.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_dbRestore(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 DB Restore ...</h1>";
+LoadedMSG="DB Restore 加载成功 ✔";
+var script = document.createElement('script');script.src = "pl_dbRestore.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_fanthresh(){
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>正在加载 Fan Threshold ...</h1>";
+LoadedMSG="Fan Threshold 加载成功 ✔";fanTemp=tempC.value;//alert(fanTemp);
+var script = document.createElement('script');script.src = "pl_fanthresh.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+</script>
+</body>
+</html>

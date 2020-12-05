@@ -1,0 +1,304 @@
+<html manifest="Cache.manifest">
+
+<head>
+    <meta charset="utf-8" />
+    <title>PS4 6.72 Jailbreak by sleirsgoevy</title>
+    <link rel="shortcut icon" href="favicon.ico"></link>
+</head>   
+<body>
+    <script>
+        window.applicationCache.ondownloading = function()
+        {
+            alert("Caching started !!")
+        };
+
+        window.applicationCache.onprogress = function(a)
+        {
+            document.getElementById("progress").innerHTML="<h3>Caching Status: "+(Math.round(100*(a.loaded/a.total)))+"% Completed</h3>";
+        };
+
+        window.applicationCache.oncached=function()
+        {
+            alert("Page Cached!!")
+        };
+    </script>
+    <script>
+        document.cookie = 'kex=1';
+
+        // Init on English Language
+        changeLanguage('english')
+
+        function changeLanguage(lang) {
+            Array.from(document.querySelectorAll('.language')).map( element => {
+                element.style.display = 'none'
+            });
+            if (document.getElementById(lang)) {
+                document.getElementById(lang).style.display = 'block';
+            }
+        }
+    </script>
+    <p>
+        <a href="#" onclick="changeLanguage('english'); return false">English</a>
+        <a href="#" onclick="changeLanguage('russian'); return false">Русский</a>
+        <a href="#" onclick="changeLanguage('italian'); return false">Italiano</a>
+	<a href="#" onclick="changeLanguage('hungarian'); return false">Magyar</a>
+        <a href="#" onclick="changeLanguage('portuguese'); return false">Português</a>
+        <a href="#" onclick="changeLanguage('spanish'); return false">Español</a>
+	<a href="#" onclick="changeLanguage('chinese'); return false">中文</a>
+    </p>
+    <div id="english" class="language" style="display: block">
+        <h3>READ THIS CAREFULLY BEFORE PROCEEDING</h3>
+        <p><b>In case you're dumb: this ONLY works on FW 6.72. If you are on a lower firmware, download a 6.72 retail
+                update file <a href="https://sce.party/firmwares">here</a> and update your system. If you are on a
+                higher firmware (e.g. 7.02), your console CAN'T BE HACKED yet.</b></p>
+        <p>This exploit consists of two steps: the actual jailbreak (JB) and Mira+HEN (MIRA). To <s>pirate games</s> run
+            homebrew software, you need to activate JB first, and then MIRA. Not just one of them, not the other way
+            round. <b>First JB then MIRA.</b></p>
+        <ol>
+            <li>Click on the link that says JB. In about 20 seconds you'll get an alert saying "You're all set!",
+                followed by "There is not enough free system memory". This means that everything has gone well.<br />
+                If something went wrong during the process, you may get an alert saying "Jailbreak failed! Reboot your
+                PS4 and try again.". In this case you must reboot your PS4, preferrably without closing the dialog
+                box.<br />
+                If the system hangs for more than a minute (may require more time on slow Internet connections), reboot
+                your PS4 and try again.<br />
+                If the system crashes (looks like instant powerdown), press the power button on the PS4 (NOT on the
+                gamepad) until it turns on again, then retry.
+            </li>
+            <li>After you click OK on "There is not enough free system memory" and the page reloads, click on the link
+                that says MIRA. This will activate Mira+HEN to unlock the "Debug Settings" menu. In about 20 seconds
+                you'll get an alert saying "You're all set!", followed by what looks a system reboot. This means that
+                everything has gone well.<br />
+                If the system hangs or crashes, see above.</li>
+            <li><b>For advanced users:</b> To load your own payloads using NetCat, run first JB then NETCAT and send the
+                payload to TCP port 9021.</li>
+            <li><b>For advanced users:</b> To install .pkg files without a large enough USB drive, copy .pkg files to
+                /user/home/fakeusb/ via FTP, then connect any USB drive and select FAKEUSB (with HEN already activated).
+                Then go to "Debug Settings" and install the packages as usual.</li>
+        </ol>
+        <p><i>Claims that Mira does not have HEN are false, do not believe them!</i></p>
+        <p><i>This exploit <b>does</b> crash and hang. Sometimes you even have to retry 10 times to get the
+                jailbreak.</i></p>
+        <p><i>MIRA_NOHB is no longer necessary, as the bug has been fixed upstream.</i></p>
+        <p><i>FTP server will listen on port 2121.</i></p>
+    </div>
+    <div id="russian" class="language" style="display: none">
+        <h3>ВНИМАТЕЛЬНО ПРОЧИТАЙТЕ ИНСТРУКЦИЮ ПРЕЖДЕ ЧЕМ ПРОДОЛЖАТЬ</h3>
+        <p><b>Для даунов: этот взлом работает ТОЛЬКО на прошивке 6.72. Если у вас прошивка ниже, скачайте файл
+                обновления 6.72 retail <a href="https://sce.party/firmwares">отсюда</a> и обновитесь. Если прошивка
+                выше, эту консоль взломать НЕ ПОЛУЧИТСЯ.</b></p>
+        <p>Этот взлом состоит из двух этапов: собственно джейлбрейк (JB) и Mira+HEN (MIRA). Чтобы <s>пиратить игры</s>
+            запускать самописные программы, нужно запустить сначала JB, а потом MIRA. Именно так, и никак иначе:
+            <b>сначала JB, потом MIRA</b>.</p>
+        <ol>
+            <li>Нажмите на ссылку &laquo;JB&raquo;. В течение приблизительно 20 секунд появится всплывающее окно
+                &laquo;You're all set&raquo;, после чего вылетит ошибка нехватки памяти. Если все произошло именно так,
+                взлом сработал.<br />
+                Если что-то пошло не так, может вылететь ошибка &laquo;Jailbreak failed! Reboot your PS4 and try
+                again.&raquo;. В этом случае необходимо, не закрывая окно, перезагрузить консоль.<br />
+                Если взлом занимает больше минуты, и у вас адекватное интернет-соединение, скорее всего он повис.
+                Перезагрузите приставку и попробуйте еще раз.<br />
+                Если система крашится (выглядит как мгновенное выключение), нажимайте кнопку включения на ПРИСТАВКЕ (НЕ
+                НА КОНТРОЛЛЕРЕ), пока она не включится, после чего повторите взлом.
+            </li>
+            <li>После того, как вы нажали OK в окне &laquo;Недостаточно свободной оперативной памяти&raquo; и страница
+                перезагрузилась, нажмите на ссылку &laquo;MIRA&raquo;. Этим вы активируете Mira+HEN и меню &laquo;Debug
+                settings&raquo;.В течение приблизительно 20 секунд появится всплывающее окно &laquo;You're all
+                set&raquo;, после чего интерфейс консоли перезапустится. Если все произошло именно так, взлом
+                сработал.<br />
+                Если система виснет или крашится, см. пункт 1
+            </li>
+            <li><b>Для продвинутых пользователей:</b> чтобы отправить пейлоад по сети (NetCat), выберите сначала JB,
+                потом NETCAT, и отправьте пейлоад на TCP-порт 9021.</li>
+            <li><b>Для продвинутых пользователей:</b> если у вас нет флешки достаточного объема, пакеты можно установить
+                так: скопируйте файлы по FTP в папку /user/home/fakeusb/, после чего вставьте <i>любую</i> флешку и
+                (со включенным HEN) активируйте FAKEUSB. После этого приложения можно установить обычным способом.</li>
+        </ol>
+        <p><i>Те, кто утверждает, что в Mira нет HEN, нагло врут. Не верьте им!</i></p>
+        <p><i>Эксплойт <b>будет</b> крашиться и виснуть, иногда вообще только с 10 попытки заводится. Тут пока что
+                никуда не денешься, разве что и дальше ждать взлом от @SpecterDev.</i></p>
+        <p><i>MIRA_NOHB больше не нужна, баг был исправлен в официальной версии.</i></p>
+        <p><i>FTP-сервер слушает на порту 2121.</i></p>
+    </div>
+    <div id="italian" class="language" style="display: none">
+        <p><b>Nel caso sei un utente che non ha mai effettuato un jailbreak: funziona SOLO su FW 6.72. Se si utilizza un
+                firmware inferiore, scaricare un file di aggiornamento 6.72 <a
+                    href="https://sce.party/firmwares">QUI</a> e aggiorna il tuo sistema. Se hai un firmware superiore
+                (esempio 7.02), la tua console NON PUO 'ESSERE ancora hackerata.</b></p>
+        <p>Questo exploit consiste in due fasi: il jailbreak attuale (JB) e Mira+HEN (MIRA).Per i <s>giochi pirata</s>
+            eseguire il software homebrew, è necessario prima attivare JB, quindi MIRA. Non uno qualsiasi, non
+            viceversa. <b>Prima JB poi MIRA.</b></p>
+        <ol>
+            <li>Fai clic sul collegamento che dice JB. In circa 20 secondi riceverai un messaggio di avviso "Jailbreak
+                attivato.Adesso premi MIRA!", seguito da "Memoria insufficiente...". Questo significa che tutto è andato
+                bene.<br />
+                Se qualcosa è andato storto durante il processo, potresti ricevere un avviso che dice "Jailbreak
+                fallito! Riavvia la tua PS4 e riprova". In questo caso devi riavviare la tua PS4, preferibilmente senza
+                chiudere la finestra di dialogo.<br />
+                Se il sistema si blocca per più di un minuto (potrebbe richiedere più tempo su connessioni Internet
+                lente), riavvia PS4 e riprova.<br />
+                Se il sistema si arresta in modo anomalo (sembra uno spegnimento immediato), premi il pulsante di
+                accensione su PS4 (NON sul gamepad) fino a quando non si riaccende, quindi riprova.
+            </li>
+            <li>Dopo aver fatto clic su OK su "Memoria di sistema libera insufficiente" e la pagina viene ricaricata,
+                fare clic sul collegamento che dice MIRA. Ciò attiverà Mira + HEN per sbloccare il menu "Impostazioni
+                debug". In circa 20 secondi riceverai un avviso che dice "Sei pronto!", Seguito da "Memoria di sistema
+                libera insufficiente". Ciò significa che tutto è andato bene. <br />
+                Se il sistema si blocca o si arresta in modo anomalo, vedere sopra.</li>
+            <li><b>Per utenti avanzati:</b> Per caricare i tuoi payload usando NetCat, eseguire prima JB quindi NETCAT e
+                inviare il payload alla porta TCP 9021.</li>
+        </ol>
+        <p><i>Chi afferma che Mira non ha HEN è falso, non crederci!</i></p>
+        <p><i>Questo exploit <b>va</b> in crash e blocco. A volte devi anche riprovare 10 volte per ottenere il
+                jailbreak.</i></p>
+        <p><i>Traduzione italiana da theheroGAC.</i></p>
+    </div>
+    <div id="portuguese" class="language" style="display: none">
+        <h3>LER COM ATENÇÃO ANTES DE AVANÇAR</h3>
+        <p><b>No caso de seres um total desconhecido ao <i>jailbreak</i>, este APENAS funciona na versão 6.72 da PS4.
+                Caso estejas numa versão inferior e necessitares do ficheiro de atualização, podes encontrá-lo <a
+                    href="https://sce.party/firmwares">aqui</a> de modo a atualizares o teu sistema. Se estiveres numa
+                versão superior (por exemplo 7.02), a tua consola ainda NÃO PODE ser desbloqueada.</b></p>
+        <p>Este <i>exploit</i> consiste em dois passos: o <i>jailbreak (JB)</i> e <i>HEN (MIRA)</i>. Para <s>jogar jogos
+                pirata</s> correr <i>homebrews</i>, é necessário ativar o <i>JB</i> primeiro e só depois o <i>MIRA</i>.
+            Não apenas um deles, nem de outra forma. <b>Primeiro o <i>JB</i> e depois o <i>MIRA</i>.</b></p>
+        <ol>
+            <li>Clica no link que diz <i>JB</i>. Após cerca de 20 segundos irá aparecer um aviso a dizer "You're all
+                set!", seguido de "There is not enough free system memory". Isto quer dizer que tudo correu bem.
+                <br />
+                Se alguma coisa tiver corrido mal durante o processo, é possível que surja um aviso a dizer "Jailbreak
+                failed! Reboot your PS4 and try again.". Nesse caso, é necessário reiniciar a PS4 de preferência sem
+                fechar a caixa de diálogo.
+                <br />
+                Se o sistema não fizer nada durante mais de um minuto (pode necessitar de mais tempo no caso de uma
+                ligação à internet fraca/lenta), reinicia a PS4 e tenta de novo.
+                <br />
+                Se o sistema <i>crashar</i> (como se a PS4 tivesse ficado sem corrente elétrica), pressiona o botão de
+                energia da PS4 (NÃO no controlador)
+                até que o sistema volte a ligar. Posteriormente, volta a tentar os passos desde o início.
+            </li>
+            <li>Depois de clicares em OK no aviso "There is not enough free system memory" e a página recarregar, clica
+                no link que diz <i>MIRA</i>. Isto vai ativar <i>MIRA+HEN</i> para desbloquear as definições de
+                desenvolvedor. Após cerca de 20 segundos deves receber um aviso a dizer "You're all set!", seguido de
+                outro com "There is not enough free system memory". Isto quer dizer que correu tudo bem.
+                <br />
+                Se o sistema não fizer nada ou <i>crashar</i>, segue as mesmas instruções que no 1º passo.</li>
+            <li><b>Para utilizadores avançados:</b> Para carregar os teus próprios <i>payloads</i> usando <i>NetCat</i>,
+                corre primeiro <i>JB</i> e depois <i>NETCAT</i> e envia o <i>payload</i> para a porta TCP 9021.</li>
+        </ol>
+        <p><i>Afirmações que o Mira não tem HEN são falsa, não acredites neles!</i></p>
+        <p><i>Este exploit <b>cria</b> muitos crashes e/ou leva a sistemas sem resposta. Às vezes são necessárias
+                10 tentativas para conseguir o jailbreak.</i></p>
+      <p><i>Tradução portuguesa por hugofpaiva.</i></p>
+    </div>
+	<div id="hungarian" class="language" style="display: none">
+        <h3>Olvasd el figyelmesen mielőtt tovább haladsz</h3>
+        <p><b>Azesetben ha hülye vagy: ez csak 6.72 es rendszerszoftverrel működik ha alacsonyabb rendszeren vagy, töltsd le a 6.72 retail rendszer
+                frissítőfájlt <a href="https://sce.party/firmwares">itt</a> és frissítsd a szoftvert. Ha magasabb
+                rendszeren vagy (p.l. 7.02), a konzolod még nem törhető.</b></p>
+        <p>Ez az exploit két lépésből áll: maga a törés (JB) és a Mira+HEN (MIRA). hogy menjenek a <s>torrentről töltött játékok</s>
+            homebrewek, elsőnek a JB-t kell aktiválnod, és utána a  MIRA-t. Nem csak az egyiket, nincs más
+            megoldás. <b>Elsőnek JB aztán MIRA.</b></p>
+        <ol>
+            <li>Kattints a linkre ahol az van írva JB. 20 másodpercen belül ezt kell írnia "You're all set!",
+                és utána "There is not enough free system memory". Ez azt jelenti minden jól ment.<br />
+                Ha valami rosszul sült el a folyamatban, ezt kell írnia "Jailbreak failed! Reboot your
+                PS4 and try again.". Ebben az esetben indítsd újra a PS4 ed, lehetőleg anélkül hogy bezárnád
+                az ablakot.<br />
+                Ha a PS4 ed nem csinál semmit 1perc után sem (kicsit több időre van szüksége a lassú net végett), indítsd
+                újra a PS4 ed és próbáld újra.<br />
+                ha a konzolod crashel (mint amikor elmegy az áram), nyomd meg a bekapcs gombot a PS4 en (Nem a
+                kontrolleren) amíg be nem kapcsol újra, aztán próbáld megint.
+            </li>
+            <li>Miután leokéztad a "There is not enough free system memory" és az oldal újratölts, kattints a linkre
+                ami azt írja MIRA. Ez aktiválja a Mira+HEN-t hogy legyen "Debug Settings" menüd. 20 másodpercen belül
+                ezt kell látnod "You're all set!", és utána ezt "There is not enough free system memory". Ez
+                azt jelenti minden rendben ment.<br />
+                Ha a konzolod nem csinál semmit vagy crashel, olvass lentebb.</li>
+            <li><b>Haladó felhasználóknak:</b> Hogy betöltsd a saját payload od NetCat ot használva, elsőnek JB aztán NETCAT és küld a
+                payload ot a 9021 es TCP portra.</li>
+	    <li><b>Haladó felhasználóknak:</b> hogy telepíteni tudd a .pkg fájlokat nagy pendrive nélkül, másold a .pkg fájlokat a
+                /user/home/fakeusb/ helyre FTP-n keresztül, aztán dugj be bármilyen méretű pendrive ot és válaszd a FAKEUSB-t (Előtte aktiváld a HEN-t).
+                Utána menj ide "Debug Settings" és telepítsd a pkg-kat ahogy szoktad.</li>
+			<p><i>Az FTP szervert a 2121 es porton tudod elérni.</i></p>
+        </ol>
+        <p><i>Sokan azt mondják a Mira ban nincs HEN, Ne higgy nekik!</i></p>
+        <p><i>Az exploit <b>crashelhet</b> vagy <b>fagyhat</b>. Van mikor akár 10szer is próbálkoznod kell hogy jól működjön a
+                jailbreak.</i></p>
+		<p><i>Magyarítást készítette: TheOneEyedGrimReaper</i></p>
+    </div>
+    <div id="spanish" class="language" style="display: none">
+        <h3>LEE ESTO CUIDADOSAMENTE ANTES DE CONTINUAR</h3>
+        <p><b>En caso de que seas un tonto: Esto SÓLO funciona en FW 6.72, Si tienes un firmware inferior, descargua 
+            <a href="https://sce.party/firmwares" target="_blank">aqui</a> el archivo de actualización de 6.72 y actualiza tu conosola.
+            Si tienes un firmware superior (por ejemplo, 7.02), tu consola NO PUEDE SER LIBERADA todavía.</b></p>
+        <p>Este exploit consta de dos pasos, <strong>PRIMERO:</strong> El jailbreak (JB) y <strong>SEGUNDO:</strong>
+            El Mira + HEN (MIRA). Para <s>piratear juegos</s> y usar software homebrew, primero debes activar el JB, y luego el MIRA. NO alrevés.
+            <strong>Primero el JB luego el MIRA.</strong></p>
+        <ol>
+            <li>Haga click en el enlace que dice JB. En unos 20 segundos recibirás una alerta que dice "You're all
+                set!", seguido de "There is not enough free system memory". Esto significa que todo se ha salido bien.<br />
+                Si algo salió mal durante el proceso, puede recibir una alerta que dice "Jailbreak failed! Reboot
+                your PS4 and try again". En este caso, debe reiniciar su Consola, preferiblemente sin cerrar el
+                caja de diálogo.<br />
+                Si el sistema se cuelga por más de un minuto (puede requerir más tiempo en conexiones de Internet
+                lentas), reinicia tu consola y vuelve a intentarlo.<br />
+                Si el sistema falla (como un apagado instantáneo), presiona el botón de encendido en la consola (NO
+                en el gamepad) hasta que se vuelva a encender, luego vuelve a intentarlo.
+            </li>
+            <li>Después de hacer click en Aceptar en "There is not enough free system memory" y la página se vuelve a
+                cargar, haz click en el enlace que dice MIRA. Esto activará Mira + HEN para desbloquear el menú de "Debug Settings".
+                En unos 20 segundos recibirá una alerta que dice "You're all set!", seguido de "There is not enough
+                free system memory". Esto significa que todo ha ido bien.<br />
+                Si el sistema se cuelga o falla, vea un poco más arriba.</li>
+            <li><b>Para usuarios avanzados:</b> Para cargar sus propios payloads con NetCat, ejecuta primero JB y luego NETCAT 
+                y envía el payload al puerto TCP 9021.</li>
+            <li><b>Para usuarios avanzados:</b> Para instalar archivos .pkg sin una unidad USB lo suficientemente grande, copia los archivos .pkg a 
+                /user/home/fakeusb/ a través de FTP, luego conecta cualquier unidad USB y selecciona FAKEUSB (con HEN ya activado). 
+                Luego ve a "Debug Settings" e instala los paquetes como siempre.</li>
+        </ol>
+        <p><i>Los avisos de que Mira no tiene HEN son falsas, ¡No les creas!</i></p>
+        <p><i>Este exploit <b>se bloquea y se cuelga. </b> A veces incluso tienes que volver a intentarlo 10 veces para obtener el jailbreak.</i></p>
+        <p><i>El servidor FTP escuchará en el puerto 2121.</i></p>
+    </div>
+    <div id="chinese" class="language" style="display: none">
+        <h3>在进行此操作前，请仔细阅读本内容</h3>
+        <p><b>万一你是个傻子：只能用于 6.72 版本固件。如果您的固件版本较低，下载 6.72 官方更新补丁 <a href="https://sce.party/firmwares">这里</a>
+                并更新你的系统。 如果您正在更高的版本（例如 7.02），您的系统尚无法使用。</b></p>
+        <p>此破解包括两个步骤：实际越狱（JB）和 Mira+HEN（MIRA）。要运行自制软件<s>破解游戏</s>，您需要先激活 JB，然后再激活 MIRA，不能只执行其中之一，也不能顺序相反操作。
+            <b>先JB再MIRA。</b></p>
+        <ol>
+            <li>单击显示 JB 的链接，在大约20秒内，您会收到一条警告，内容是“You're all set!”，其次是“There is not enough free system
+                memory”。这表示一切进展顺利。<br />
+                如果在此过程中出现问题， 你可能会收到警告说“Jailbreak failed! Reboot your
+                PS4 and try again.”。在这种情况下你必须重新启动 PS4，最好不要关闭对话框。<br />
+                如果系统挂起一分钟以上（在慢速在线连接上可能需要更多时间），重启你的 PS4 然后重试。<br />
+                如果系统崩溃（看起来像是立即关机），按下PS4上的电源按钮（不是游戏手柄），直到它再次打开，然后重试。
+            </li>
+            <li>在“There is not enough free system memory”上单击确定并重新加载页面后，单击显示MIRA的链接。这将激活 Mira + HEN 来解锁 “Debug
+                Settings”
+                菜单。在大约20秒钟内，您会收到一条警告，说“You're all set!”，然后看起来像系统重新启动，这意味著一切进展顺利。<br />
+                如果系统挂起或崩溃，请参见上文。</li>
+            <li><b>对于高级用户：</b> 要使用 NetCat 加载自己的 payloads，首先运行 JB，然后运行 NETCAT，并将有效负载发送到 TCP端口 9021。</li>
+            <li><b>对于高级用户：</b> 要在没有足够大的USB驱动器的情况下安装.pkg文件，通过 FTP 将.pkg文件复制到
+                /user/home/fakeusb/，然后连接任意容量USB驱动器并选择 FAKEUSB（已激活HEN）。然后转到 “Debug Settings” 并照常安装软件包。</li>
+        </ol>
+        <p><i>声称 Mira 没有 HEN 的说法是错误的，不要相信他们！</i></p>
+        <p><i>此漏洞<b>确实存在</b>崩溃并挂起。有时，您甚至必须重试10次才能越狱。</i></p>
+        <p><i>不再需要 MIRA_NOHB，由于该错误已在之前版本修复。</i></p>
+        <p><i>FTP 服务器侦听端口 2121</i></p>
+    </div>
+    <div id="progress"></div>
+
+<a href="jb.html">JB</a>
+<a href="mira.html">MIRA</a>
+<a href="ps4-hen-vtx.html">PS4_HEN_VTX</a>
+<a href="netcat.html">NETCAT</a>
+<a href="ftp.html">FTP</a>
+<a href="fakeusb.html">FAKEUSB</a>
+<a href="linux.html">LINUX</a>
+<a href="todex.html">TODEX</a>
+<a href="spoofer.html">FWSPOOF</a>
+</body>
+
+</html>
