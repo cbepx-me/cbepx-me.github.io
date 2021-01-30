@@ -1,8 +1,13 @@
 <html>
-<body onload="go()">
+<head>
+<div style="text-align:center">
+<p align="center"><font face=Tahoma color="#FFFF00" size="12"><strong>PS4 破解服务器 v1.3.0</strong></font></p>
+</div>
+</head>
+<body style="background-color:#000000;color:white;text-align:center;font-size:25px" onload="go()"><br>
 <script>
 if(document.cookie.indexOf('kex=0') >= 0)
-    document.location.href = 'index.html';
+    window.location.href = document.referrer;
 </script>
 <script>
 function print(){}
@@ -24,16 +29,16 @@ function done()
 {
     if(main_ret == 0 || main_ret == 179)
     {
-        alert("您已准备就绪!\n 按 确定 并通过按 PS 键关闭浏览器");
+        alert("您已准备就绪!\n 恢复数据已加载 !");
         read_ptr_at(0);
     }
     else
-        alert("越狱失败! 重新启动您的 PS4 然后重试或刷新页面.");
+        alert("越狱失败! 请重新启动您的 PS4 然后再试一次.");
 }
 
 window.midExploit = function()
 {
-    preloadScripts(['702.js', 'c-code.js', 'mira.js', 'ce-30391-6_fix.js', 'mc-code.js'], go);
+    preloadScripts(['702.js', 'c-code.js', 'mira.js', 'Restore.js', 'mc-code.js'], go);
 }
 
 window.postExploit = function()
