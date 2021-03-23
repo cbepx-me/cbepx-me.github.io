@@ -1,6 +1,6 @@
 CACHE MANIFEST 
 # by 上帝之右手 
-# 2021/01/15 周五-22:19:48.95 
+# 2021/03/23 周二-19:46:06.58 
 
 702.js
 app2usb.js
@@ -11,16 +11,19 @@ c-code_jb702.js
 ce-30391-6_fix.js
 disaupdate.js
 dumper.js
-eb.html
-Enable-Browser.js
 enupdat.js
+Fan-Threshold.js
 FTP.js
+goldhen.html
+goldhen.js
 hb.html
+hen-U.js
 hen.js
 henb.js
 History-Blocker.js
 index.html
 int64.js
+int64b.js
 linux1.js
 linux3.js
 mira.js
@@ -28,8 +31,12 @@ mira2.js
 netcat702.html
 payload702.html
 ps4.js
+ps4b.js
 restore.html
 Restore.js
+ropb.js
 todex.js
+userlandb.js
 utils.js
+utilsb.js
 VR.js

