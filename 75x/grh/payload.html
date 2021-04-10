@@ -34,11 +34,11 @@ function done()
 {
     if(main_ret == 0 || main_ret == 179)
     {
-        alert("您已准备就绪!");
+        alert("破解成功!");
         read_ptr_at(0);
     }
     else
-        alert("越狱失败! 请重启您的 PS4 并再次尝试.");
+        alert("破解失败! 请重启 PS4 再次尝试.");
 }
 
 window.midExploit = function()
@@ -46,10 +46,10 @@ window.midExploit = function()
     if(document.location.hash)
     {
         var s = decodeURIComponent(document.location.hash.substr(3));
-        preloadScripts(['blob.js', 'jb.js', 'mira.js', s, 'netcat.js'], go);
+        preloadScripts(['750.js', 'jb.js', 'preloader.js', s, 'loader.js'], go);
     }
     else
-        preloadScripts(['blob.js', 'jb.js', 'mira.js', 'netcat.js'], go);
+        preloadScripts(['750.js', 'jb.js', 'loader.js'], go);
 }
 
 window.postExploit = function()
