@@ -1,5 +1,4 @@
 <html>
-<title>GoldHEN 7.5x v1.1</title>
 <style>
 body {
 background-attachment: fixed;
@@ -9,8 +8,8 @@ background-color: #4B0082;
 color:white;
 }
 </style>
-<body style="text-align:center;font-size:25px" onload="go()">
-     <p><strong><font color="#FFFF00" size="6">破解程序正在执行...</font></strong></p>
+<body style="text-align:center;font-size:15px" onload="go()">
+     <p><strong><font color="#FFFF00" size="5">破解程序正在执行...</font></strong></p>
 <script>
 if(document.cookie.indexOf('kex=0') >= 0)
     document.location.href = 'index.html';
@@ -50,7 +49,7 @@ window.midExploit = function()
 var scripts = ['750.js', 'jb.js'];
 
   if (fwFromUA != "750" && fwFromUA != "751" && fwFromUA != "755") {
-    die('不支持的系统版本!');
+    die('Unsupported Firmware!');
   }
 
   scripts.push('preloader' + fwFromUA + '.js');

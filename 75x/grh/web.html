@@ -43,13 +43,8 @@ function done()
 
 window.midExploit = function()
 {
-    if(document.location.hash)
-    {
         var s = decodeURIComponent(document.location.hash.substr(3));
-        preloadScripts(['750.js', 'jb.js', 'preloader.js', s, 'loader.js'], go);
-    }
-    else
-        preloadScripts(['750.js', 'jb.js', 'loader.js'], go);
+        preloadScripts(['750.js', 'jb.js', 'preloader.js', 'payload.js', 'loader.js', 'frontend.js'], go);
 }
 
 window.postExploit = function()

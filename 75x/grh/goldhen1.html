@@ -17,6 +17,9 @@ if(document.cookie.indexOf('kex=0') >= 0)
 <script>
 function print(){}
 
+var fwFromUA = navigator.userAgent.substring(navigator.userAgent.indexOf('5.0 (') + 19, navigator.userAgent.indexOf(') Apple'));
+fwFromUA = fwFromUA.replace('.', '');
+
 var scriptCode = '';
 
 function preloadScripts(lst)
@@ -43,13 +46,17 @@ function done()
 
 window.midExploit = function()
 {
-    if(document.location.hash)
-    {
-        var s = decodeURIComponent(document.location.hash.substr(3));
-        preloadScripts(['750.js', 'jb.js', 'preloader.js', s, 'loader.js'], go);
-    }
-    else
-        preloadScripts(['750.js', 'jb.js', 'loader.js'], go);
+var scripts = ['750.js', 'jb.js'];
+
+  if (fwFromUA != "750" && fwFromUA != "751" && fwFromUA != "755") {
+    die('Unsupported Firmware!');
+  }
+
+  scripts.push('preloader' + fwFromUA + '.js');
+  scripts.push('goldhen1v' + fwFromUA + '.js');
+  scripts.push('loader.js');
+
+  preloadScripts(scripts, go);
 }
 
 window.postExploit = function()
