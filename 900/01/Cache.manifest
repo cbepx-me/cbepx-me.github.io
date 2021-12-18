@@ -1,0 +1,37 @@
+CACHE MANIFEST 
+# mod by G.R.H
+
+CACHE: 
+app-dumper.bin
+app2usb.bin
+backupdb.bin
+disableaslr.bin
+disableupdates.bin
+enablebrowser.bin
+enableupdates.bin
+exitidu.bin
+font-awesome.min.css
+font.css
+ftp.bin
+goldhen2b.html
+historyblocker.bin
+index.html
+int64.js
+jquery-3.6.0.js
+kerneldumper.bin
+kexploit.js
+main.js
+mdumper.bin
+Mira.elf
+MiraLoader.bin
+permanentuart.bin
+restoredb.bin
+rifrenamer.bin
+rop.js
+simple-notify.min.css
+simple-notify.min.js
+ToDex.bin
+webkit.js
+
+NETWORK: 
+* 
