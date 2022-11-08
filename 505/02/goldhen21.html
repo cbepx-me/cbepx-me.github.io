@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GoldHen v2.1</title>
+<link rel="stylesheet prefetch" href="exploit.css">
+</head>
+<body>
+<div id=loader class=loader><div class=ib2>GoldHen v2.1</div><div class=ib2>&nbsp;正在加载</div><div class=loaderO></div><div class=ib2>...</div></div>
+<div id=done class=done style=display:none>GoldHen v2.1 加载成功<br><div class=ib>按</div><div id=PSBUTTON></div><div class=ib>退出</div></div>
+<div id=fail class=info style=display:none>GoldHen 加载失败</div>
+<script>
+var bin="goldhen_2.1_505.bin";function getScript(source,callback){var gs=document.createElement('script');gs.src=source;gs.onload=callback;gs.async=false;document.body.appendChild(gs);}function loadScript(){getScript("exploit_bin.js",function(){setTimeout(exploit,1500);});}loadScript();localStorage.setItem("HENstat", "1");
+</script>
+</body>
+</html>

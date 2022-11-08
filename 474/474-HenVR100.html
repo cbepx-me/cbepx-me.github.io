@@ -1,10 +1,39 @@
 <html>
 <head>
-<title>破解游戏 + VR 100%</title>
+<title>HEN 1.5 + VR</title>
 <link rel="stylesheet prefetch" href="Style.css">
 </head>
 <body>
-<script src="exploit.js"></script>
+  <script>
+    window.didload = 0;
+    window.didpost = 0;
+
+    window.onload = function () {
+      window.didload = 1;
+      if (window.didpost == 1)
+        setTimeout(window.stage2, 1500);
+    }
+    window.postExpl = function () {
+      window.didpost = 1;
+      if (window.didload == 1)
+        setTimeout(window.stage2, 1500);
+    }
+
+    function allset() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("allset").style.display = "block";
+    }
+
+    function awaitpl() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("awaiting").style.display = "block";
+    }
+
+    function fail(info) {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("fail").style.display = "block";
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <div id="title" class="title"><script>document.write(document.title);</script></div>
 	<div id=loader class=loader><div>漏洞载入中...</div></div>
@@ -13,12 +42,13 @@
 	<div id=fail class=info style=display:none>漏洞利用失败 !</div>
   <div id="badfw" class="info" style="display:none;">仅支持 4.74 版本固件!</div>
   </div>
-  <script src="./rop3.js"></script>
-  <script src="./syscalls3.js"></script>
-  <script src="./expl3.js"></script>
-  <script src="./kernel3.js"></script>
+  <script src="./rop2.js"></script>
+  <script src="./syscalls2.js"></script>
+  <script src="./expl2.js"></script>
+  <script src="./kernel2.js"></script>
   <script src="./userland3.js"></script>
-  <script src="./homebrew3.js"></script>
+  <script src="./homebrew2.js"></script>
+  <script src="./mira2.js"></script>
   <pre id="console"></pre>
 </body>
 </html>

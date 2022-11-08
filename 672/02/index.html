@@ -1,43 +1,551 @@
-﻿<!DOCTYPE HTML>
-<html>
-<head>
-<title>Ps4 破解服务器 By 上帝之右手</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+	<html lang="en">	
+  	<head>
+    	<title>ESP8266 破解服务 by c0d3m4st4 - 6.72</title>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+		<link rel="icon" type="image/x-icon" href="favicon.ico">		
+		<link rel="stylesheet" href="owl.carousel.min.css">
 		
-</head>
+		<style type="text/css">
 
-<body bgcolor="#333333" text="#FFFFFF">
-<p align="center">&nbsp;</p>
-<p align="center"><font color="#FF0000" size="7"><strong>Ps4 破解服务器 6.72 专用</strong></font></p>
-<div align="center"> 
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFF00" size="5">开发者：Leeful</font></strong></p>
-  <p>&nbsp;</p>
-  <table width="1399" border="0" cellpadding="2" cellspacing="2" bgcolor="#000000">
-    <!--DWLayoutTable-->
-    <tr> 
-      <td width="109" height="41" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">No.1 V6 MOD</font></strong></td>
-      <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">No.2 V8</font></strong></td>
-      <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">No.3 V9a</font></strong></td>
-      <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">No.4 V9b</font></strong></td>
-      <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">No.5 V10</font></strong></td>
-      <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">No.6 PS-Phwoar!</font></strong></td>
-    </tr>
-    <tr> 
-      <td height="109" align="center" valign="middle" bgcolor="#999999"><a href="./672v6-MOD/index.html"><img src="ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./v8/index.html"><img src="ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./V9a oldJB/index.html"><img src="ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./V9b newJB/index.html"><img src="ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./v10/index.html"><img src="ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./PS-Phwoar! For 672/index.html"><img src="ps4.png" width="150" height="150" border="0"></a></td>
-    </tr>
-  </table>
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFFFF" size="5">1.本破解由国外开发者 Leeful 制作的 6.72 破解程序制作而成，请自行测试最适合的破解版本.</font></strong></p>
-  <p><strong><font color="#FFFFFF" size="5">2.使用前请三清 PS4 浏览器，以便顺利完成页面缓存功能.</font></strong></p>
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFF00" size="5">@上帝之右手</font></strong></p>
-  </div>
-</body>
+			html, body {
+				font-family:Impact, Charcoal, sans-serif;
+				text-align: center;	
+			}
+
+
+			h1 {
+				font-family: Impact, Charcoal, sans-serif;
+				font-size: 6rem;	
+				color: #4d4dff;
+				margin:5px;
+			}
+
+			main {
+				justify-content: space-around;	
+				-webkit-justify-content: space-around;
+			}
+
+			.owl-carousel{
+				display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+				display: -ms-flexbox;  /* TWEENER - IE 10 */
+				display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+				display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+				flex-flow: row wrap;
+				justify-content: space-around;	
+				-webkit-justify-content: space-around;
+			}
+
+			#infoWrapper{
+				width:100%;
+				display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+				display: -ms-flexbox;  /* TWEENER - IE 10 */
+				display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+				display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+				justify-content: space-around;	
+				-webkit-justify-content: space-around;
+			}
+
+			.divExploitOption {
+				margin: 10px;
+				border-radius: 10px;
+				border: 5px solid #000;
+				width: 195px;
+			}
+
+			.divExploitInfo {
+				margin: 10px;
+				border-radius: 10px;
+				border: 5px solid #000;
+				width: 95%;
+			}
+
+			.divMenuHeader {
+				font-family: Impact, Charcoal, sans-serif;
+				font-size: 30px;
+				padding: 0px;
+				text-align: center;
+				background: #f0f0f5;	
+				border-radius: 5px;
+				border: 1px solid black;
+				align:center;	
+			}
+
+			#exploitInfo {
+				font-family: Impact, Charcoal, sans-serif;
+				font-size: 25px;
+				text-align: left;
+				margin: 20px;
+			}
+
+			.divMenuBody {
+				margin: 10px;
+				text-align: center;	
+			}
+
+			footer {
+				font-family: Impact, Charcoal, sans-serif;
+				font-size: 25px;
+				text-align: center;
+			}
+
+			.nav {	
+				height: 100px;
+				width: 100px;	
+			}
+
+			.nav:hover {	
+				fill: #f00;	
+			}
+
+			.owl-carousel {
+				width: 90%;
+				margin: auto;
+			}
+		
+			#svg-nav-672-prev, #svg-nav-672-next {
+				width: 50px;
+				height: 50px;
+			}
+
+			.owl-prev-672 {
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				top: 40%;
+				left: -60px;
+				display: block!IMPORTANT;
+				background-color: Transparent;
+				border: none;
+			}
+
+			.owl-next-672 {
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				top: 40%;
+				right: -40px;
+				display: block!IMPORTANT;
+				background-color: Transparent;
+				border: none;
+			}
+			
+			@media screen and (max-width: 1024px) {
+				h1 {
+					font-family: Impact, Charcoal, sans-serif;
+					font-size: 2.5rem;	
+					color: #4d4dff;		
+				}
+			}
+
+			@media screen and (max-width: 480px) {
+				h1 {
+					font-family: Impact, Charcoal, sans-serif;
+					font-size: 2.5rem;	
+					color: #4d4dff;		
+				}
+			}
+
+			svg {
+				height: 150px;
+				width: 150px;
+			}
+
+			#back svg {
+				height: 75px;
+				width: 75px;
+			}			
+			
+			svg:hover path { fill: #f00; }
+			svg:hover polygon { fill: #f00; }
+
+			button:hover svg {
+				fill: #f00;
+			}
+		
+		
+			#exploitSelectorDialog {
+				z-index: 100;
+				margin: 10px;
+				border-radius: 10px;
+				border: 5px solid black;			
+				position: fixed;
+				margin: auto;
+				top: 12px;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				width: 1300px;
+				height: 600px;
+				background-color: #ffffff;			
+				opacity: 1;				
+				visibility:hidden;
+			}
+		
+			#exploitSelectorOverlay {
+				visibility: hidden;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width:100%;
+				height:100%;
+				text-align:center;
+				z-index: 50;
+				background: rgba(0, 0, 0, 0.5);
+			}		
+			
+			#exploitSelectorInfoText{
+				font-family:Impact, Charcoal, sans-serif;
+				font-size: 25px;
+				margin: 10px;
+				text-align:left;
+			}
+			
+			#exploitSelectorInfoText input{
+				margin-left: 25px;
+			}			
+		
+			#saveSelectedExploitButton {
+				visibility:hidden;
+				border-radius: 8px;
+				border: 2px solid black;
+				background-color: #e7e7e7; 
+				color: black;
+				padding: 5px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 4px;
+			}
+		
+		
+		
+			/* Ribbons */
+
+			.corner-ribbon{
+				font-size: 25px;
+			  width: 200px;
+			  background: #e43;
+			  position: absolute;
+			  top: 25px;
+			  left: -50px;
+			  text-align: center;
+			  line-height: 50px;
+			  letter-spacing: 1px;
+			  color: #f0f0f0;
+			  transform: rotate(-45deg);
+			  -webkit-transform: rotate(-45deg);
+			}
+
+			/* Custom styles */
+
+			.corner-ribbon.sticky{
+			  position: fixed;
+			}
+
+			.corner-ribbon.shadow{
+			  box-shadow: 0 0 3px rgba(0,0,0,.3);
+			}
+
+			/* Different positions */
+
+			.corner-ribbon.top-left{
+			  top: 25px;
+			  left: -50px;
+			  transform: rotate(-45deg);
+			  -webkit-transform: rotate(-45deg);
+			}
+
+			.corner-ribbon.top-right{
+			  top: 25px;
+			  right: -50px;
+			  left: auto;
+			  transform: rotate(45deg);
+			  -webkit-transform: rotate(45deg);
+			}
+
+			.corner-ribbon.bottom-left{
+			  top: auto;
+			  bottom: 25px;
+			  left: -50px;
+			  transform: rotate(45deg);
+			  -webkit-transform: rotate(45deg);
+			}
+
+			.corner-ribbon.bottom-right{
+			  top: auto;
+			  right: -50px;
+			  bottom: 25px;
+			  left: auto;
+			  transform: rotate(-45deg);
+			  -webkit-transform: rotate(-45deg);
+			}
+
+			/* Colors */
+
+			.corner-ribbon.white{background: #f0f0f0; color: #555;}
+			.corner-ribbon.black{background: #333;}
+			.corner-ribbon.grey{background: #999;}
+			.corner-ribbon.blue{background: #4d4dff;}
+			.corner-ribbon.green{background: #2c7;}
+			.corner-ribbon.turquoise{background: #1b9;}
+			.corner-ribbon.purple{background: #95b;}
+			.corner-ribbon.red{background: #e43;}
+			.corner-ribbon.orange{background: #e82;}
+			.corner-ribbon.yellow{background: #ec0;}		
+		
+		</style>
+		
+		<script src="jquery-3.3.1.min.js"></script>			
+		<script src="owl.carousel.min.js"></script>		
+		
+		<script>
+
+			if (!(localStorage.getItem("offlineAppInstalled") === null)) {
+				window.location.replace("ps4_672_offline_index.html");
+			}
+		
+			var bNegativeTheme = !(localStorage.getItem("negativeTheme") === null);		
+			var exploitVer;
+		
+			$(function(){				
+				
+				if (document.cookie == "") { //get current REAL FW version on first run - if cookies are deleted while on spoofed FW it will redirect to FW not supported page ... ¯\_(ツ)_/¯
+					document.cookie = "fw=" + navigator.userAgent.substring(navigator.userAgent.indexOf("PlayStation 4") + 14, navigator.userAgent.indexOf("PlayStation 4") + 18) + ";max-age=31536000";					
+				}
+
+				$("#exploitInfo").append("<br><br>真实系统版本: " + document.cookie.split("=")[1]);
+				$("#exploitInfo").append("<br><br>当前系统版本 (可能是伪装的): " + navigator.userAgent.substring(navigator.userAgent.indexOf("PlayStation 4") + 14, navigator.userAgent.indexOf("PlayStation 4") + 18));
+				
+				var owl = $('.owl-carousel');
+
+				owl.owlCarousel({
+					loop:false,
+					margin:10,
+					autoWidth:false,
+					dots:false,
+					nav:true,
+					navText: ['<div><svg id="svg-nav-672-prev" xmlns="http://www.w3.org/2000/svg" width="445" height="445" viewBox="0 0 444.5 444.5"><path d="M213.1 222.4L351.9 83.7c7.1-7 10.6-15.7 10.6-25.8 0-10.2-3.5-18.8-10.6-25.8l-21.4-21.4C323.4 3.5 314.8 0 304.6 0s-18.8 3.5-25.8 10.6L92.6 196.4c-7 7-10.6 15.7-10.6 25.8s3.5 18.8 10.6 25.8l186.1 185.9c7.1 7 15.7 10.6 25.8 10.6s18.8-3.5 25.8-10.6l21.4-21.4c7.1-7 10.6-15.6 10.6-25.7 0-10.1-3.5-18.7-10.6-26L213.1 222.4z"/></svg></div>', '<div><svg id="svg-nav-672-next" xmlns="http://www.w3.org/2000/svg" width="445" height="445" viewBox="0 0 444.8 444.8"><path d="M352 196.7L165.9 10.8C159 3.6 150.5 0 140.2 0c-10.3 0-18.8 3.6-25.7 10.8L92.8 32.3c-7 7-10.6 15.6-10.6 25.7 0 9.9 3.5 18.6 10.6 26l138.8 138.5L92.8 361.2c-7 7-10.6 15.6-10.6 25.7 0 9.9 3.5 18.6 10.6 26l21.7 21.4c7 7 15.6 10.6 25.7 10.6 10.1 0 18.7-3.5 25.7-10.6l186.1-185.9c7-7.4 10.6-16.1 10.6-26C362.6 212.3 359.1 203.8 352 196.7z"/></svg></div>'],
+					navClass: ['owl-prev-672','owl-next-672'],
+					items:6
+				})				
+
+				owl.on('changed.owl.carousel', function(event) {
+					beep();
+				})				
+				
+				$(document).on('keydown', function(e){
+
+				
+					switch(e.keyCode) {
+					
+						//case 39: //keyboard right
+						case 117: //PS4 R1
+							$('#svg-nav-672-next path').css('fill','#f00');
+							owl.trigger('next.owl');							
+							if (bNegativeTheme) {
+								setTimeout(function(){ $('#svg-nav-672-next path').css('fill','#eee'); }, 120);
+							}else{
+								setTimeout(function(){ $('#svg-nav-672-next path').css('fill','#000'); }, 120);
+							}
+							break;
+						
+						//case 37: // keyboard left
+						case 116: //PS4 L1
+							$('#svg-nav-672-prev path').css('fill','#f00');							
+							owl.trigger('prev.owl');
+							if (bNegativeTheme) {
+								setTimeout(function(){ $('#svg-nav-672-prev path').css('fill','#eee'); }, 120);
+							}else{
+								setTimeout(function(){ $('#svg-nav-672-prev path').css('fill','#000'); }, 120);
+							}
+							break;
+
+						//case 38: // keyboard up
+						case 118: //PS4 L2
+						case 119: //PS4 R2
+							//swith to dark theme
+							bNegativeTheme = !bNegativeTheme;
+							if (!bNegativeTheme) {
+								localStorage.removeItem("negativeTheme");
+							}else{
+								localStorage.setItem("negativeTheme",bNegativeTheme);
+							}
+							setNegativeTheme(bNegativeTheme);
+							break;							
+					} 					
+								
+				});				
+				
+				setNegativeTheme(bNegativeTheme);
+
+				$.ajax({
+					url: 'version.json',
+					dataType : 'json',
+					type:  'get',
+					success:  function (response) {			
+						$("#version").html(response.version);
+					},
+					error: function(){ // will fire when timeout is reached
+						$("#version").html("错误");
+					},
+					timeout: 5000 // sets timeout to 5 seconds
+				});
+				
+				$("#year").html(new Date().getFullYear());
+				
+				if (localStorage.getItem("exploitVer") === null) {
+					$('#exploitSelectorOverlay').css("visibility","visible");
+					$('#exploitSelectorDialog').css("visibility","visible");
+					$('#saveSelectedExploitButton').css("visibility","visible");				
+				}else{
+					exploitVer = localStorage.getItem("exploitVer");
+				}
+				
+				$("#saveSelectedExploitButton").click(function(e) {
+					$('#exploitSelectorOverlay').css("visibility","hidden");
+					$('#exploitSelectorDialog').css("visibility","hidden");
+					$('#saveSelectedExploitButton').css("visibility","hidden");
+
+					exploitVer = $('input[name="exploitVer"]:checked').val();
+					localStorage.setItem("exploitVer",exploitVer);
+				});				
+				
+			});
+
+			function beep() {
+				//$("#beep")[0].pause();
+				//$("#beep")[0].currentTime=0;
+				$("#beep")[0].play();			
+			}			
+			
+			function setNegativeTheme(bNegative) {
+			
+				if (bNegative) {
+					$('body').css("background-color","#111");
+					$('.divExploitOption').css("border-color","#eee");
+					$('.divExploitInfo').css("border-color","#eee");
+					$('h1').css("color","#eee");
+					$('h2').css("color","#eee");
+					$('footer').css("color","#eee");
+					$('#exploitInfo').css("color","#eee");				
+					$('svg path').css("fill","#eee");
+					$('svg polygon').css("fill","#eee");
+					$('svg').hover(
+						function(){$(this).find('path').css('fill', '#f00');}, 
+						function(){$(this).find('path').css('fill', '#eee');}				
+					);
+					$('svg').hover(
+						function(){$(this).find('polygon').css('fill', '#f00');}, 
+						function(){$(this).find('polygon').css('fill', '#eee');}				
+					);					
+					$('button').hover(
+						function(){$(this).find('path').css('fill', '#f00');}, 
+						function(){$(this).find('path').css('fill', '#eee');}					
+					);
+				}else{
+					$('body').css("background-color","#fff");
+					$('.divExploitOption').css("border-color","#000");
+					$('.divExploitInfo').css("border-color","#000");
+					$('h1').css("color","#4d4dff");
+					$('h2').css("color","#000");
+					$('footer').css("color","#000");
+					$('#exploitInfo').css("color","#000");				
+					$('svg path').css("fill","#000");
+					$('svg polygon').css("fill","#000");
+					$('svg').hover(
+						function(){$(this).find('path').css('fill', '#f00');}, 
+						function(){$(this).find('path').css('fill', '#000');}				
+					);
+					$('svg').hover(
+						function(){$(this).find('polygon').css('fill', '#f00');}, 
+						function(){$(this).find('polygon').css('fill', '#000');}				
+					);					
+					$('button').hover(
+						function(){$(this).find('path').css('fill', '#f00');}, 
+						function(){$(this).find('path').css('fill', '#000');}					
+					);				
+				}
+			}			
+				
+			var exploitInfo = {
+				"Mira-Unofficial":"HEN 对应 PS4 FW 6.72 <br><br>Mira (非官方) 由 Al Azif 和 OpenOrbis 团队开发",
+				"SiSTR0":"SiSTR0's HEN 2.1.3 对应 6.72<br><br>功能:<br><br><ul><li>越狱, Sandbox 脱出 & 启用自制程序</li><li>Debug Settings</li><li>支持远程软件包安装, 恢复模式唤醒 & 支持外置 HDD 7.xx 格式</li><li>伪装固件版本到 7.51</li><li>支持调试奖杯</li><li>sys_dynlib_dlsym 补丁</li><li>启用 UART</li><li>永不禁用屏幕截图</li><li>启用远程播放</li></ul>",
+				"FTP":"xvortex FTP 1.3 由 Al Azif 适配 6.72<br><br>启动 FTP 服务器, 端口为 1337.",
+				"Dumper":"xvortex dumper 1.8 由 Al Azif 适配 6.72<br><br>将游戏转储到外置 USB 存储设备. 使用说明:<ol><li>启动主机, 插入游戏光盘 (或运行 psn 游戏), 安装好所有的游戏补丁.</li><li>插入 USB 存储设备, 运行这个 ps4-转储游戏 payload (.bin 或独立功能).</li><li>运行游戏, 确定已进入游戏主界面, 最小化游戏 (按 PS 键).</li><li>等待程序完成. 该过程完成后指示灯会停止闪烁, 主机将会自动关闭 (这是正常的现象, 不是断电).</li><li>启动主机, 取出光盘, 卸载已安装的游戏 (目的是为进一步测试).</li><li>转至 PC 操作: 插入 USB 存储设备, 运行 gengp4.exe, 指向 CUSAxxxxx 路径然后按 Generate .GP4, 您应该会看到 'Done.', 然后按 Save .GP4.</li><li>在 orbis-pub-gen 路径中打开 .gp4 并构建 .pkg 文件 (您可以通过 PKG_Fake_Generator 获得 orbis-pub-gen 工具).</li><li>运行 PS4HEN payload, 安装并测试您的 .pkg 文件.</li></ol>",			
+				"BinLoader":"BIN 加载器 <br><br>此漏洞利用包括一个侦听端口 9020 上的 Payload 并在接收到它们时执行它们的加载程序.<br><br>使用 智能手机 / PC 工具软件发送 .bin 有效负载. 如果使用SD卡存储 .bin 有效负载, 则需要将它们放置在 /ps4/bin 目录中.",
+				"DB-SG Backup":"Stooged DB-SG Backup v3 由 Al Azif 适配 6.72<br><br>将 addcont.db， app.db 和 gameaves 备份到外部 USB 存储设备.<br>该 payload 将保存的数据转储到名为 GameSaves 的文件夹中, 并将 addcont.db 和 app.db 文件转储到 USB 上的名为 DB_Dackup 的文件夹中.<br>执行中请不要关闭浏览器, 直到提示完成为止.",
+				"DB Restore":"Stooged DB Restore v2 由 Al Azif 适配 6.72<br><br>从 USB 恢复使用 DBSG 备份 进行的数据库备份.",
+				"AppToUSB":"Stooged AppToUSB v5 由 Al Azif 适配 6.72<br><br>搜索整个 /user/app 文件夹内所有已安装的 fpkg 游戏并从系统驱动器复制到 USB 存储设备和创建快捷方式链接. 该功能需要使用 USB0 端口.<br>如果您要安装更多游戏, 只需再次运行该功能, 它会将所有新安装游戏复制到 USB.<br><br>请参阅 AppToUsb.ini 中包含的说明以获取更多信息.<br><br>重要提示: 您需要将 .ini 文件复制到 usb0:\PS4\AppToUsb.ini",
+				"PS4 Trainer":"使用来自 ps4trainer.com 的游戏金手指 <br> 访问其网站获取帮助.",
+				"Disable Updates":"LightningMods_ Disable Updates payload 由 Al Azif 适配 6.72",
+				"Enable Updates":"LightningMods_ Enable Updates payload 由 Al Azif 适配 6.72",
+				"Offline":"离线缓存安装功能<br><br>安装所有主机文件以供离线浏览.<br><br>不会安装需要有效网络连接时的功能选件.",		
+				"ToDEX":"@notzecoxao 开发的 ToDEX 改编自 @Zer0xFF's 的 ReactPSPlus. <br><br>这个转换不是永久性的, 只需重新启动主机即可恢复零售机模式."
+			};
+
+			function showInfo(key) {
+				$("#exploitInfo").html(exploitInfo[key]);
+			}
+
+			function clearInfo() {
+				$("#exploitInfo").html("请选择任意选项以获取详细信息.");
+			}
+		</script>		
+		
+  	</head>
+	
+  	<body>
+  		<header>			
+  			<h1>ESP8266 破解服务</h1>
+			<h2>Playstation 4 - FW 6.72</h2>
+  		</header>
+  		<main>
+			<div id="version" class="corner-ribbon top-right sticky blue"></div>
+			<div class="owl-carousel" id="exploits_672">				
+				<div class="divExploitOption"><div class="divMenuHeader">Mira (非官方)</div><div class="divMenuBody"><a href="672_mira_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Mira-Unofficial');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"><path d="M400 0h-66.7c-55.1 0-100 44.9-100 100v100H25c-13.7 0-25 11.3-25 25v250c0 13.8 11.3 25 25 25h283.3c13.8 0 25-11.2 25-25V225c0-13.7-11.2-25-25-25H300V100c0-18.4 15-33.3 33.3-33.3H400c18.4 0 33.3 15 33.3 33.3v100H500V100C500 44.9 505.1 0 400 0zM200 433.3h-66.7l14.5-72.5c-8.8-6-14.5-16.1-14.5-27.5 0-18.4 14.9-33.3 33.3-33.3S200 314.9 200 333.3c0 11.4-5.7 21.5-14.5 27.5L200 433.3z"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">HEN 2.1.3</div><div class="divMenuBody"><a href="672_sistro_hen_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('SiSTR0');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"><path d="M400 0h-66.7c-55.1 0-100 44.9-100 100v100H25c-13.7 0-25 11.3-25 25v250c0 13.8 11.3 25 25 25h283.3c13.8 0 25-11.2 25-25V225c0-13.7-11.2-25-25-25H300V100c0-18.4 15-33.3 33.3-33.3H400c18.4 0 33.3 15 33.3 33.3v100H500V100C500 44.9 505.1 0 400 0zM200 433.3h-66.7l14.5-72.5c-8.8-6-14.5-16.1-14.5-27.5 0-18.4 14.9-33.3 33.3-33.3S200 314.9 200 333.3c0 11.4-5.7 21.5-14.5 27.5L200 433.3z"/></svg></a></div></div>				
+				<div class="divExploitOption"><div class="divMenuHeader">BIN 加载器</div><div class="divMenuBody"><a href="672_binloader_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('BinLoader');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 318.2 318.2"><path d="M189.3 94.3c.6-.5 1.6-1.4 3.1-2.9l-.1 4.4-.1 4v24.3h8.9v-42h-7.3l-13.5 10.8 4.3 5.3 4.7-3.9zm-67.2 0c.6-.5 1.6-1.4 3.1-2.9l-.1 4.4-.1 4v24.3h8.9v-42h-7.3L113 92.8l4.3 5.3 4.8-3.8zm67.2 57.6c.6-.5 1.6-1.4 3.1-2.9l-.1 4.4-.1 4v24.3h8.9v-42h-7.3l-13.5 10.8 4.3 5.3 4.7-3.9zm-29.4-27.2c5 0 8.7-1.8 11.1-5.3 2.4-3.5 3.6-9 3.6-16.3 0-7.1-1.2-12.5-3.7-16.1-2.5-3.7-6.1-5.5-11-5.5-5 0-8.7 1.8-11.1 5.3-2.4 3.5-3.6 9-3.6 16.4 0 7.1 1.2 12.5 3.7 16.1 2.5 3.5 6.2 5.4 11 5.4zM155.4 92c.9-2.2 2.4-3.4 4.5-3.4 2 0 3.5 1.1 4.5 3.4.9 2.3 1.4 6 1.4 11.1s-.5 8.8-1.4 11c-.9 2.3-2.4 3.4-4.5 3.4s-3.6-1.1-4.5-3.3c-.9-2.2-1.3-5.9-1.3-11.1 0-5.2.4-8.9 1.3-11.1z"/><path d="M283.1 52.7L232.6 2.2C231.2.8 229.3 0 227.3 0h-187c-4.1 0-7.5 3.4-7.5 7.5v303.2c0 4.1 3.4 7.5 7.5 7.5h237.5c4.1 0 7.5-3.4 7.5-7.5V58c0-2-.7-3.9-2.2-5.3zm-48.3-27.1l24.9 24.9h-24.9V25.6zM47.8 15h172v10.3h-172V15zm222.5 288.2H47.8V40.3h172v17.8c0 4.1 3.4 7.5 7.5 7.5h43v237.6z"/><path d="M126.3 139c-5 0-8.7 1.8-11.1 5.3s-3.6 9-3.6 16.4c0 7.1 1.2 12.5 3.7 16.1 2.5 3.6 6.1 5.5 11 5.5 5 0 8.7-1.8 11.1-5.3 2.4-3.5 3.6-9 3.6-16.3 0-7.1-1.2-12.5-3.7-16.1-2.5-3.8-6.1-5.6-11-5.6zm4.5 32.7c-.9 2.3-2.4 3.4-4.5 3.4s-3.6-1.1-4.5-3.3c-.9-2.2-1.3-5.9-1.3-11.1s.4-8.9 1.4-11.1c.9-2.2 2.4-3.4 4.5-3.4 2 0 3.5 1.1 4.5 3.4.9 2.3 1.4 6 1.4 11.1-.1 5.1-.6 8.7-1.5 11zm-1.2 84.5v-.3c2.3-.5 4.1-1.8 5.4-3.7 1.4-1.9 2.1-4.2 2.1-6.9 0-4.1-1.6-7.1-4.7-9-3.2-1.9-8-2.9-14.5-2.9h-16.7v48h18.7c5.6 0 10.1-1.3 13.4-3.8 3.3-2.5 4.9-5.9 4.9-10.3 0-2.9-.7-5.3-2-7.2-1.4-1.8-3.6-3.1-6.6-3.9zm-11.8-13c4.1 0 6.1 1.3 6.1 4 0 1.5-.5 2.6-1.5 3.4-1 .8-2.5 1.1-4.3 1.1h-3.9v-8.6h3.6zm.9 28.2h-4.6v-10.1h4.3c2.1 0 3.6.4 4.7 1.3s1.6 2.1 1.6 3.7c.1 3.4-2 5.1-6 5.1zm27.9-121l4.3 5.3 4.8-3.9c.6-.5 1.6-1.4 3.1-2.9l-.1 4.4-.1 4v24.3h8.9v-42h-7.3l-13.6 10.8zM204 255.1c0 2.9.2 6.8.5 11.7h-.2l-17.5-33.3h-16.9v48h11.5v-21.6c0-2.8-.2-6.9-.6-12.2h.3l17.5 33.8h17v-48H204v21.6zm-57.5-21.7h13v48h-13z"/></svg></a></div></div>				
+				<div class="divExploitOption"><div class="divMenuHeader">Dumper</div><div class="divMenuBody"><a href="672_dumper_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Dumper');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 439.2 439.2"><path d="M219.6 263.3c11.2 0 22.4-4.3 30.9-12.8 8.3-8.3 12.8-19.3 12.8-30.9 0-11.7-4.6-22.7-12.8-30.9 -17.1-17.1-44.8-17.1-61.9 0s-17.1 44.8 0 61.9C197.2 259.1 208.4 263.3 219.6 263.3zM199.3 199.3c5.6-5.6 13-8.4 20.3-8.4 7.4 0 14.7 2.8 20.3 8.4 5.4 5.4 8.4 12.7 8.4 20.3 0 7.7-3 14.9-8.4 20.3 0 0 0 0 0 0 -11.2 11.2-29.5 11.2-40.7 0C188 228.7 188 210.5 199.3 199.3z"/><path d="M219.6 292.1c19.4 0 37.6-7.5 51.3-21.3 28.3-28.3 28.3-74.3 0-102.6s-74.3-28.3-102.6 0c-13.7 13.7-21.3 31.9-21.3 51.3s7.5 37.6 21.3 51.3C182 284.6 200.2 292.1 219.6 292.1zM178.9 178.9c11.2-11.2 26-16.8 40.7-16.8 14.7 0 29.5 5.6 40.7 16.8 22.4 22.4 22.4 59 0 81.4 -10.9 10.9-25.3 16.9-40.7 16.9s-29.8-6-40.7-16.9C156.5 237.9 156.5 201.3 178.9 178.9z"/><path d="M374.9 64.3C333.4 22.8 278.2 0 219.6 0c-58.7 0-113.8 22.8-155.3 64.3S0 160.9 0 219.6s22.8 113.8 64.3 155.3 96.6 64.3 155.3 64.3c58.7 0 113.8-22.8 155.3-64.3 41.5-41.5 64.3-96.6 64.3-155.3S416.3 105.8 374.9 64.3zM74.9 74.9C113.6 36.3 164.9 15 219.6 15c52.1 0 101.3 19.4 139.3 54.7l-82.8 82.8c-2.9 2.9-2.9 7.7 0 10.6 1.5 1.5 3.4 2.2 5.3 2.2s3.8-0.7 5.3-2.2l82.8-82.8c17.5 18.8 30.8 40.1 39.9 62.8l-12.7 12.8c-2.9 2.9-2.9 7.7 0 10.6 1.5 1.5 3.4 2.2 5.3 2.2s3.8-0.7 5.3-2.2l7.7-7.7c1.7 5.3 3.1 10.7 4.3 16.2L174.8 419.3c-5.5-1.2-10.9-2.7-16.2-4.3l217-217c2.9-2.9 2.9-7.7 0-10.6 -2.9-2.9-7.7-2.9-10.6 0L143 409.4c-22.9-9.2-44.2-22.7-62.7-40l81.9-81.9c2.9-2.9 2.9-7.7 0-10.6 -2.9-2.9-7.7-2.9-10.6 0l-81.9 81.9C-4.8 278.7-3.1 152.9 74.9 74.9zM364.3 364.3c-38.6 38.6-90 59.9-144.7 59.9 -9 0-17.9-0.6-26.7-1.7L422.4 193C430.3 253.9 410.9 317.6 364.3 364.3z"/><path d="M379 180c0.2 0.5 0.4 0.9 0.7 1.3 0.3 0.4 0.6 0.8 0.9 1.1 0.3 0.4 0.7 0.7 1.1 0.9 0.4 0.3 0.8 0.5 1.3 0.7 0.5 0.2 0.9 0.3 1.4 0.4 0.5 0.1 1 0.1 1.5 0.1s1 0 1.5-0.1c0.5-0.1 1-0.2 1.4-0.4s0.9-0.4 1.3-0.7c0.4-0.3 0.8-0.6 1.1-0.9 0.4-0.3 0.7-0.7 0.9-1.1 0.3-0.4 0.5-0.8 0.7-1.3 0.2-0.4 0.3-0.9 0.4-1.4 0.1-0.5 0.2-1 0.2-1.5 0-0.5 0-1-0.1-1.5 -0.1-0.5-0.2-0.9-0.4-1.4 -0.2-0.4-0.4-0.9-0.7-1.3 -0.3-0.4-0.6-0.8-0.9-1.1 -0.3-0.3-0.7-0.7-1.1-0.9 -0.4-0.3-0.8-0.5-1.3-0.7 -0.4-0.2-0.9-0.3-1.4-0.4 -1-0.2-2-0.2-2.9 0 -0.5 0.1-0.9 0.2-1.4 0.4 -0.4 0.2-0.9 0.4-1.3 0.7s-0.8 0.6-1.1 0.9c-0.4 0.3-0.7 0.7-0.9 1.1 -0.3 0.4-0.5 0.8-0.7 1.3 -0.2 0.5-0.3 0.9-0.4 1.4 -0.1 0.5-0.1 1-0.1 1.5 0 0.5 0.1 1 0.2 1.5C378.6 179.1 378.8 179.6 379 180z"/></svg></a></div></div> 
+				<div class="divExploitOption"><div class="divMenuHeader">转换 DEX</div><div class="divMenuBody"><a href="672_todex_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('ToDEX');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><polygon points="512 197.82 325.96 185.58 255.9 9.569 185.84 185.58 0 197.82 142.53 318.84 95.762 502.43 255.9 401.21 416.04 502.43 369.26 318.84"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">FTP</div><div class="divMenuBody"><a href="672_ftp_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('FTP');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="98" height="98" viewBox="0 0 98.4 98.4"><path d="M61.8 54.8c-0.8 0-1.3 0.1-1.6 0.1v5.1c0.3 0.1 0.7 0.1 1.3 0.1 2.1 0 3.3-1 3.3-2.8C64.9 55.8 63.8 54.8 61.8 54.8z"/><path d="M53.2 31.7c-2.2-2.2-5.7-2.2-7.9 0L20.4 56.6c-2.2 2.2-2.2 5.7 0 7.9l24.9 24.9c2.2 2.2 5.7 2.2 7.9 0l24.9-24.9c1.1-1 1.6-2.5 1.6-4s-0.6-2.9-1.6-4L53.2 31.7zM40.2 55.2h-6.6v3.9h6.2v3.2h-6.2v6.9h-3.9V52h10.5V55.2zM55 55.2h-4.7v14H46.4V55.2h-4.6v-3.3h13.2V55.2zM67.2 61.3c-1.3 1.2-3.3 1.8-5.6 1.8 -0.5 0-1 0-1.3-0.1v6.2h-3.9V52.2c1.2-0.2 2.9-0.4 5.3-0.4 2.4 0 4.1 0.5 5.3 1.4 1.1 0.8 1.8 2.3 1.8 4C68.7 58.9 68.2 60.3 67.2 61.3z"/><path d="M78.4 22.4c-0.5 0-1-0.3-1.4-0.8 -4-5.5-10.5-9-17.4-9 -0.5 0-1 0-1.5 0.1 -0.5 0-0.9-0.1-1.3-0.4 -4.2-3.2-9.3-5-14.7-5 -9.6 0-18.1 5.6-21.9 14.1 -0.3 0.6-0.8 1-1.5 1.1C8.2 23.9 0 32.9 0 43.9c0 9.7 6.5 17.9 15.3 20.6 -0.5-1.2-0.8-2.6-0.8-3.9 0-1.8 0.5-3.5 1.3-4.9 -4.3-2.1-7.4-6.6-7.4-11.7 0-7.2 5.8-13 13-13 0.4 0 0.7 0 1.1 0.1 2.1 0.2 3.9-1.2 4.4-3.2 1.8-7 8-11.9 15.2-11.9 4.1 0 8 1.6 10.9 4.5 1 1 2.4 1.4 3.8 1.1 0.9-0.2 1.8-0.3 2.7-0.3 5 0 9.5 2.8 11.7 7.4 0.8 1.6 2.5 2.6 4.2 2.4 0.4 0 0.9-0.1 1.3-0.1 7.2 0 13 5.8 13 13 0 5.1-3 9.6-7.4 11.7 0.9 1.5 1.3 3.2 1.3 4.9 0 1.4-0.3 2.7-0.8 3.9 8.8-2.7 15.3-10.9 15.3-20.6C98.4 32.5 89.6 23.2 78.4 22.4z"/></svg></a></div></div> 
+				<div class="divExploitOption"><div class="divMenuHeader">备份数据</div><div class="divMenuBody"><a href="672_dbsgbackup_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('DB-SG Backup');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="m437.6 251c-21.1-23.4-49.6-38.3-80.6-42.2-1.1-2.1-2.7-5.1-3.2-5.9l-1.2-2.2c4.8-7.3 7.2-15 7.2-22.7v-45c0-6.7-1.8-13.3-5.4-19.8l-0.4-0.7c1.4-3.5 2.1-6.8 2.1-10 0-18.3-17.5-33.6-50.7-44.5-28.2-9.2-66.5-14.5-105-14.5-38.5 0-76.8 5.3-105 14.5-33.1 10.8-50.7 26.2-50.7 44.5 0 3.2 0.7 6.5 2.1 10l-0.4 0.7c-3.6 6.6-5.4 13.2-5.4 19.9v45c0 7.8 2.4 15.4 7.2 22.7l-1.3 2.2c-4 6.9-6 13.9-6 20.8v45.1c0 7.6 2.3 15 6.9 22.1l-0.9 1.6c-4 6.9-6 13.9-6 20.8v45.1c0 20.6 16.7 39.6 47.1 53.4 29.6 13.5 69.5 21 112.4 21 15.7 0 31.6-1.1 47.2-3.3 24.8 25.3 57.8 39.2 93.1 39.2 71.9 0 130.4-58.5 130.4-130.4 0-32.2-11.9-63.2-33.5-87.2zM101.7 79.5c26-8.6 61-13.4 98.6-13.4 37.6 0 72.6 4.7 98.6 13.4 23.7 7.9 34.3 17.2 34.3 23 0 5.8-10.6 15.1-34.3 23-26 8.6-61 13.4-98.6 13.4-37.6 0-72.6-4.7-98.6-13.4C78 117.6 67.4 108.2 67.4 102.4 67.4 96.7 78 87.3 101.7 79.5Zm-38.1 67.1c25.9 17.9 78.3 29.2 136.7 29.2 58.4 0 110.8-11.3 136.7-29.2v31.5c0 11.6-13.9 24.4-37.1 34.3-26.5 11.2-61.8 17.4-99.6 17.4-37.7 0-73.1-6.2-99.5-17.4-23.3-9.8-37.1-22.7-37.1-34.3zm136.7 263.4c-37.7 0-73.1-6.2-99.5-17.4-23.3-9.8-37.1-22.6-37.1-34.2v-35.9c28 21.8 79.4 35.1 136.7 35.1 3.9 0 7.6-0.2 11.3-0.4 2.7 18.2 9.3 35.8 19.2 51.4-10.1 1-20.4 1.5-30.5 1.5zm11.2-90c-3.6 0.2-7.4 0.4-11.2 0.4-37.7 0-73.1-6.2-99.5-17.4C77.5 293.1 63.7 280.3 63.7 268.8v-36c27.9 21.8 79.4 35.1 136.7 35.1 10 0 20.4-0.5 31.6-1.6-10.7 16.1-17.7 34.5-20.4 53.7zm129.1 116.8c-54.3 0-98.6-44.2-98.6-98.6 0-54.3 44.2-98.6 98.6-98.6 54.3 0 98.6 44.2 98.6 98.6 0 54.3-44.2 98.6-98.6 98.6zm4.4-52.9v-20.3h-58.7c-2.4 0-4.4-1.9-4.4-4.4v-42c0-2.4 2-4.4 4.4-4.4h58.7V292.5c0-1.8 1.1-3.4 2.7-4 1.6-0.7 3.5-0.3 4.7 0.9l45.6 45.6c0.8 0.8 1.3 1.9 1.3 3.1 0 1.2-0.5 2.3-1.3 3.1l-45.6 45.6c-1.2 1.2-3.1 1.6-4.7 0.9-1.6-0.7-2.7-2.3-2.7-4z"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">恢复备份</div><div class="divMenuBody"><a href="672_dbrestore_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('DB Restore');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="M336.3 383.8v-20.3h58.7c2.4 0 4.4-1.9 4.4-4.4v-42c0-2.4-2-4.4-4.4-4.4h-58.7V292.5c0-1.8-1.1-3.4-2.7-4 -1.6-0.7-3.5-0.3-4.7 0.9l-45.6 45.6c-0.8 0.8-1.3 1.9-1.3 3.1 0 1.2 0.5 2.3 1.3 3.1l45.6 45.6c1.2 1.2 3.1 1.6 4.7 0.9C335.3 387.2 336.3 385.6 336.3 383.8z"/><path d="M437.6 251c-21.1-23.4-49.6-38.3-80.6-42.2 -1.1-2.1-2.7-5.1-3.2-5.9l-1.2-2.2c4.8-7.3 7.2-15 7.2-22.7v-45c0-6.7-1.8-13.3-5.4-19.8l-0.4-0.7c1.4-3.5 2.1-6.8 2.1-10 0-18.3-17.5-33.6-50.7-44.5 -28.2-9.2-66.5-14.5-105-14.5 -38.5 0-76.8 5.3-105 14.5 -33.1 10.8-50.7 26.2-50.7 44.5 0 3.2 0.7 6.5 2.1 10l-0.4 0.7c-3.6 6.6-5.4 13.2-5.4 19.9v45c0 7.8 2.4 15.4 7.2 22.7l-1.3 2.2c-4 6.9-6 13.9-6 20.8v45.1c0 7.6 2.3 15 6.9 22.1l-0.9 1.6c-4 6.9-6 13.9-6 20.8v45.1c0 20.6 16.7 39.6 47.1 53.4 29.6 13.5 69.5 21 112.4 21 15.7 0 31.6-1.1 47.2-3.3 24.8 25.3 57.8 39.2 93.1 39.2 71.9 0 130.4-58.5 130.4-130.4C471.1 306 459.2 275 437.6 251zM101.7 79.5c26-8.6 61-13.4 98.6-13.4 37.6 0 72.6 4.7 98.6 13.4 23.7 7.9 34.3 17.2 34.3 23 0 5.8-10.6 15.1-34.3 23 -26 8.6-61 13.4-98.6 13.4 -37.6 0-72.6-4.7-98.6-13.4 -23.7-7.9-34.3-17.2-34.3-23C67.4 96.7 78 87.3 101.7 79.5zM63.7 146.5c25.9 17.9 78.3 29.2 136.7 29.2 58.4 0 110.8-11.3 136.7-29.2v31.5c0 11.6-13.9 24.4-37.1 34.3 -26.5 11.2-61.8 17.4-99.6 17.4 -37.7 0-73.1-6.2-99.5-17.4 -23.3-9.8-37.1-22.7-37.1-34.3L63.7 146.5 63.7 146.5zM200.3 409.9c-37.7 0-73.1-6.2-99.5-17.4 -23.3-9.8-37.1-22.6-37.1-34.2v-35.9c28 21.8 79.4 35.1 136.7 35.1 3.9 0 7.6-0.2 11.3-0.4 2.7 18.2 9.3 35.8 19.2 51.4C220.7 409.4 210.5 409.9 200.3 409.9zM211.5 320c-3.6 0.2-7.4 0.4-11.2 0.4 -37.7 0-73.1-6.2-99.5-17.4 -23.3-9.8-37.1-22.6-37.1-34.2v-36c27.9 21.8 79.4 35.1 136.7 35.1 10 0 20.4-0.5 31.6-1.6C221.2 282.4 214.2 300.8 211.5 320zM340.7 436.7c-54.3 0-98.6-44.2-98.6-98.6 0-54.3 44.2-98.6 98.6-98.6 54.3 0 98.6 44.2 98.6 98.6C439.2 392.5 395 436.7 340.7 436.7z"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">AppToUSB</div><div class="divMenuBody"><a href="672_app2usb_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('AppToUSB');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286 286"><path d="M286 217.5c0-7.2-5.8-13-13-13H13c-7.2 0-13 5.8-13 13v52c0 7.2 5.8 13 13 13h260c7.2 0 13-5.8 13-13V217.5zM52 256.5H17v-27h35V256.5zM102 256.5H67v-27h35V256.5z"/><path d="M13.4 181.5h259.9c3.6 0 6.9-1.4 9-4.1 2.1-2.7 2.9-6.1 2.1-9.7l-34.8-152.7C248 8.4 241.6 3.5 234.9 3.5H51.8c-6.7 0-13.2 4.9-14.7 11.5L2.3 167.8c-0.8 3.5-0.1 7 2.1 9.6C6.5 180.1 9.8 181.5 13.4 181.5zM102.4 54.1c0.5-5.4 6.1-9.7 12.6-9.7 6.4 0 11.5 4.3 11.3 9.7 -0.2 4-3.2 7.6-7.4 9.2l-0.8 15 20 8.5 0.6-51.3h-7.4c-1.2 0-2.2-0.6-2.7-1.4 -0.5-0.8-0.4-1.8 0.3-2.6l12.1-12.7c0.6-0.6 1.5-0.9 2.4-0.9 1 0 1.9 0.3 2.4 0.9l12.1 12.6c0.7 0.7 0.8 1.8 0.3 2.6 -0.5 0.8-1.6 1.4-2.7 1.4h-7.4l0.5 41.8 19.6-8.3L167.6 56.5h-3.7c-1.8 0-3.3-1-3.4-2.5l-0.5-13.1c-0.1-1.4 1.3-2.4 3-2.4h16.7c1.7 0 3.2 1.1 3.4 2.4l1.3 13.1c0.1 1.5-1.2 2.5-3 2.5h-3.7l1.2 15.3c0.1 1.7-0.9 3.4-2.7 4.2l-27.4 11.6 0.3 30.4c8.5 2.4 15.1 10 15.5 19.4 0.5 11.8-9 21.9-21.2 21.9 -12.2 0-21.7-10-21.2-21.9 0.4-9.4 6.9-17 15.5-19.4l0.2-20.5 -27.9-12c-1.8-0.8-2.9-2.5-2.7-4.3l1.4-17.9C104.6 61.7 102 58.2 102.4 54.1z"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">PS4 金手指</div><div class="divMenuBody"><a href="672_ps4trainer_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('PS4 Trainer');" onmouseout="clearInfo();" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 295.2 295.2'><path d='M38.1 26.2H52.4V40.5H47.6v9.5H61.9V16.7H38.1 33.3 9.5V50H38.1ZM28.6 40.5H19V26.2h9.5zm9.5 28.6H52.4V83.3H47.6v9.5H61.9V59.5H38.1 33.3 9.5V92.9H38.1ZM28.6 83.3H19V69h9.5zm9.5 28.6h14.3v14.3H47.6v9.5H61.9V102.4H38.1 33.3 9.5v33.3h28.6zm-9.5 14.3h-9.5v-14.3h9.5zm228.6-14.3h-9.5c-2.6 0-4.8-2.1-4.8-4.8h-9.5c0 7.9 6.4 14.3 14.3 14.3v4.8h9.5v-4.8c7.9 0 14.3-6.4 14.3-14.3 0-7.9-6.4-14.3-14.3-14.3h-9.5c-2.6 0-4.8-2.1-4.8-4.8 0-2.6 2.1-4.8 4.8-4.8h9.5c2.6 0 4.8 2.1 4.8 4.8h9.5c0-7.9-6.4-14.3-14.3-14.3v-4.8h-9.5v4.8c-7.9 0-14.3 6.4-14.3 14.3 0 7.9 6.4 14.3 14.3 14.3h9.5c2.6 0 4.8 2.1 4.8 4.8 0 2.6-2.1 4.8-4.8 4.8zm-4.8 28.6c23.6 0 42.9-19.2 42.9-42.9 0-23.6-19.2-42.9-42.9-42.9-23.6 0-42.9 19.2-42.9 42.9 0 23.6 19.2 42.9 42.9 42.9zm0-76.2c18.4 0 33.3 15 33.3 33.3 0 18.4-15 33.3-33.3 33.3-18.4 0-33.3-15-33.3-33.3 0-18.4 15-33.3 33.3-33.3zm-25.4 95.2h-55.6v-16.8l-14-9.4 14-9.4v-22.6c17.5-8.9 28.6-26.9 28.6-46.6 0-28.9-23.5-52.4-52.4-52.4-28.9 0-52.4 23.5-52.4 52.4 0 19.7 11.1 37.7 28.6 46.6v58.1H68.2C30.6 159.5 0 190.1 0 227.7v1.3c0 34.6 27.3 63.2 60.7 63.8 19.5 0.4 37.9-8.5 49.9-23.8h73.9c11.8 15.2 29.6 23.8 48.8 23.8 1.8 0 3.7-0.1 5.6-0.2 31.6-2.7 56.4-30.7 56.4-63.5v-1.2c0-37.7-30.6-68.4-68.2-68.4zM104.8 54.8c0-23.6 19.2-42.9 42.9-42.9 23.6 0 42.9 19.2 42.9 42.9 0 17-10.1 32.4-25.7 39.3l-2.9 1.2v23.6l-14.3 9.5v9.9l14.3 9.5v14l-14.3 9.5v9.9l10.5 7H133.3V159.5 95.3l-2.9-1.2C114.9 87.2 104.8 71.8 104.8 54.8Zm181 174.3h0c0 28-20.9 51.7-47.7 54.1-18.6 1.6-36.3-6.5-47.3-21.6l-1.4-2H105.8l-1.4 2c-10.1 14-26.3 22.2-43.5 21.8-28.3-0.5-51.4-24.9-51.4-54.3v-1.3c0-32.4 26.3-58.7 58.7-58.7h55.6v19h-19v9.5h19 47.6 19v-9.5H171.4v-2.5l-14-9.4 10.7-7.1h58.9c32.4 0 58.7 26.4 58.7 58.9zM147.6 50c9.2 0 16.7-7.5 16.7-16.7 0-9.2-7.5-16.7-16.7-16.7-9.2 0-16.7 7.5-16.7 16.7 0 9.2 7.5 16.7 16.7 16.7zm0-23.8c3.9 0 7.1 3.2 7.1 7.1 0 3.9-3.2 7.1-7.1 7.1-3.9 0-7.1-3.2-7.1-7.1 0-3.9 3.2-7.1 7.1-7.1zm57.1 185.7c-7.9 0-14.3 6.4-14.3 14.3 0 7.9 6.4 14.3 14.3 14.3 7.9 0 14.3-6.4 14.3-14.3 0-7.9-6.4-14.3-14.3-14.3zm0 19c-2.6 0-4.8-2.1-4.8-4.8 0-2.6 2.1-4.8 4.8-4.8 2.6 0 4.8 2.1 4.8 4.8 0 2.6-2.1 4.8-4.8 4.8zm42.9-4.8c0 7.9 6.4 14.3 14.3 14.3 7.9 0 14.3-6.4 14.3-14.3 0-7.9-6.4-14.3-14.3-14.3-7.9 0-14.3 6.4-14.3 14.3zm19 0c0 2.6-2.1 4.8-4.8 4.8-2.6 0-4.8-2.1-4.8-4.8 0-2.6 2.1-4.8 4.8-4.8 2.6 0 4.8 2.1 4.8 4.8zm-33.3 14.3c-7.9 0-14.3 6.4-14.3 14.3 0 7.9 6.4 14.3 14.3 14.3 7.9 0 14.3-6.4 14.3-14.3 0-7.9-6.4-14.3-14.3-14.3zm0 19c-2.6 0-4.8-2.1-4.8-4.8 0-2.6 2.1-4.8 4.8-4.8 2.6 0 4.8 2.1 4.8 4.8 0 2.6-2.1 4.8-4.8 4.8zm0-47.6c7.9 0 14.3-6.4 14.3-14.3 0-7.9-6.4-14.3-14.3-14.3-7.9 0-14.3 6.4-14.3 14.3 0 7.9 6.4 14.3 14.3 14.3zm0-19c2.6 0 4.8 2.1 4.8 4.8 0 2.6-2.1 4.8-4.8 4.8-2.6 0-4.8-2.1-4.8-4.8 0-2.6 2.1-4.8 4.8-4.8zm-162.5 33.3 7.1 14.3h26.8V211.9H78Zm13-4.8h11.3v9.5H83.9l-2.4-4.8zM47.6 242.3v26.8H76.2V242.3L61.9 235.2Zm19 5.9v11.3h-9.5v-11.3l4.8-2.4zM45.8 211.9H19v28.6h26.8l7.1-14.3zM39.9 231H28.6v-9.5h11.3l2.4 4.8zM76.2 210.1V183.3H47.6v26.8l14.3 7.1zM57.1 192.9h9.5v11.3l-4.8 2.4-4.8-2.4z'/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">离线缓存</div><div class="divMenuBody"><a href="ps4_672_offline_index.html"><svg onclick="return confirm('您是否要安装离线缓存以进行脱机浏览?')" onmouseover="showInfo('Offline');" onmouseout="clearInfo();" xmlns='http://www.w3.org/2000/svg' width='550' height='550' viewBox='0 0 549.8 549.8'><path d='M332.6 454.8c0 31.6-25.6 57.2-57.2 57.2S218.3 486.4 218.3 454.8c0-31.6 25.6-57.2 57.2-57.2S332.6 423.2 332.6 454.8zM365.2 254c-18-7.6-36.7-12.9-55.8-15.7l97.1 97.1 32-32C417.4 282.3 392.7 265.6 365.2 254zM177.4 257.7c-25.4 11.9-48.2 28.2-67.8 48.5l70.4 68.1c20.4-21.2 46.6-34.6 75-39L177.4 257.7zM61 141.1C39.1 155.6 18.7 172.2 0 190.9l69.2 69.2c18.9-18.8 40-34.9 62.9-47.8L61 141.1zM426.3 107.1c-47.8-20.1-98.6-30.3-150.9-30.3 -38.1 0-75.4 5.4-111.3 16.2l83.1 83.1c9.3-0.9 18.7-1.3 28.2-1.3 77.4 0 150.3 30 205.3 84.5l69-69.5C514 154.3 472.5 126.5 426.3 107.1zM33.3 77.7l382.6 382.6 39.8-39.8L73.1 37.8 33.3 77.7z'/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">屏蔽更新</div><div class="divMenuBody"><a href="672_disable_upd_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Disable Updates');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 426.67 426.67"><path d="m213.33 0c-117.87 0-213.33 95.467-213.33 213.33s95.467 213.33 213.33 213.33 213.33-95.466 213.33-213.33-95.467-213.33-213.33-213.33zm-170.67 213.33c0-94.293 76.373-170.67 170.67-170.67 39.467 0 75.627 13.547 104.53 35.947l-239.25 239.25c-22.4-28.907-35.946-65.067-35.946-104.53zm170.67 170.67c-39.467 0-75.627-13.547-104.53-35.947l239.25-239.25c22.4 28.907 35.947 65.067 35.947 104.53 0 94.294-76.373 170.67-170.67 170.67z"/></svg></a></div></div>
+				<div class="divExploitOption"><div class="divMenuHeader">恢复更新</div><div class="divMenuBody"><a href="672_enable_upd_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Enable Updates');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.87 477.87"><path d="m238.93 0c-131.96 0-238.93 106.97-238.93 238.93s106.97 238.93 238.93 238.93 238.93-106.97 238.93-238.93c-0.14-131.9-107.03-238.79-238.93-238.93zm0 443.73c-113.11 0-204.8-91.692-204.8-204.8s91.692-204.8 204.8-204.8 204.8 91.692 204.8 204.8c-0.122 113.06-91.742 204.68-204.8 204.8z"/><path d="m370.05 141.53c-6.614-6.388-17.099-6.388-23.712 0l-158.6 158.6-56.201-56.201c-6.548-6.78-17.353-6.967-24.132-0.419-6.78 6.548-6.967 17.353-0.419 24.132 0.137 0.142 0.277 0.282 0.419 0.419l68.267 68.267c6.664 6.663 17.468 6.663 24.132 0l170.67-170.67c6.548-6.779 6.36-17.583-0.42-24.131z"/></svg></a></div></div>
+			</div>			
+			
+			<div id="infoWrapper">			
+				<div class="divExploitInfo"><div class="divMenuHeader">信息</div><div class="divMenuBody"></div><div id="exploitInfo">请选择任意选项以获取详细信息.</div></div>
+			</div>			
+		</main>
+		<footer>
+			@c0d3m4st4 - &copy;<span id="year"></span><br>汉化 by 上帝之右手
+			<video id='beep' src='click.mp4' width='0' height='0' preload='auto'>
+		</footer>
+		<div id="exploitSelectorOverlay">
+			<div id="exploitSelectorDialog">
+				<div class="divMenuHeader">漏洞版本选择</div>
+				<div class="divMenuBody">
+					<div id="exploitSelectorInfoText">
+							不同的漏洞利用代码在某些主机上效果会更好, 请尝试所有代码并确定哪种代码更适合您. <br><br> 您在此处选择的任何内容都将应用于所有 payloads.<br><br>该选择页面仅显示一次, 因此, 如果要选择其他代码, 请从浏览器中清除缓存数据后就会再次出现.<br><br>
+							
+							<input type="radio" id="exploitVer1" name="exploitVer" value="672_jb_c-code" checked>
+							<label for="exploitVer1">sleirsgoevy's 的漏洞 - 8月5日 - 3f3ec8aaa5cb90068290e11537ad785cd523ee2e</label><br><br>
+							<input type="radio" id="exploitVer2" name="exploitVer" value="672_jb_c-code_alt1">
+							<label for="exploitVer2">sleirsgoevy's 的漏洞 - 8月5日 (Alt 1) - 874a3ecf424edaaf97b6e0d6ccfb075ec08ebc8e</label><br><br>
+							<input type="radio" id="exploitVer3" name="exploitVer" value="672_jb_c-code_alt2">
+							<label for="exploitVer3">sleirsgoevy's 的漏洞 - 8月5日 (Alt 2) - da315dbd6e5c1011a44c2dd7c480247d5624e404</label>							
+					</div><br><br>
+					<button id="saveSelectedExploitButton" type="button">保存选项</button></div>
+				</div>
+			</div>		
+		</div>		
+	</body>
+	
 </html>

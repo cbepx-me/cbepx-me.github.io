@@ -1,0 +1,30 @@
+<html manifest="cache.manifest">
+<body> 
+<head>
+<meta charset="utf-8" />
+<script>
+function DLProgress(e){
+	parent.ScrOverlay.style.display="block";
+	Percent=(Math.round(e.loaded / e.total * 100));
+	parent.cacheUPDtxt.innerHTML="离线缓存安装中: " + Percent + "%";
+	parent.CacheBar.style.width=Percent + '%';
+}
+function DisplayCacheProgress(){
+	setTimeout(function(){parent.cacheUPDtxt.innerHTML="安装完成";},1000);
+	setTimeout(function(){parent.CacheProgress.style.display="none";parent.cacheUPDtxt.innerHTML="请按手柄options键将本页添加至书签，<br>退出浏览器后去设置里关闭网络即可！<br>再次打开浏览器的本书签时，<br>即为离线缓存菜单！！！";},2500);
+	//if (localStorage.AutoJB=="ON"){setTimeout(function(){parent.runJB();},2500);}//Auto JB
+	//else {
+	//setTimeout(function(){parent.ScrOverlay.style.opacity="0";},2500);
+	//setTimeout(function(){parent.ScrOverlay.style.display="none";},3500);
+	//}
+	}
+	window.applicationCache.addEventListener("progress",DLProgress,false);
+	window.applicationCache.oncached=function(e){DisplayCacheProgress();};
+	window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+	window.applicationCache.onerror=function(e){parent.cacheUPDtxt.innerHTML="缓存失败";
+};
+</script>
+</head>
+<body>
+</body>
+</html>
