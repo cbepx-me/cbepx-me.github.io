@@ -1,4 +1,4 @@
-<html>
+<html manifest="cache.manifest">
 <head>
 <meta charset="utf-8">
 <title>PS4 9.00DA by 上帝之右手</title>
@@ -146,6 +146,11 @@ opacity:0.7;
 
 
 </style>
+		<script>
+			window.applicationCache.ondownloading=function(){document.getElementById("progress").innerHTML="正在离线缓存!!";};
+			window.applicationCache.onprogress=function(a){document.getElementById("progress").innerHTML=(Math.round(100*(a.loaded/a.total)))+"%";};
+			window.applicationCache.oncached=function(){document.getElementById("progress").innerHTML="离线缓存顺利完成!!";setTimeout(function(){document.getElementById("progress").innerHTML="请断开联网 & 重新打开本页面 !!"; }, 1500);};
+		</script>
 <script>
 if (!usbWaitTime)
 {

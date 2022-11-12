@@ -1,0 +1,46 @@
+CACHE MANIFEST 
+# by 上帝之右手 
+# 2022/11/12 周六-13:31:30.31 
+
+672.manifest
+672_app2usb_index.html
+672_app2usb_payload.js
+672_binloader_index.html
+672_dbrestore_index.html
+672_dbrestore_payload.js
+672_dbsgbackup_index.html
+672_dbsgbackup_payload.js
+672_disable_upd_index.html
+672_disable_upd_payload.js
+672_dumper_index.html
+672_dumper_payload.js
+672_enable_upd_index.html
+672_enable_upd_payload.js
+672_exploit.js
+672_ftp_index.html
+672_ftp_payload.js
+672_helpers.js
+672_jb_c-code.js
+672_jb_c-code_alt1.js
+672_jb_c-code_alt2.js
+672_malloc.js
+672_mira_c-code.js
+672_mira_index.html
+672_mira_loader.js
+672_mira_payload.js
+672_ps4trainer_index.html
+672_ps4trainer_payload.js
+672_rop.js
+672_sistro_hen.js
+672_sistro_hen_index.html
+672_syscalls.js
+672_todex_index.html
+672_todex_payload.js
+click.mp4
+favicon.ico
+index.html
+jquery-3.3.1.min.js
+owl.carousel.min.css
+owl.carousel.min.js
+ps4_672_offline_index.html
+version.json
