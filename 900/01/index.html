@@ -5,7 +5,7 @@
 <style>
 body {
 	font:normal 1.7em/2.0em Arial,Helvetica,sans-serif;
-	background:#1E2E2E;
+	background:#9966ff;
 	width:100%;
 	margin:10px auto;
 	color:#666
@@ -146,11 +146,6 @@ opacity:0.7;
 
 
 </style>
-		<script>
-			window.applicationCache.ondownloading=function(){document.getElementById("progress").innerHTML="正在离线缓存!!";};
-			window.applicationCache.onprogress=function(a){document.getElementById("progress").innerHTML=(Math.round(100*(a.loaded/a.total)))+"%";};
-			window.applicationCache.oncached=function(){document.getElementById("progress").innerHTML="离线缓存顺利完成!!";setTimeout(function(){document.getElementById("progress").innerHTML="请断开联网 & 重新打开本页面 !!"; }, 1500);};
-		</script>
 <script>
 if (!usbWaitTime)
 {
@@ -234,10 +229,10 @@ function goldhen224(){
     setTimeout(loadBIN,1000);
 }
 
-function goldhen225b7(){
-    progress.innerHTML="正在加载 GoldHEN v2.2.5b7，请稍候...";
-    LoadedMSG="GoldHEN v2.2.5b7 已加载，破解顺利完成！";
-    PLfile = "goldhen_2.2.5b7_900.bin";
+function goldhen225b8(){
+    progress.innerHTML="正在加载 GoldHEN v2.2.5b8，请稍候...";
+    LoadedMSG="GoldHEN v2.2.5b8 已加载，破解顺利完成！";
+    PLfile = "goldhen_2.2.5b8_900.bin";
     setTimeout(loadBIN,1000);
 }
 
@@ -405,11 +400,11 @@ function load_permanentuart(){
 </script>
 </head>
 <body onload="setTimeout(poc,1500)">
-<h1 style='font-size:50px;text-align:center;margin:1px auto;text-shadow: 4px 4px 4px black;color:yellow;'>PS4 9.00 系统 - 半自动版 v3.1.5</h1>
+<h1 style='font-size:50px;text-align:center;margin:1px auto;text-shadow: 4px 4px 4px black;color:yellow;'>PS4 9.00 系统 - 半自动版 v3.1.6</h1>
 <h1 style='font-size:30px;text-align:center;margin:1px auto;text-shadow: 4px 4px 4px black;color:yellow;'>@上帝之右手-&copy;2022</h1>
 <h1 style='font-size:26px;text-align:center;margin:1px auto;text-shadow: 4px 4px 4px black;color:red;'>禁止用于商业用途</h1>
 <hr>
-<h1 id=progress style='font-size:35px;text-align:center;text-shadow: 4px 4px 4px black;color:#2E9AFE;'>开始加载网页漏洞，请稍候...</h1>
+<h1 id=progress style='font-size:35px;text-align:center;text-shadow: 4px 4px 4px black;color:#99ccff;'>开始加载网页漏洞，请稍候...</h1>
 <div id=all style="text-align:center;display:none">
 <ul id="nav">
 <li><a href="#" onmouseout="progress.innerHTML='功能介绍'"  onmouseover="progress.innerHTML='转储已安装游戏和主机内部数据的功能'">转储功能</a>
@@ -435,7 +430,7 @@ function load_permanentuart(){
 </li>
 <li><a href="#" style='text-shadow: 4px 6px 3px black;background-color:#DF3A01;color:yellow' onmouseout="progress.innerHTML='功能介绍'"  onmouseover="progress.innerHTML='破解系统功能'">GoldHEN</a>
       <ul>
-       <li><a href="#" style='text-shadow: 4px 6px 3px black;color:yellow' onclick="goldhen225b7()" onmouseout="progress.innerHTML='功能介绍'"  onmouseover="progress.innerHTML='GoldHEN v2.2.5b7：破解主机游戏，内置FTP，支持待机，支持金手指'">GoldHEN2.2.5b7</a></li>
+       <li><a href="#" style='text-shadow: 4px 6px 3px black;color:yellow' onclick="goldhen225b8()" onmouseout="progress.innerHTML='功能介绍'"  onmouseover="progress.innerHTML='GoldHEN v2.2.5b8：破解主机游戏，内置FTP，支持待机，支持金手指'">GoldHEN2.2.5b8</a></li>
        <li><a href="#" onclick="goldhen224()" onmouseout="progress.innerHTML='功能介绍'"  onmouseover="progress.innerHTML='GoldHEN v2.2.4：破解主机游戏，内置FTP，支持待机'">GoldHEN v2.2.4</a></li>
        <li><a href="#" onclick="goldhen222()" onmouseout="progress.innerHTML='功能介绍'"  onmouseover="progress.innerHTML='GoldHEN v2.2.2：破解主机游戏，内置FTP，支持待机'">GoldHEN v2.2.2</a></li>
       </ul>
