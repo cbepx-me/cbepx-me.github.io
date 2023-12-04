@@ -1,5 +1,5 @@
-# ps4 hen
-PS4 破解服务器
+# ps4 hen + resource sharing
+PS4 破解服务器 + 资源分享
 --------------------------------------------------------------------------
 刷写工具&教程: https://pan.baidu.com/s/1aetQGapGPkJrV-Lwst8Vqw 
 提取码：9v0p 
