@@ -1,38 +1,149 @@
-﻿<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<title>上帝之右手的主页</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>右手资源整合分享</title>
+    <style>
+        :root {
+            --primary-color: #FF4A4A;
+            --secondary-color: #FFD700;
+            --bg-dark: #1A1A1A;
+            --card-bg: #262626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft Yahei', sans-serif;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: #FFF;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem 0;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .title {
+            color: var(--primary-color);
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .card img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin: 1rem 0;
+            filter: drop-shadow(2px 2px 4px #000);
+        }
+
+        .notice {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 
-<body bgcolor="#333333" text="#FFFFFF">
-<p align="center">&nbsp;</p>
-<p align="center"><font color="#FF0000" size="7"><strong>右手资源整合分享</strong></font></p>
-<div align="center"> 
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFF00" size="5">请选择对应的功能</font></strong></p>
-  <p>&nbsp;</p>
-  <table width="900" border="0" cellpadding="2" cellspacing="2" bgcolor="#000000">
-    <!--DWLayoutTable-->
-    <tr> 
-      <td width="109" height="41" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">PS4 破解服务器</font></strong></td>
-      <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">各类资源分享</font></strong></td>
-    </tr>
-    <tr> 
-      <td height="109" align="center" valign="middle" bgcolor="#999999"><a href="./ps4.html" target="_blank"><img src="./img/ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./datas.html" target="_blank"><img src="./img/datas.png" width="150" height="150" border="0"></a></td>
-    </tr>
-  </table>
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFFFF" size="5">1.本整合资源均来自互联网，本人不保留任何权利.</font></strong></p>
-  <p><strong><font color="#FFFFFF" size="5">2.本整合资源禁止用于商业行为.</font></strong></p>
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFF00" size="5">网站制作：上帝之右手</font></strong></p>
-  </div>
-<div  align="center">
-  <img src="./img/donation.png" alt="">
-  </div>
-<p align="center"><font color="#ffffff" size="6"><strong>做得不错 给加鸡腿</strong></font></p>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">右手资源整合分享</h1>
+            <h2 class="section-title">请选择对应的功能</h2>
+        </header>
+
+        <div class="content">
+            
+            <div class="grid">
+                <a href="./ps4.html" class="card" target="_blank">
+                    <h3>PS4 破解服务器</h3>
+                    <img src="./img/ps4.png" alt="PS4服务器图标" loading="lazy">
+                </a>
+
+                <a href="./datas.html" class="card" target="_blank">
+                    <h3>各类资源分享</h3>
+                    <img src="./img/datas.png" alt="资源分享图标" loading="lazy">
+                </a>
+            </div>
+
+            <div class="notice">
+                <ul>
+                    <li>本整合资源均来自互联网，本人不保留任何权利</li>
+                    <li>本整合资源禁止用于商业行为</li>
+                </ul>
+            </div>
+
+            <div class="donation">
+                <header class="header">
+                    <img src="./img/donation.png" alt="捐赠二维码" loading="lazy" style="max-width: 300px; width: 100%">
+                    <p style="color: var(--secondary-color); margin-top: 1rem;">做得不错 给加鸡腿 🍗</p>
+                </header>
+            </div>
+        </div>
+
+        <footer>
+            <p>网站制作：上帝之右手</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9em; color: rgba(255,255,255,0.6)">© 2023 All Rights Reserved</p>
+        </footer>
+    </div>
 </body>
 </html>
