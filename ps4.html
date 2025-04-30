@@ -1,39 +1,154 @@
-﻿<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<title>Ps4 破解服务器 By 上帝之右手</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS4 破解服务器 | 上帝之右手</title>
+    <style>
+        :root {
+            --primary-red: #FF4757;
+            --highlight-yellow: #FFD700;
+            --bg-dark: #1A1A1A;
+            --card-bg: #2D2D2D;
+            --accent-blue: #3498DB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft Yahei', sans-serif;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: #FFF;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        .main-title {
+            color: var(--primary-red);
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+
+        .version-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .version-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .version-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .fw-version {
+            color: var(--highlight-yellow);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        .version-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin: 1rem 0;
+            filter: drop-shadow(2px 2px 4px #000);
+        }
+
+        .instructions {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--highlight-yellow);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 6px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.2rem;
+            }
+            
+            .version-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 
-<body bgcolor="#333333" text="#FFFFFF">
-<p align="center">&nbsp;</p>
-<p align="center"><font color="#FF0000" size="7"><strong>Ps4 破解服务器</strong></font></p>
-<div align="center"> 
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFF00" size="5">请选择对应的主机版本</font></strong></p>
-  <p>&nbsp;</p>
-  <table width="1200" border="0" cellpadding="2" cellspacing="2" bgcolor="#000000">
-    <!--DWLayoutTable-->
-    <tr> 
-      <td width="109" height="41" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">FW 4.74</font></strong></td>
-      <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">FW 5.05</font></strong></td>
-      <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">FW 6.72</font></strong></td>
-       <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">FW 9.00</font></strong></td>
-    </tr>
-    <tr> 
-      <td height="109" align="center" valign="middle" bgcolor="#999999"><a href="./474/index.html"><img src="./img/ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./505/index.html"><img src="./img/ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./672/index.html"><img src="./img/ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./900/index.html"><img src="./img/ps4.png" width="150" height="150" border="0"></a></td>
-    </tr>
-  </table>
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFFFF" size="5">1.本破解文件来自国外不同开发者，经本人整合和二次开发而成.</font></strong></p>
-  <p><strong><font color="#FFFFFF" size="5">2.使用前请三清 PS4 浏览器，以便顺利完成页面缓存功能.</font></strong></p>
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFF00" size="5">@上帝之右手</font></strong></p>
-  </div>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1 class="main-title">PS4 破解服务器</h1>
+            <p class="subtitle" style="color: var(--highlight-yellow); font-size: 1.2rem;">请选择对应的主机版本</p>
+        </header>
+
+        <div class="version-grid">
+            <a href="./474/index.html" class="version-card">
+                <div class="fw-version">FW 4.74</div>
+                <img src="./img/ps4.png" alt="PS4 4.74版本图标" loading="lazy">
+            </a>
+
+            <a href="./505/index.html" class="version-card">
+                <div class="fw-version">FW 5.05</div>
+                <img src="./img/ps4.png" alt="PS4 5.05版本图标" loading="lazy">
+            </a>
+
+            <a href="./672/index.html" class="version-card">
+                <div class="fw-version">FW 6.72</div>
+                <img src="./img/ps4.png" alt="PS4 6.72版本图标" loading="lazy">
+            </a>
+
+            <a href="./900/index.html" class="version-card">
+                <div class="fw-version">FW 9.00</div>
+                <img src="./img/ps4.png" alt="PS4 9.00版本图标" loading="lazy">
+            </a>
+        </div>
+
+        <div class="instructions">
+            <ul style="list-style: none;">
+                <li>⚠️ 本破解文件来自国外不同开发者，经本人整合和二次开发而成</li>
+                <li style="margin-top: 1rem;">⚠️ 使用前请三清 PS4 浏览器，以便顺利完成页面缓存功能</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p style="color: var(--highlight-yellow);">@上帝之右手</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9em;">安全破解 · 稳定运行 · 持续更新</p>
+        </footer>
+    </div>
 </body>
 </html>
