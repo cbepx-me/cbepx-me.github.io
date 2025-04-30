@@ -1,35 +1,145 @@
-﻿<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<title>Ps4 破解服务器 By 上帝之右手</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS4 破解服务器 - 上帝之右手</title>
+    <style>
+        :root {
+            --primary: #FF4754;
+            --accent: #FFD700;
+            --dark: #1A1A1A;
+            --gray: #404040;
+        }
 
-<body bgcolor="#333333" text="#FFFFFF">
-<p align="center">&nbsp;</p>
-<p align="center"><font color="#FF0000" size="7"><strong>Ps4 破解服务器</strong></font></p>
-<div align="center"> 
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFF00" size="5">-5.05-</font></strong></p>
-  <p>&nbsp;</p>
-  <table width="1200" border="0" cellpadding="2" cellspacing="2" bgcolor="#000000">
-    <!--DWLayoutTable-->
-    <tr> 
-      <td width="109" height="41" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">图标样式</font></strong></td>
-      <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">菜单样式(推荐)</font></strong></td>
-    </tr>
-    <tr> 
-      <td height="109" align="center" valign="middle" bgcolor="#999999"><a href="./01/index.html"><img src="ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./02/index.html"><img src="ps4.png" width="150" height="150" border="0"></a></td>
-    </tr>
-  </table>
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFFFF" size="5">1.本破解文件来自国外不同开发者，经本人整合和二次开发而成.</font></strong></p>
-  <p><strong><font color="#FFFFFF" size="5">2.使用前请三清 PS4 浏览器，以便顺利完成页面缓存功能.</font></strong></p>
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFF00" size="5">@上帝之右手</font></strong></p>
-  </div>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: #FFF;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .title {
+            color: var(--primary);
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+        }
+
+        .version {
+            color: var(--accent);
+            font-size: 2.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem auto;
+            max-width: 800px;
+        }
+
+        .card {
+            background: var(--gray);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            filter: drop-shadow(2px 2px 4px #000);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--accent);
+        }
+
+        .notice {
+            background: rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+        }
+
+        .instructions {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--highlight-yellow);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 6px;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 1.5rem;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .version {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">PS4 破解服务器</h1>
+        
+        <div class="version">- 5.05 -</div>
+
+        <div class="grid">
+            <a href="./01/index.html" class="card">
+                <img src="ps4.png" alt="图标样式">
+                <div class="card-title">图标样式</div>
+            </a>
+            
+            <a href="./02/index.html" class="card">
+                <img src="ps4.png" alt="菜单样式">
+                <div class="card-title">菜单样式（推荐）</div>
+            </a>
+        </div>
+
+        <div class="notice">
+            <p>⚠️ 本破解文件来自国外不同开发者，经本人整合和二次开发而成</p>
+            <p>⚠️ 使用前请清除 PS4 浏览器缓存（设置 → 用户指南 → 按住L1+R1打开选项菜单）</p>
+        </div>
+
+        <footer>
+            @上帝之右手
+        </footer>
+    </div>
 </body>
 </html>
