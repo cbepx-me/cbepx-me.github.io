@@ -1,37 +1,195 @@
-﻿<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<title>Ps4 破解服务器 By 上帝之右手</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS4 破解服务器 6.72 - 上帝之右手</title>
+    <style>
+        :root {
+            --primary: #FF4A57;
+            --accent: #FFC107;
+            --dark: #1A1A1A;
+            --gray: #2D2D2D;
+            --highlight: #00BCD4;
+        }
 
-<body bgcolor="#333333" text="#FFFFFF">
-<p align="center">&nbsp;</p>
-<p align="center"><font color="#FF0000" size="7"><strong>Ps4 破解服务器 6.72 专用</strong></font></p>
-<div align="center"> 
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFF00" size="5">请选择开发者</font></strong></p>
-  <p>&nbsp;</p>
-  <table width="1399" border="0" cellpadding="2" cellspacing="2" bgcolor="#000000">
-    <!--DWLayoutTable-->
-    <tr> 
-      <td width="109" height="41" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">No.1 Leeful</font></strong></td>
-      <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">No.2 c0d3m4st4</font></strong></td>
-      <td width="109" align="center" valign="middle" bgcolor="#0066CC"><strong><font size="5">No.3 Karo(推荐)</font></strong></td>
-    </tr>
-    <tr> 
-      <td height="109" align="center" valign="middle" bgcolor="#999999"><a href="./01/index.html"><img src="ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./02/index.html"><img src="ps4.png" width="150" height="150" border="0"></a></td>
-      <td align="center" valign="middle" bgcolor="#999999"><a href="./03/index.html"><img src="ps4.png" width="150" height="150" border="0"></a></td>
-    </tr>
-  </table>
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFFFF" size="5">1.本破解服务文件来自国外不同开发者，请自行测试选择最适合您的开发者的破解文件.</font></strong></p>
-  <p><strong><font color="#FFFFFF" size="5">2.使用前请三清 PS4 浏览器，以便顺利完成页面缓存功能.</font></strong></p>
-  <p>&nbsp;</p>
-  <p><strong><font color="#FFFF00" size="5">@上帝之右手</font></strong></p>
-  </div>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: #FFF;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .title-group {
+            margin-bottom: 3rem;
+        }
+
+        .main-title {
+            color: var(--primary);
+            font-size: 2.8rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: var(--highlight);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .developer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 强制三列 */
+            gap: 2rem;
+            margin: 3rem 0;
+            justify-content: center;
+        }
+
+        .developer-card {
+            background: var(--gray);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .developer-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .recommended-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        }
+
+        .developer-card img {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            filter: drop-shadow(3px 3px 6px #000);
+            margin-bottom: 1.5rem;
+        }
+
+        .developer-name {
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .developer-name::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            margin: 0.8rem auto;
+        }
+
+        .instructions {
+            background: linear-gradient(145deg, rgba(0,0,0,0.4), rgba(45,45,45,0.2));
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            backdrop-filter: blur(8px);
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 2rem;
+            color: var(--accent);
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 1024px) {
+            .developer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.2rem;
+            }
+            
+            .developer-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+            
+            .version-badge {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title-group">
+            <h1 class="main-title">PS4 破解服务器</h1>
+            <div class="version-badge">版本 6.72 专用</div>
+        </div>
+
+        <h2 class="version-badge" style="background:var(--gray); margin-bottom:2rem;">选择开发者</h2>
+
+        <div class="developer-grid">
+            <!-- 开发者卡片 -->
+            <a href="./01/index.html" class="developer-card">
+                <img src="ps4.png" alt="Leeful 开发者">
+                <div class="developer-name">No.1 Leeful</div>
+            </a>
+
+            <a href="./02/index.html" class="developer-card">
+                <img src="ps4.png" alt="c0d3m4st4 开发者">
+                <div class="developer-name">No.2 c0d3m4st4</div>
+            </a>
+
+            <a href="./03/index.html" class="developer-card">
+                <div class="recommended-badge">推荐版本</div>
+                <img src="ps4.png" alt="Karo 开发者">
+                <div class="developer-name">No.3 Karo</div>
+            </a>
+        </div>
+
+        <div class="instructions">
+            <p>1. 本破解服务文件来自国外不同开发者，请自行测试选择最适合您的破解方案</p>
+            <p>2. 使用前请彻底清除 PS4 浏览器缓存（设置 → 用户指南 → 长按L1+R1打开高级选项）</p>
+        </div>
+
+        <footer>
+            @上帝之右手 | PS4破解社区
+        </footer>
+    </div>
 </body>
 </html>
