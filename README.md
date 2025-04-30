@@ -1,3 +1,29 @@
+# PS4 HEN + Resource Sharing  
+--------------------------------------------------------------------------  
+**Flasher Tools & Tutorials:**  
+URL: https://pan.baidu.com/s/1aetQGapGPkJrV-Lwst8Vqw  
+Password: `9v0p`  
+--------------------------------------------------------------------------  
+
+### Setup Instructions:  
+1. **WiFi Name:** `PS4_WIFI`  
+   **Password:** (Leave empty)  
+2. Access directly via:  
+   - PS4 User Guide (offline mode)  
+   - Browser URL: `http://9.9.9.9/`  
+3. **Important:** Clear browser cache/history/cookies before using one-click offline activation.  
+--------------------------------------------------------------------------  
+
+### Jailbreak Resources:  
+- **Exploit Website:**  
+  https://cbepx-me.github.io/  
+- **One-Click Offline Demo:**  
+  Video: https://v.youku.com/v_show/id_XMzY2NjgzNjk3Mg==.html  
+--------------------------------------------------------------------------  
+
+*Credits: G.R.H | 2020.12.25*  
+
+
 # ps4 hen + resource sharing
 PS4 破解服务器 + 资源分享
 --------------------------------------------------------------------------
@@ -17,3 +43,4 @@ https://v.youku.com/v_show/id_XMzY2NjgzNjk3Mg==.html
 --------------------------------------------------------------------------
 by 上帝之右手
 2020.12.25
+
