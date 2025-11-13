@@ -157,6 +157,7 @@
             width: 100%;
         }
 
+        /* 优化后的平台图片样式 */
         .platform-images {
             display: flex;
             justify-content: center;
@@ -172,16 +173,77 @@
             width: 100px;
             height: 100px;
             object-fit: contain;
-            border-radius: 8px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 4px 8px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+            filter: brightness(0.95);
+            position: relative;
+            overflow: hidden;
         }
 
-        .platform-images img:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 8px 16px rgba(255, 85, 0, 0.3);
+        /* 添加图片容器，用于实现更复杂的动画效果 */
+        .image-container {
+            position: relative;
+            display: inline-block;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
+        .image-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 85, 0, 0.1) 0%, 
+                rgba(255, 165, 0, 0.05) 50%, 
+                rgba(255, 85, 0, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .image-container:hover::before {
+            opacity: 1;
+        }
+
+        .image-container img {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 0;
+        }
+
+        /* 图片悬停效果优化 */
+        .image-container:hover img {
+            transform: scale(1.15) rotate(2deg);
+            filter: brightness(1.1) saturate(1.2);
+            box-shadow: 
+                0 12px 24px rgba(255, 85, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(255, 85, 0, 0.2);
+        }
+
+        /* 为不同位置的图片添加不同的动画延迟 */
+        .platform-images .image-container:nth-child(1) { animation-delay: 0.1s; }
+        .platform-images .image-container:nth-child(2) { animation-delay: 0.2s; }
+        .platform-images .image-container:nth-child(3) { animation-delay: 0.3s; }
+        .platform-images .image-container:nth-child(4) { animation-delay: 0.4s; }
+        .platform-images .image-container:nth-child(5) { animation-delay: 0.5s; }
+        .platform-images .image-container:nth-child(6) { animation-delay: 0.6s; }
+
+        /* 添加图片加载时的交错动画 */
+        .platform-images .image-container {
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            animation: imageSlideIn 0.6s ease-out forwards;
+        }
+
+        /* 捐赠部分图片优化 */
         .donation-section {
             text-align: center;
             padding: 2rem 0;
@@ -195,12 +257,17 @@
             border-radius: 12px;
             margin: 1rem 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
 
         .donation-section img:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(255, 165, 0, 0.4);
+            box-shadow: 
+                0 12px 24px rgba(255, 165, 0, 0.4),
+                0 0 30px rgba(255, 165, 0, 0.2);
+            filter: brightness(1.05);
         }
 
         .update-log {
@@ -256,6 +323,30 @@
             }
         }
 
+        /* 新增图片动画 */
+        @keyframes imageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px rgba(255, 85, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 85, 0, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(255, 85, 0, 0.5);
+            }
+        }
+
         /* 特殊效果 */
         .floating {
             animation: float 3s ease-in-out infinite;
@@ -263,6 +354,10 @@
 
         .pulse {
             animation: pulse 2s infinite;
+        }
+
+        .glow {
+            animation: glow 3s ease-in-out infinite;
         }
 
         /* 滚动条样式 */
@@ -333,7 +428,7 @@
         <!-- 主资源表格 -->
         <section>
             <h2 class="section-title">资源链接</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/url.png" alt="资源链接图标">
             </div>
             <table>
@@ -343,6 +438,11 @@
                     <th>链接</th>
                 </tr>
                 <!-- 原始数据开始 -->
+                <tr>
+                    <td>个人开发</td>
+                    <td>个人开发的软件</td>
+                    <td><a href="https://pan.baidu.com/s/1oR9vFKwxqTxLrjtxDbxu0Q?pwd=es4y" target="_blank">网页链接</a></td>
+                </tr>
                 <tr>
                     <td>FMHY</td>
                     <td>fmhy</td>
@@ -409,7 +509,7 @@
         <!-- PS4 部分 -->
         <section>
             <h2 class="section-title">PS4</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/ps4.png" alt="PS4图标">
             </div>
             <table>
@@ -467,7 +567,7 @@
         <!-- PS3 部分 -->
         <section>
             <h2 class="section-title">PS3</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/ps3.png" alt="PS3图标">
             </div>
             <table>
@@ -495,7 +595,7 @@
         <!-- PSP 部分 -->
         <section>
             <h2 class="section-title">PSP</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/psp.png" alt="PSP图标">
             </div>
             <table>
@@ -517,7 +617,7 @@
         <!-- XBOX360 部分 -->
         <section>
             <h2 class="section-title">Xbox360</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/xbox360.png" alt="XBOX360图标">
             </div>
             <table>
@@ -545,7 +645,7 @@
         <!-- RG350 部分 -->
         <section>
             <h2 class="section-title">RG350系列</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/350.png" alt="350图标">
                 <img src="./img/RG280M.png" alt="RG280M图标">
                 <img src="./img/RG280V.png" alt="RG280V图标">
@@ -582,7 +682,7 @@
         <!-- RG351 部分 -->
         <section>
             <h2 class="section-title">RG351系列</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/351p.png" alt="351p图标">
                 <img src="./img/351v.png" alt="351v图标">
                 <img src="./img/351mp.png" alt="351mp图标">
@@ -618,7 +718,7 @@
         <!-- RG552 部分 -->
         <section>
             <h2 class="section-title">RG552</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/552.png" alt="RG552图标">
             </div>
             <table>
@@ -640,7 +740,7 @@
         <!-- Win600 部分 -->
         <section>
             <h2 class="section-title">Win600</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/600.png" alt="Win600图标">
             </div>
             <table>
@@ -662,7 +762,7 @@
         <!-- RG503 & RG353 部分 -->
         <section>
             <h2 class="section-title">RG503 & RG353系列</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/503.png" alt="RG503图标">
                 <img src="./img/353p.png" alt="RG353P图标">
                 <img src="./img/353v.png" alt="RG353V图标">
@@ -699,7 +799,7 @@
         <!--安卓部分 -->
         <section>
             <h2 class="section-title">安卓系列 RG 5 系（T618），6 系（T820），7 系（8300）</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/405m.png" alt="405m图标">
                 <img src="./img/405v.png" alt="405v图标">
                 <img src="./img/505.png" alt="505图标">
@@ -741,7 +841,7 @@
         <!-- RG35XX 部分 -->
         <section>
             <h2 class="section-title">RG35XX</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/35xx.png" alt="RG35XX图标">
             </div>
             <table>
@@ -763,7 +863,7 @@
         <!-- RG Nano 部分 -->
         <section>
             <h2 class="section-title">RG Nano</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/nano.png" alt="RG Nano图标">
             </div>
             <table>
@@ -785,7 +885,7 @@
         <!-- RG ARC D+S 部分 -->
         <section>
             <h2 class="section-title">RG ARC D & RG ARC S</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/403.png" alt="RG ARC图标">
             </div>
             <table>
@@ -811,7 +911,7 @@
         <!-- H700 系列：RGXX 系列机型 部分 -->
         <section>
             <h2 class="section-title">RG*XX* 系列机型（H700）</h2>
-            <div class="platform-images">
+            <div class="image-container">
                 <img src="./img/35xx+.png" alt="RG*XX*图标">
                 <img src="./img/xxh.png" alt="RG*XX*图标">
                 <img src="./img/28xx.png" alt="RG*XX*图标">
@@ -1140,12 +1240,17 @@
                     if (entry.isIntersecting) {
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0)';
+                        
+                        // 如果是图片容器，触发图片动画
+                        if (entry.target.classList.contains('image-container')) {
+                            entry.target.style.animation = 'imageSlideIn 0.6s ease-out forwards';
+                        }
                     }
                 });
             }, observerOptions);
             
             // 观察所有需要动画的元素
-            document.querySelectorAll('section, table, .section-title, .platform-images, .donation-section, .update-log').forEach(el => {
+            document.querySelectorAll('section, table, .section-title, .platform-images, .donation-section, .update-log, .image-container').forEach(el => {
                 observer.observe(el);
             });
             
@@ -1158,6 +1263,18 @@
                 row.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0)';
                 });
+            });
+            
+            // 为图片添加随机微动画
+            document.querySelectorAll('.image-container').forEach(container => {
+                // 随机延迟，使动画更自然
+                const randomDelay = Math.random() * 0.5;
+                container.style.animationDelay = `${randomDelay}s`;
+                
+                // 添加随机轻微浮动效果
+                if (Math.random() > 0.7) {
+                    container.classList.add('floating');
+                }
             });
         });
     </script>
