@@ -1,107 +1,274 @@
 
 <html>
-  <head>
-    <meta charset="utf-8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>PS4IDEA 破解服务</title>
-    <script src="./bundle.js"></script>
     <style>
-      body {
-        background:url('');
-        background-color: #252526;
-        color: #cccccc;
-        font-family: "Segoe UI", Tahoma, sans-serif;
-        text-align: center;
-      }
-      h2 {
-        margin-bottom: 20px;
-      }
-      #console {
-        font-family: monospace;
-        background-color: #1e1e1e;
-        color: #cccccc;
-        border: 1px solid #3c3c3c;
-        padding: 12px;
-        border-radius: 6px;
-        margin-top: 20px;
-        text-align: left;
-      }
-      #jailbreakBtn {
-        margin-top: 20px;
-        padding: 12px 24px;
-        font-size: 18px;
-        font-weight: bold;
-        background: #007acc;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-      }
-      #jailbreakBtn:disabled {
-        background: #555555;
-        color: #aaaaaa;
-        cursor: not-allowed;
-      }
-      #jailbreakBtn:not(:disabled):hover {
-        background: #005a9e;
-      }
-      footer {
-        margin-top: 30px;
-        font-size: 14px;
-        color: #888;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0e14 url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48cGF0aCBkPSJNMjAgMjBoMTB2MTBIMjB6TTUwIDUwaDEwdjEwSDUweiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAyKSIvPjwvc3ZnPg==');
+            background-size: 80px 80px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        .card {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(30, 30, 40, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            padding: 32px 32px 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        h2 {
+            font-weight: 500;
+            font-size: 2rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #9bb7ff, #c7a4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 10px rgba(100, 150, 255, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #a0a8c0;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 16px;
+        }
+
+        .button-wrapper {
+            text-align: center;
+            margin: 24px 0 20px;
+        }
+
+        #jailbreakBtn {
+            background: linear-gradient(145deg, #3c4b6a, #1f2a3f);
+            border: none;
+            border-radius: 60px;
+            padding: 16px 48px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #f0f4ff;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 2px 0 0 #4f6188 inset, 0 -2px 0 0 #0f1420 inset;
+            transition: all 0.2s ease;
+            outline: none;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        #jailbreakBtn:not(:disabled):hover {
+            background: linear-gradient(145deg, #4f6188, #2d3b58);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5), 0 2px 0 0 #6a7ea8 inset;
+            transform: scale(1.02);
+        }
+
+        #jailbreakBtn:disabled {
+            background: #3a3f4b;
+            box-shadow: none;
+            color: #888f9e;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #jailbreakBtn:active:not(:disabled) {
+            transform: scale(0.98);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        #console {
+            background: #0c0f16;
+            border-radius: 20px;
+            padding: 20px;
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #b4c2e0;
+            border: 1px solid #2b3040;
+            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.6);
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #4f6188 #1e2128;
+        }
+
+        #console::-webkit-scrollbar {
+            width: 8px;
+        }
+        #console::-webkit-scrollbar-track {
+            background: #1e2128;
+            border-radius: 8px;
+        }
+        #console::-webkit-scrollbar-thumb {
+            background: #4f6188;
+            border-radius: 8px;
+        }
+        #console::-webkit-scrollbar-thumb:hover {
+            background: #6a7ea8;
+        }
+
+        .footer {
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #7a82a0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-left {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-left span {
+            color: #a6b0d0;
+            font-weight: 500;
+        }
+
+        .footer-right {
+            opacity: 0.8;
+        }
+
+        a {
+            color: #a6b0d0;
+            text-decoration: none;
+            border-bottom: 1px dotted #4f6188;
+        }
+
+        a:hover {
+            color: #ffffff;
+            border-bottom-color: #a6b0d0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .card {
+                padding: 24px 16px;
+            }
+            h2 {
+                font-size: 1.7rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            #jailbreakBtn {
+                padding: 14px 32px;
+                font-size: 1.2rem;
+            }
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     </style>
     <script>
       if ((window.applicationCache.status == '0') || (window.applicationCache.status == '3')) { // 0: UNCACHED, 3: IDLE
         window.location.replace("cache.html");
       }
     </script>
-  </head>
-  <body>
-    <h2> PS4IDEA 破解服务 | 支持系统 7.00 - 9.60 </h2>
-    <div>
-      <button id="jailbreakBtn">开始破解</button>
+    <script src="./bundle.js" defer></script>
+</head>
+<body>
+    <div class="card">
+        <h2>☢ PS4IDEA 破解服务 v1.0.1</h2>
+        <div class="subtitle">支持固件 7.00 – 9.60 (PS4) · 一键自动化</div>
+
+        <div class="button-wrapper">
+            <button id="jailbreakBtn">开始破解</button>
+        </div>
+
+        <pre id="console"></pre>
+
+        <div class="footer">
+            <div class="footer-left">
+                <span>汉化 by 上帝之右手</span>
+            </div>
+            <div class="footer-right">
+                特别感谢 <strong>Feyzee</strong> © PS4IDEA · 仅供研究使用
+            </div>
+        </div>
     </div>
-    <pre id="console"></pre>
-    <footer>
-       <h1>  此破解来自 PS4IDEA
-        <h2>   特别感谢 <strong>Feyzee</strong>
-       <h2>  汉化 by 上帝之右手
-    </footer>
-  </body>
-  <script>
-    // Logging utility
-    const outputConsole = document.getElementById("console");
-    window.log = (msg, color="#cccccc") => { outputConsole.innerHTML += `<span style="color:${color}">${msg}</span><br>`; };
-    // Event definitions
-    addEventListener('unhandledrejection', event => {
-      const reason = event.reason;
-      alert(
-        '未处理的拒绝\n'
-        + `${reason}\n`
-        + `${reason.sourceURL}:${reason.line}:${reason.column}\n`
-        + `${reason.stack}`
-      );
-    });
-    addEventListener('error', event => {
-      const reason = event.error;
-      alert(
-        '未处理的错误\n'
-        + `${reason}\n`
-        + `${reason.sourceURL}:${reason.line}:${reason.column}\n`
-        + `${reason.stack}`
-      );
-      return true; // Used for not to show error message on console
-    });
-    // Button click
-    document.getElementById("jailbreakBtn").addEventListener("click", () => {
-      // Disable to prevent double click
-      document.getElementById("jailbreakBtn").disabled = true;
-      outputConsole.textContent = ""; // Clear console log
-      try {
-        doJBwithPSFreeLapseExploit();
-      } catch (error) {
-        window.log("漏洞利用时出错: " + error, "red");
-      }
-    });
-  </script>
+
+    <script>
+        // 日志输出函数（保持原接口）
+        const outputConsole = document.getElementById("console");
+        window.log = (msg, color = "#cccccc") => {
+            outputConsole.innerHTML += `<span style="color:${color}">${msg}</span><br>`;
+            // 自动滚动到底部
+            outputConsole.scrollTop = outputConsole.scrollHeight;
+        };
+
+        // 错误处理（原样保留）
+        addEventListener('unhandledrejection', event => {
+            const reason = event.reason;
+            alert('未处理的拒绝\n' + reason + '\n' + (reason.sourceURL || '') + ':' + (reason.line || '') + ':' + (reason.column || '') + '\n' + (reason.stack || ''));
+        });
+        addEventListener('error', event => {
+            const reason = event.error;
+            alert('未处理的错误\n' + reason + '\n' + (reason.sourceURL || '') + ':' + (reason.line || '') + ':' + (reason.column || '') + '\n' + (reason.stack || ''));
+            return true;
+        });
+
+        // 按钮点击
+        document.getElementById("jailbreakBtn").addEventListener("click", async () => {
+            const btn = document.getElementById("jailbreakBtn");
+            btn.disabled = true;
+            btn.innerText = "破解中...";
+            outputConsole.innerHTML = ""; // 清空日志
+
+            try {
+                // 调用漏洞利用主函数（可能异步）
+                await doJBwithPSFreeLapseExploit();
+            } catch (error) {
+                window.log("漏洞利用时出错: " + error, "red");
+            } finally {
+                // 注意：漏洞利用结束后按钮恢复，但可能永远不会结束（例如成功后会加载payload）。我们可留一个重置机制？
+                // 但简单起见，如果成功，通常页面会被payload接管，所以按钮无需恢复。
+                // 这里我们保留恢复代码，但实际可能用不到。
+                btn.disabled = false;
+                btn.innerText = "开始破解";
+            }
+        });
+
+        // 如果bundle加载失败或doJB未定义，给出提示
+        window.addEventListener('load', () => {
+            if (typeof doJBwithPSFreeLapseExploit === 'undefined') {
+                window.log("⚠️ 核心脚本加载失败，请刷新页面重试。", "orange");
+            }
+        });
+    </script>
+</body>
 </html>

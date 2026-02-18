@@ -1,57 +1,115 @@
 <html manifest="cache.manifest">
-  <head>
-    <meta charset="utf-8">
-    <title>PS4IDEA 破解服务</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>PS4IDEA 缓存安装</title>
     <style>
-      body {
-        background:url('icon0.png');
-        background-color: #252526;
-        color: #cccccc;
-        font-family: "Segoe UI", Tahoma, sans-serif;
-        text-align: center;
-      }
-      h2 {
-        margin-bottom: 20px;
-      }
-      #console {
-        font-family: monospace;
-        background-color: #1e1e1e;
-        color: #cccccc;
-        border: 1px solid #3c3c3c;
-        padding: 12px;
-        border-radius: 6px;
-        margin-top: 20px;
-        text-align: left;
-      }
-      #jailbreakBtn {
-        margin-top: 20px;
-        padding: 12px 24px;
-        font-size: 18px;
-        font-weight: bold;
-        border: none;
-        border-radius: 6px;
-        background: #555555;
-        color: #aaaaaa;
-        cursor: not-allowed;
-        opacity: 0.7;
-        box-shadow: none;
-      }
-      footer {
-        margin-top: 30px;
-        font-size: 14px;
-        color: #888;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0e14 url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48cGF0aCBkPSJNMjAgMjBoMTB2MTBIMjB6TTUwIDUwaDEwdjEwSDUweiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAyKSIvPjwvc3ZnPg==');
+            background-size: 80px 80px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            color: #e0e0e0;
+        }
+
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(30, 30, 40, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.05);
+            padding: 32px 32px 24px;
+        }
+
+        h2 {
+            font-weight: 500;
+            font-size: 2rem;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #9bb7ff, #c7a4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info {
+            color: #a0a8c0;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 16px;
+        }
+
+        .button-wrapper {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #dummyBtn {
+            background: #3a3f4b;
+            border: none;
+            border-radius: 60px;
+            padding: 16px 48px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #888f9e;
+            cursor: not-allowed;
+            box-shadow: none;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        #console {
+            background: #0c0f16;
+            border-radius: 20px;
+            padding: 20px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #b4c2e0;
+            border: 1px solid #2b3040;
+            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.6);
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .footer {
+            margin-top: 24px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: #7a82a0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+        }
     </style>
-  </head>
-  <body>
-    <h2> PS4IDEA 服务  7.00 - 9.60 n</h2>
-    <div>
-      <button id="jailbreakBtn">开始破解</button>
+</head>
+<body>
+    <div class="card">
+        <h2>☯ 缓存安装</h2>
+        <div class="info">正在下载必要资源，请稍候… 完成后将自动跳转。</div>
+
+        <div class="button-wrapper">
+            <button id="dummyBtn" disabled>准备中</button>
+        </div>
+
+        <pre id="console"></pre>
+
+        <div class="footer">
+            PS4IDEA · 首次运行需缓存
+        </div>
     </div>
-    <pre id="console"></pre>
-    <footer>
-      
-    </footer>
   </body>
   <script>
     // Clear history and prevent back navigation
