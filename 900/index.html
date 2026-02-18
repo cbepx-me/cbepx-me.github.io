@@ -6,10 +6,10 @@
     <title>PS4 破解服务器 9.00 - 上帝之右手</title>
     <style>
         :root {
-            --primary: #FF525D;
-            --accent: #FFD740;
+            --primary: #FF4A57;
+            --accent: #FFC107;
             --dark: #1A1A1A;
-            --card-bg: #2E2E2E;
+            --gray: #2D2D2D;
             --highlight: #00BCD4;
         }
 
@@ -31,154 +31,152 @@
         }
 
         .container {
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .title {
-            color: var(--primary);
-            font-size: 3rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 1.5rem;
-        }
-
-        .version-tag {
-            display: inline-block;
-            background: var(--highlight);
-            color: white;
-            padding: 0.5rem 2rem;
-            border-radius: 30px;
-            font-size: 1.3rem;
+        .title-group {
             margin-bottom: 3rem;
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(5, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
+        .main-title {
+            color: var(--primary);
+            font-size: 2.8rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
         }
 
-        .card {
-            background: var(--card-bg);
+        .version-badge {
+            display: inline-block;
+            background: var(--highlight);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .developer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 强制二列 */
+            gap: 2rem;
+            margin: 3rem 0;
+            justify-content: center;
+        }
+
+        .developer-card {
+            background: var(--gray);
             border-radius: 15px;
-            padding: 1.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem;
             position: relative;
+            transition: transform 0.3s ease;
             border: 2px solid transparent;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        .developer-card:hover {
+            transform: translateY(-8px);
             border-color: var(--accent);
         }
 
-        .card img {
-            width: 100%;
-            max-width: 130px;
-            height: auto;
-            filter: drop-shadow(2px 2px 4px #000);
-            margin-bottom: 1rem;
+        .recommended-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
         }
 
-        .card-label {
-            font-size: 1.3rem;
+        .developer-card img {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            filter: drop-shadow(3px 3px 6px #000);
+            margin-bottom: 1.5rem;
+        }
+
+        .developer-name {
+            font-size: 1.6rem;
             color: var(--accent);
-            margin: 0.8rem 0;
-            font-weight: 600;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .developer-name::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            margin: 0.8rem auto;
         }
 
         .instructions {
-            background: rgba(0,0,0,0.25);
+            background: linear-gradient(145deg, rgba(0,0,0,0.4), rgba(45,45,45,0.2));
             padding: 2rem;
             border-radius: 12px;
-            margin: 3rem auto;
-            max-width: 800px;
-            backdrop-filter: blur(6px);
+            margin: 3rem 0;
+            backdrop-filter: blur(8px);
         }
 
         footer {
             margin-top: auto;
             padding: 2rem;
             color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        /* 响应式布局 */
-        @media (max-width: 1440px) {
-            .grid-container {
-                grid-template-columns: repeat(5, minmax(180px, 1fr));
-            }
-        }
-
-        @media (max-width: 1280px) {
-            .grid-container {
-                gap: 1rem;
-            }
-            .card {
-                padding: 1rem;
-            }
+            font-size: 1.3rem;
+            letter-spacing: 1px;
         }
 
         @media (max-width: 1024px) {
-            .grid-container {
-                grid-template-columns: repeat(3, 1fr);
+            .developer-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .title {
+            .main-title {
                 font-size: 2.2rem;
             }
-        }
-
-        @media (max-width: 480px) {
-            .grid-container {
+            
+            .developer-grid {
                 grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+            
+            .version-badge {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">PS4 破解服务器</h1>
-        <div class="version-tag">版本 9.00 专用</div>
+        <div class="title-group">
+            <h1 class="main-title">PS4 破解服务器</h1>
+            <div class="version-badge">版本 9.00 专用</div>
+        </div>
 
-        <div class="grid-container">
-            <a href="./01/index.html" class="card">
-                <img src="ps4.png" alt="半自动版">
-                <div class="card-label">半自动版</div>
+        <div class="developer-grid">
+            <a href="./01/index.html" class="developer-card">
+                <img src="ps4.png" alt="本人">
+                <div class="developer-name">旧版（仅限 9.00）</div>
             </a>
 
-            <a href="./02/index.html" class="card">
-                <img src="ps4.png" alt="全自动版">
-                <div class="card-label">全自动版</div>
-            </a>
-
-            <a href="./03/index.html" class="card">
-                <img src="ps4.png" alt="全自动极简版">
-                <div class="card-label">全自动极简版</div>
-            </a>
-
-            <a href="./04/index.html" class="card">
-                <img src="ps4.png" alt="手动版">
-                <div class="card-label">手动版</div>
-            </a>
-
-            <a href="./special/index.html" class="card">
-                <img src="ps4.png" alt="特别版">
-                <div class="card-label">特别版</div>
+            <a href="./02/index.html" class="developer-card">
+                <div class="recommended-badge">推荐版本</div>
+                <img src="ps4.png" alt="PS4IDEA">
+                <div class="developer-name">新版（支持 7.00-9.60）</div>
             </a>
         </div>
 
         <div class="instructions">
-            <p>⚠️ 本破解服务整合多个国外开发者方案，请根据需求选择最适合的版本</p>
-            <p>⚠️ 使用前请彻底清理浏览器缓存</p>
+            <p>⚠️ 本破解服务文件来自不同开发者，请自行测试选择最适合您的破解方案</p>
+            <p>⚠️ 使用前请彻底清除 PS4 浏览器缓存</p>
         </div>
 
         <footer>
