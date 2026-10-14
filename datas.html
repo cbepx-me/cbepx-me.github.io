@@ -208,7 +208,7 @@ th:last-child{border-radius:0 12px 0 0;}
 
 td{
   padding:.85rem 1rem;
-  vertical-align:top;
+  vertical-align:baseline;
   color:var(--text-dim);
   border-bottom:1px solid rgba(255,255,255,.06);
   transition:background-color .25s ease,color .25s ease;
@@ -243,11 +243,12 @@ td a{
   background:rgba(109,180,255,.10);
   border:1px solid rgba(109,180,255,.28);
   transition:background .25s,color .25s,border-color .25s,transform .2s,box-shadow .25s;
-  white-space:nowrap;
-  flex-shrink:0;
-  max-width:100%;
+  white-space:nowrap;      /* 禁止按钮文字换行 */
+  flex-shrink:0;           /* 手机端不被 flex 压缩 */
+  max-width:100%;          /* 极窄屏时不超过容器 */
   overflow:hidden;
   text-overflow:ellipsis;
+  cursor:pointer;
 }
 
 td a::after{content:"↗";font-size:.8em;opacity:.85;}
@@ -263,13 +264,6 @@ td a:hover{
 @media (min-width:769px){
   td a{
     margin-left:-.7rem;
-  }
-}
-
-@media (min-width:769px){
-  td a{
-    margin-left:-.7rem;
-    vertical-align:middle;
   }
 }
 
@@ -331,6 +325,35 @@ td.code{
 
 #toTop.show{opacity:1;visibility:visible;transform:translateY(0);}
 #toTop:hover{background:var(--primary);color:#fff;}
+
+/* ---------- 复制提取码提示 ---------- */
+.copy-toast{
+  position:fixed;
+  left:50%;
+  bottom:90px;
+  transform:translateX(-50%) translateY(20px);
+  background:rgba(18,26,44,.96);
+  color:#fff;
+  padding:10px 20px;
+  border-radius:999px;
+  font-size:.9rem;
+  border:1px solid rgba(255,107,26,.5);
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .3s,transform .3s,visibility .3s;
+  z-index:999;
+  backdrop-filter:blur(8px);
+  white-space:nowrap;
+  max-width:90vw;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.copy-toast.show{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
 
 /* ---------- 动画 ---------- */
 @keyframes float{
@@ -414,16 +437,13 @@ td.code{
     border:none;
     font-size:.9rem;
     word-break:break-word;
-  }
-
-  table td{
-    flex-wrap:wrap;
+    flex-wrap:wrap;        /* 空间不足时整块换行，而不是压断文字 */
   }
 
   table td::before{
     content:attr(data-label);
     flex:0 0 auto;
-    width:5.2em;
+    width:5.2em;           /* 用 width 代替 flex-basis，更稳 */
     font-size:.78rem;
     line-height:1.75;
     color:#7d8db0;
@@ -447,11 +467,17 @@ td.code{
   .donation-section img{max-width:220px;}
 
   #toTop{right:.8rem;bottom:.8rem;width:42px;height:42px;}
+
+  .copy-toast{
+    bottom:80px;
+    font-size:.85rem;
+    padding:8px 16px;
+  }
 }
 
 @media (max-width:400px){
   .platform-images img{width:54px;height:54px;}
-  table td::before{flex:0 0 4.8em;font-size:.74rem;}
+  table td::before{width:4.8em;font-size:.74rem;}
 }
 
 /* ---------- 无障碍：减少动效 ---------- */
@@ -1396,6 +1422,91 @@ document.addEventListener('DOMContentLoaded', function () {
 
   toTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* 4. 点击链接自动复制对应提取码 */
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      try {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        resolve();
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  function showToast(message) {
+    var toast = document.getElementById('copy-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'copy-toast';
+      toast.className = 'copy-toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(function () {
+      toast.classList.remove('show');
+    }, 2500);
+  }
+
+  var OPEN_DELAY = 1000;   // 提示显示多久后打开新页面（毫秒）
+
+  document.querySelectorAll('table a').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var td = link.closest('td');
+      if (!td) return;
+
+      // 向后找同一行中最近的“提取码”单元格
+      var codeTd = null;
+      var sibling = td.nextElementSibling;
+      while (sibling) {
+        if (sibling.getAttribute('data-label') === '提取码') {
+          codeTd = sibling;
+          break;
+        }
+        sibling = sibling.nextElementSibling;
+      }
+
+      var code = codeTd ? codeTd.textContent.trim() : '';
+
+      // 有提取码才拦截默认跳转，先复制 + 提示，再延时打开
+      if (code) {
+        e.preventDefault();
+
+        var url = link.href;
+        var target = link.getAttribute('target') || '_self';
+
+        var openPage = function () {
+          if (target === '_blank') {
+            window.open(url, '_blank', 'noopener');
+          } else {
+            window.location.href = url;
+          }
+        };
+
+        copyText(code).then(function () {
+          showToast('提取码已复制：' + code);
+        }).catch(function () {
+          showToast('复制失败，请手动复制：' + code);
+        }).then(function () {
+          setTimeout(openPage, OPEN_DELAY);
+        });
+      }
+      // 无提取码的链接保持默认行为，立即打开
+    });
   });
 
 });
