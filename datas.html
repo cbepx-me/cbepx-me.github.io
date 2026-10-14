@@ -1424,27 +1424,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  /* 4. 点击链接自动复制对应提取码 */
-  function copyText(text) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      return navigator.clipboard.writeText(text);
-    }
-    return new Promise(function (resolve, reject) {
-      try {
-        var textarea = document.createElement('textarea');
-        textarea.value = text;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-        resolve();
-      } catch (err) {
-        reject(err);
-      }
-    });
-  }
+  /* 4. 点击链接自动复制对应提取码（同步优先，兼容手机端） */
 
   function showToast(message) {
     var toast = document.getElementById('copy-toast');
@@ -1462,7 +1442,53 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 2500);
   }
 
-  var OPEN_DELAY = 2000;   // 提示显示多久后打开新页面（毫秒）
+  /* 常驻隐藏 textarea，用于同步复制。
+     注意：不能用 display:none 或 visibility:hidden，否则无法选中。 */
+  var copyHelper = document.createElement('textarea');
+  copyHelper.setAttribute('readonly', '');
+  copyHelper.style.position = 'fixed';
+  copyHelper.style.top = '0';
+  copyHelper.style.left = '0';
+  copyHelper.style.width = '1px';
+  copyHelper.style.height = '1px';
+  copyHelper.style.padding = '0';
+  copyHelper.style.border = 'none';
+  copyHelper.style.outline = 'none';
+  copyHelper.style.boxShadow = 'none';
+  copyHelper.style.background = 'transparent';
+  copyHelper.style.opacity = '0';
+  copyHelper.style.zIndex = '-1';
+  document.body.appendChild(copyHelper);
+
+  /* 同步复制，返回布尔值。必须在用户手势的同步栈中调用。 */
+  function copyTextSync(text) {
+    var ok = false;
+    try {
+      copyHelper.value = text;
+      try {
+        copyHelper.focus({ preventScroll: true });
+      } catch (err) {
+        copyHelper.focus();
+      }
+      copyHelper.select();
+      copyHelper.setSelectionRange(0, 99999); // iOS 需要
+      ok = document.execCommand('copy');
+    } catch (err) {
+      ok = false;
+    }
+    try { copyHelper.blur(); } catch (err) {}
+    return ok;
+  }
+
+  /* 异步兜底，仅在同步复制失败时使用 */
+  function copyTextAsync(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return Promise.reject(new Error('clipboard unavailable'));
+  }
+
+  var OPEN_DELAY = 1000;   // 提示显示多久后打开新页面（毫秒）
 
   document.querySelectorAll('table a').forEach(function (link) {
     link.addEventListener('click', function (e) {
@@ -1481,31 +1507,36 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       var code = codeTd ? codeTd.textContent.trim() : '';
+      if (!code) return;   // 无提取码，走默认跳转
 
-      // 有提取码才拦截默认跳转，先复制 + 提示，再延时打开
-      if (code) {
-        e.preventDefault();
+      e.preventDefault();
 
-        var url = link.href;
-        var target = link.getAttribute('target') || '_self';
+      var url = link.href;
+      var target = link.getAttribute('target') || '_self';
 
-        var openPage = function () {
-          if (target === '_blank') {
-            window.open(url, '_blank', 'noopener');
-          } else {
-            window.location.href = url;
-          }
-        };
+      var openPage = function () {
+        if (target === '_blank') {
+          window.open(url, '_blank', 'noopener');
+        } else {
+          window.location.href = url;
+        }
+      };
 
-        copyText(code).then(function () {
-          showToast('提取码已复制：' + code);
-        }).catch(function () {
-          showToast('复制失败，请手动复制：' + code);
-        }).then(function () {
-          setTimeout(openPage, OPEN_DELAY);
-        });
+      // 1. 先同步复制（手机端兼容性最好）
+      if (copyTextSync(code)) {
+        showToast('提取码已复制：' + code);
+        setTimeout(openPage, OPEN_DELAY);
+        return;
       }
-      // 无提取码的链接保持默认行为，立即打开
+
+      // 2. 同步失败，回退到异步 Clipboard API
+      copyTextAsync(code).then(function () {
+        showToast('提取码已复制：' + code);
+      }).catch(function () {
+        showToast('复制失败，请手动复制：' + code);
+      }).then(function () {
+        setTimeout(openPage, OPEN_DELAY);
+      });
     });
   });
 
