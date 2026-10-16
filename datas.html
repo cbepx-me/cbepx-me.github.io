@@ -302,6 +302,134 @@ td.code{
   box-shadow:0 14px 34px rgba(255,176,32,.3);
 }
 
+/* ================= 顶部快速跳转导航 ================= */
+section.card{ scroll-margin-top:var(--nav-offset, 88px); }
+
+.quick-nav{
+  position:sticky;
+  top:10px;
+  z-index:55;
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  padding:.5rem .7rem;
+  margin:0 0 1.5rem;
+  background:rgba(14,21,38,.86);
+  border:1px solid var(--border);
+  border-radius:16px;
+  backdrop-filter:blur(14px) saturate(1.2);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2);
+  box-shadow:0 10px 30px rgba(0,0,0,.45);
+  overflow:hidden;
+}
+
+.quick-nav-label{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+  padding-left:.3rem;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  color:var(--accent);
+  white-space:nowrap;
+}
+
+.quick-nav-label::before{
+  content:"";
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--primary);
+  box-shadow:0 0 8px rgba(255,107,26,.9);
+  flex:0 0 auto;
+}
+
+.quick-nav-scroll{
+  position:relative;
+  flex:1 1 auto;
+  min-width:0;
+  display:flex;
+  gap:.45rem;
+  padding:.15rem 0;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.quick-nav-scroll::-webkit-scrollbar{display:none;}
+
+.quick-nav-scroll a{
+  flex:0 0 auto;
+  padding:.32rem .75rem;
+  border-radius:999px;
+  font-size:.8rem;
+  line-height:1.5;
+  color:var(--text-dim);
+  text-decoration:none;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  white-space:nowrap;
+  transition:color .25s,background .25s,border-color .25s,box-shadow .25s;
+}
+
+.quick-nav-scroll a:hover{
+  color:#fff;
+  background:rgba(255,107,26,.18);
+  border-color:rgba(255,107,26,.55);
+}
+
+.quick-nav-scroll a.active{
+  color:#fff;
+  font-weight:600;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  border-color:transparent;
+  box-shadow:0 6px 16px rgba(255,107,26,.35);
+}
+
+/* 桌面端：换行铺开，避免横向滚动看不全 */
+@media (min-width:769px){
+  .quick-nav{
+    flex-wrap:wrap;
+    row-gap:.5rem;
+    align-items:flex-start;
+  }
+  .quick-nav-scroll{
+    flex-wrap:wrap;
+    overflow:visible;
+    overflow-x:visible;
+    row-gap:.45rem;
+  }
+  .quick-nav-label{
+    padding-top:.32rem;
+  }
+}
+
+@media (max-width:768px){
+  .quick-nav{
+    top:6px;
+    gap:.4rem;
+    padding:.42rem .5rem;
+    border-radius:14px;
+    margin-bottom:1.1rem;
+  }
+  .quick-nav-label{
+    font-size:.7rem;
+    letter-spacing:.06em;
+    padding-left:.15rem;
+  }
+  .quick-nav-scroll a{
+    font-size:.76rem;
+    padding:.28rem .62rem;
+  }
+  section.card{ scroll-margin-top:74px; }
+}
+
+@media (max-width:400px){
+  .quick-nav-label{display:none;}
+}
+
 /* ---------- 返回顶部 ---------- */
 #toTop{
   position:fixed;
@@ -505,9 +633,536 @@ td.code{
     </div>
   </header>
 
+  <nav class="quick-nav" id="quickNav" aria-label="页面快速跳转">
+    <span class="quick-nav-label">快速跳转</span>
+    <div class="quick-nav-scroll" id="quickNavScroll"></div>
+  </nav>
+
+  <!-- RG350 部分 -->
+  <section class="card reveal">
+    <h2 class="section-title">RG350系列</h2>
+    <div class="platform-images">
+      <img src="./img/350.png" alt="350图标" title="RG350 & RG350M & RG350P">
+      <img src="./img/RG280M.png" alt="RG280M图标" title="RG280M">
+      <img src="./img/RG280V.png" alt="RG280V图标" title="RG280V">
+      <img src="./img/RG300X.png" alt="RG300X图标" title="RG300X">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>RG350&350M 资源分享</td>
+        <td>包含RG350和RG350M相关的各类资源。</td>
+        <td><a href="https://pan.baidu.com/s/1q1qOLz9nFc3rj9cR8nCvaw" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>350m</td>
+      </tr>
+      <tr>
+        <td>RG280v&RG280M 资源分享</td>
+        <td>包含RG280v和RG280M相关的各类资源。</td>
+        <td><a href="https://pan.baidu.com/s/1mJky0cTMDslPwFNIM9yksg" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>280v</td>
+      </tr>
+      <tr>
+        <td>RG300X 资源分享</td>
+        <td>包含RG300X相关的各类资源。</td>
+        <td><a href="https://pan.baidu.com/s/1L1uCGLpaLFI9MZ7pgzvr9A" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>300x</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- RG351 部分 -->
+  <section class="card reveal">
+    <h2 class="section-title">RG351系列</h2>
+    <div class="platform-images">
+      <img src="./img/351p.png" alt="351p图标" title="RG351P & RG351M">
+      <img src="./img/351v.png" alt="351v图标" title="RG351V">
+      <img src="./img/351mp.png" alt="351mp图标" title="RG351MP">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>RG351P(M) 资源分享</td>
+        <td>RG351P 镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/1oPqN6mSTE63BW_1ndGn-Xg" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>351p</td>
+      </tr>
+      <tr>
+        <td>RG351V 资源分享</td>
+        <td>RG351V 镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/1316qke0LZ3e3kKgaAUUrLg?pwd=351v" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>351v</td>
+      </tr>
+      <tr>
+        <td>RG351MP 资源分享</td>
+        <td>RG351MP 镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/1kQ8bbxoz230wM88qIBr9Og?pwd=mpmp" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>mpmp</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- RG552 部分 -->
+  <section class="card reveal">
+    <h2 class="section-title">RG552</h2>
+    <div class="platform-images">
+      <img src="./img/552.png" alt="RG552图标" title="RG552">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>RG552 资源分享</td>
+        <td>RG552 镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/1a759Vh9k-03iWQH_rPLO-Q?pwd=5552" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>5552</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Win600 部分 -->
+  <section class="card reveal">
+    <h2 class="section-title">Win600</h2>
+    <div class="platform-images">
+      <img src="./img/600.png" alt="Win600图标" title="Win600">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>Win600 资源分享</td>
+        <td>Win600 镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/1BeLYLZh9AtBEa82Ap63X3A?pwd=w600" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>w600</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- RG503 & RG353 部分 -->
+  <section class="card reveal">
+    <h2 class="section-title">RG503 &amp; RG353系列</h2>
+    <div class="platform-images">
+      <img src="./img/503.png" alt="RG503图标" title="RG503">
+      <img src="./img/353p.png" alt="RG353P图标" title="RG353P & RG353PS">
+      <img src="./img/353v.png" alt="RG353V图标" title="RG353V & RG353VS">
+      <img src="./img/353m.png" alt="RG353M图标" title="RG353M">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>RG503 资源分享</td>
+        <td>RG503 镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/13RCUQ76J-Q0Y5qBMRUVB3A?pwd=5503" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>5503</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-rSSW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>yfa6</td>
+      </tr>
+      <tr>
+        <td>RG353系列 资源分享</td>
+        <td>RG353系列 镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/17FzjZmyaS8gwsd9H2O05Hg?pwd=353p" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>353p</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-8SSW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>FK1M</td>
+      </tr>
+    </table>
+  </section>
+
+  <!--安卓部分 -->
+  <section class="card reveal">
+    <h2 class="section-title">安卓系列（T618，T820，8300...）</h2>
+    <div class="platform-images">
+      <img src="./img/405m.png" alt="405m图标" title="RG405M">
+      <img src="./img/405v.png" alt="405v图标" title="RG405V">
+      <img src="./img/505.png" alt="505图标" title="RG505">
+      <img src="./img/556.png" alt="556图标" title="RG556">
+      <img src="./img/cube.png" alt="cube图标" title="RGcube">
+      <img src="./img/406h.png" alt="406h图标" title="RG406H">
+      <img src="./img/406v.png" alt="406v图标" title="RG406V">
+      <div style="width:100%;height:0;"></div>
+      <img src="./img/557.png" alt="557图标" title="RG557">
+      <img src="./img/slide.png" alt="slide图标" title="RGSlide">
+      <img src="./img/477m.png" alt="477m图标" title="RG477M">
+      <img src="./img/476h.png" alt="476h图标" title="RG476H">
+      <img src="./img/477v.png" alt="477v图标" title="RG477V">
+      <img src="./img/vita.png" alt="VITA图标" title="RGVITA">
+      <img src="./img/rotate.png" alt="rotate图标" title="RG Rotate">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>T618 资源分享</td>
+        <td>镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/1vLVMmwyd9tjSwkgNhXzDpA?pwd=4505" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>4505</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-qpuW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>tdKA</td>
+      </tr>
+      <tr>
+        <td>T820，8300... 资源分享</td>
+        <td>镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/1hR-hI-QpelILCDvEtabiwg?pwd=av9g" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>av9g</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- RG35XX 部分 -->
+  <section class="card reveal">
+    <h2 class="section-title">RG35XX</h2>
+    <div class="platform-images">
+      <img src="./img/35xx.png" alt="RG35XX图标" title="RG35xx">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>RG35XX 资源分享</td>
+        <td>RG35XX 镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/1n1Ujzx0LmoRAy5L8fjUQkg?pwd=ab7m" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>ab7m</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- RG Nano 部分 -->
+  <section class="card reveal">
+    <h2 class="section-title">RG Nano</h2>
+    <div class="platform-images">
+      <img src="./img/nano.png" alt="RG Nano图标" title="RGNano">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>RG Nano 资源分享</td>
+        <td>RG Nano 镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/1pJKwOmundT-1WBNIGtGEIQ?pwd=nano" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>nano</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- RG ARC D+S 部分 -->
+  <section class="card reveal">
+    <h2 class="section-title">RG ARC D &amp; RG ARC S</h2>
+    <div class="platform-images">
+      <img src="./img/403.png" alt="RG ARC图标" title="RG ARC D & S">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>RG ARC D+S 资源分享</td>
+        <td>RG ARC D+S 镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/15MTE7aiMj_posz7pd3L-3Q?pwd=403H" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>403H</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-IJUW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>ZOKL</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- H700 系列 -->
+  <section class="card reveal">
+    <h2 class="section-title">RGXX* 系列（H700）</h2>
+    <div class="platform-images">
+      <img src="./img/35xx+.png" alt="RG*XX*图标" title="RG35xx PLUS">
+      <img src="./img/2024.png" alt="RG*XX*图标" title="RG35xx 2024">
+      <img src="./img/xxh.png" alt="RG*XX*图标" title="RG35xx H">
+      <img src="./img/28xx.png" alt="RG*XX*图标" title="RG28xx">
+      <img src="./img/xxsp.png" alt="RG*XX*图标" title="RG35xx SP">
+      <img src="./img/40xxh.png" alt="RG*XX*图标" title="RG40xx H">
+      <div style="width:100%;height:0;"></div>
+      <img src="./img/40xxv.png" alt="RG*XX*图标" title="RG40xx V">
+      <img src="./img/cubexx.png" alt="RG*XX*图标" title="RGcube xx">
+      <img src="./img/34xx.png" alt="RG*XX*图标" title="RG34xx">
+      <img src="./img/34sp.png" alt="RG*XX*图标" title="RG34xx SP">
+      <img src="./img/35pro.png" alt="RG*XX*图标" title="RG35xx PRO">
+      <img src="./img/sp.png" alt="RG*XX*图标" title="RGSP">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>Anbernic H700 资源分享</td>
+        <td>Anbernic H700 镜像、补丁、工具、模拟器。</td>
+        <td><a href="https://pan.baidu.com/s/19T9kQH2uuI4Qc1zICvK_3g?pwd=h5lt" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>h5lt</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-vsUW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>OJ4f</td>
+      </tr>
+      <tr>
+        <td>Anbernic H700 游戏包</td>
+        <td>Anbernic H700 游戏包下载，带预览图。</td>
+        <td><a href="https://pan.baidu.com/s/1hsRqTpeR9BOq01n94lLmfA?pwd=mu9u" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>mu9u</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-vsUW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>OJ4f</td>
+      </tr>
+      <tr>
+        <td>Anbernic H700 64位系统 PORTS 游戏包</td>
+        <td>Anbernic H700 PORTS 游戏包下载。</td>
+        <td><a href="https://pan.baidu.com/s/1Cc9ck--WpqDyoSZTMBKB8A?pwd=qjjt" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>qjjt</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-vsUW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>OJ4f</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- RGds 系列 -->
+  <section class="card reveal">
+    <h2 class="section-title">RGDS(PLUS) 系列</h2>
+    <div class="platform-images">
+      <img src="./img/ds.png" alt="RGds图标" title="RGds">
+      <img src="./img/dsplus.png" alt="RGdsplus图标" title="RGdsplus">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>Anbernic RGds(PLUS) 资源分享</td>
+        <td>Anbernic RGds(PLUS) 系统升级补丁。</td>
+        <td><a href="https://pan.baidu.com/s/1P_gKKJZtVNLHdiYKKT8FFQ?pwd=h8xp" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>h8xp</td>
+        <td><a href="https://1814451297.share.123865.com/123pan/20xZVv-54MO3" target="_blank" rel="noopener">123云盘</a></td>
+        <td>jPAI</td>
+      </tr>
+      <tr>
+        <td>Anbernic RGds(PLUS) 游戏包</td>
+        <td>Anbernic H700 游戏包下载，带预览图。(通用)</td>
+        <td><a href="https://pan.baidu.com/s/1hsRqTpeR9BOq01n94lLmfA?pwd=mu9u" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>mu9u</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-vsUW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>OJ4f</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- RGVITAPRO 系列 -->
+  <section class="card reveal">
+    <h2 class="section-title">RG VITA PRO 系列机型</h2>
+    <div class="platform-images">
+      <img src="./img/vitapro.png" alt="RGVITAPRO图标" title="RG VITA PRO">
+    </div>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>RockNIX 系统</td>
+        <td>第三方系统魔改版。</td>
+        <td><a href="https://pan.baidu.com/s/10B0BC8NkmS9yIBheQi__Og?pwd=9zsl" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>9zsl</td>
+        <td><a href="https://www.123912.com/s/20xZVv-WElW3" target="_blank" rel="noopener">123云盘</a></td>
+        <td>NAFu</td>
+      </tr>
+    </table>
+  </section>
+
+  
+  <!-- 开源系统 -->
+  <section class="card reveal">
+    <h2 class="section-title">开源系统</h2>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>JELOS</td>
+        <td>JELOS 系统镜像。</td>
+        <td><a href="https://pan.baidu.com/s/1WLkPaVy5hw7mvL_zLPcaQg?pwd=3566" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>3566</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-a3uW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>3566</td>
+      </tr>
+      <tr>
+        <td>UOS</td>
+        <td>UOS 系统镜像。</td>
+        <td><a href="https://pan.baidu.com/s/11fDEwRHy27-pbz2r3SEtQg?pwd=8vkv" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>8vkv</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-0zuW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>N7LM</td>
+      </tr>
+      <tr>
+        <td>ArkOS</td>
+        <td>ArkOS 离线升级包+魔改升级包。</td>
+        <td><a href="https://pan.baidu.com/s/17cMHEOzD1yp1peaWP7WkeQ?pwd=arko" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>arko</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-njuW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>MdLA</td>
+      </tr>
+      <tr>
+        <td>ROCKNIX</td>
+        <td>ROCKNIX 离线升级包+魔改升级包。</td>
+        <td><a href="https://pan.baidu.com/s/10B0BC8NkmS9yIBheQi__Og?pwd=9zsl" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>9zsl</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-WElW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>NAFu</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- 开源掌机各类资源 -->
+  <section class="card reveal">
+    <h2 class="section-title">开源掌机资源</h2>
+    <table>
+      <tr>
+        <th>资源名称</th>
+        <th>详细描述</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+        <th>下载链接</th>
+        <th>提取码</th>
+      </tr>
+      <tr>
+        <td>00.个人原创</td>
+        <td>个人原创的各种开源游戏工具</td>
+        <td><a href="https://pan.baidu.com/s/1oR9vFKwxqTxLrjtxDbxu0Q?pwd=es4y" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>es4y</td>
+      </tr>
+      <tr>
+        <td>01.各类工具</td>
+        <td>开源系统用到的各类工具软件</td>
+        <td><a href="https://pan.baidu.com/s/19E8AeIP1dHTEgMlDD5GYkg?pwd=2l08" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>2l08</td>
+      </tr>
+      <tr>
+        <td>02.游戏roms分类下载</td>
+        <td>游戏资源分类打包下载。</td>
+        <td><a href="https://pan.baidu.com/s/1BquPiDKF6fIshELWLu2Bbg?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>2l08</td>
+      </tr>
+      <tr>
+        <td>03.TF2卡镜像下载</td>
+        <td>双卡机型开源系统卡2游戏镜像。</td>
+        <td><a href="https://pan.baidu.com/s/1pfAGhvzU1LIpJjyuZc97Fw?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>2l08</td>
+      </tr>
+      <tr>
+        <td>04.特殊资源下载</td>
+        <td>一些特殊游戏资源。</td>
+        <td><a href="https://pan.baidu.com/s/1oNcGW4wgq2xzzJDBAHkEdg?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>2l08</td>
+      </tr>
+      <tr>
+        <td>05.ports游戏资源</td>
+        <td>开源系统第三方移植游戏资源。</td>
+        <td><a href="https://pan.baidu.com/s/1-C2064Wleh4rs2LPqYpBMg?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>2l08</td>
+      </tr>
+      <tr>
+        <td>06.主题</td>
+        <td>开源系统主题分享。</td>
+        <td><a href="https://pan.baidu.com/s/1QjrnpgGsdLKsDgvyuKe8dQ?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>2l08</td>
+      </tr>
+      <tr>
+        <td>07.iptv直播源</td>
+        <td>电视直播源文件（不保证有效）。</td>
+        <td><a href="https://pan.baidu.com/s/1QjurKlF3K-sgOuHabST0dg?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>2l08</td>
+      </tr>
+      <tr>
+        <td>08.bios</td>
+        <td>玩游戏必装。</td>
+        <td><a href="https://pan.baidu.com/s/1I1A0TFQO35rERijaEhg1yQ?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
+        <td>2l08</td>
+      </tr>
+      <tr>
+        <td>09.DOS游戏包</td>
+        <td>1800+ DOS游戏，适合开源系统使用。</td>
+        <td><a href="https://pan.baidu.com/s/1HvNEzBpIin6-548EWOjHNw?pwd=2l08" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>2l08</td>
+        <td><a href="https://www.123pan.com/s/20xZVv-sjuW3.html" target="_blank" rel="noopener">123云盘</a></td>
+        <td>Yg79</td>
+      </tr>
+      <tr>
+        <td>10.安卓模拟器和游戏rom下载</td>
+        <td>安卓常用模拟器和游戏rom资源分享。</td>
+        <td><a href="https://pan.baidu.com/s/1Xu6qPyNYKq6nuOD69SrBHw?pwd=hs69" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>hs69</td>
+      </tr>
+      <tr>
+        <td>11.66的年度甄选美化整合包</td>
+        <td>甄选经典游戏，美化整合，含多种比例预览图，适合多种系统使用。</td>
+        <td><a href="https://pan.baidu.com/s/1OpUzQH09NXjV24NSIeo3RQ?pwd=0663" target="_blank" rel="noopener">百度网盘</a></td>
+        <td>0663</td>
+      </tr>
+    </table>
+  </section>
+
   <!-- 主资源表格 -->
   <section class="card reveal">
-    <h2 class="section-title">资源链接</h2>
+    <h2 class="section-title">其他资源链接</h2>
     <div class="platform-images">
       <img src="./img/url.png" alt="资源链接图标" title="各类开源系统相关的资源">
     </div>
@@ -716,391 +1371,6 @@ td.code{
     </table>
   </section>
 
-  <!-- RG350 部分 -->
-  <section class="card reveal">
-    <h2 class="section-title">RG350系列</h2>
-    <div class="platform-images">
-      <img src="./img/350.png" alt="350图标" title="RG350 & RG350M & RG350P">
-      <img src="./img/RG280M.png" alt="RG280M图标" title="RG280M">
-      <img src="./img/RG280V.png" alt="RG280V图标" title="RG280V">
-      <img src="./img/RG300X.png" alt="RG300X图标" title="RG300X">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>RG350&350M 资源分享</td>
-        <td>包含RG350和RG350M相关的各类资源。</td>
-        <td><a href="https://pan.baidu.com/s/1q1qOLz9nFc3rj9cR8nCvaw" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>350m</td>
-      </tr>
-      <tr>
-        <td>RG280v&RG280M 资源分享</td>
-        <td>包含RG280v和RG280M相关的各类资源。</td>
-        <td><a href="https://pan.baidu.com/s/1mJky0cTMDslPwFNIM9yksg" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>280v</td>
-      </tr>
-      <tr>
-        <td>RG300X 资源分享</td>
-        <td>包含RG300X相关的各类资源。</td>
-        <td><a href="https://pan.baidu.com/s/1L1uCGLpaLFI9MZ7pgzvr9A" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>300x</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- RG351 部分 -->
-  <section class="card reveal">
-    <h2 class="section-title">RG351系列</h2>
-    <div class="platform-images">
-      <img src="./img/351p.png" alt="351p图标" title="RG351P & RG351M">
-      <img src="./img/351v.png" alt="351v图标" title="RG351V">
-      <img src="./img/351mp.png" alt="351mp图标" title="RG351MP">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>RG351P(M) 资源分享</td>
-        <td>RG351P 镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/1oPqN6mSTE63BW_1ndGn-Xg" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>351p</td>
-      </tr>
-      <tr>
-        <td>RG351V 资源分享</td>
-        <td>RG351V 镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/1316qke0LZ3e3kKgaAUUrLg?pwd=351v" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>351v</td>
-      </tr>
-      <tr>
-        <td>RG351MP 资源分享</td>
-        <td>RG351MP 镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/1kQ8bbxoz230wM88qIBr9Og?pwd=mpmp" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>mpmp</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- RG552 部分 -->
-  <section class="card reveal">
-    <h2 class="section-title">RG552</h2>
-    <div class="platform-images">
-      <img src="./img/552.png" alt="RG552图标" title="RG552">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>RG552 资源分享</td>
-        <td>RG552 镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/1a759Vh9k-03iWQH_rPLO-Q?pwd=5552" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>5552</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- Win600 部分 -->
-  <section class="card reveal">
-    <h2 class="section-title">Win600</h2>
-    <div class="platform-images">
-      <img src="./img/600.png" alt="Win600图标" title="Win600">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>Win600 资源分享</td>
-        <td>Win600 镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/1BeLYLZh9AtBEa82Ap63X3A?pwd=w600" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>w600</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- RG503 & RG353 部分 -->
-  <section class="card reveal">
-    <h2 class="section-title">RG503 &amp; RG353系列</h2>
-    <div class="platform-images">
-      <img src="./img/503.png" alt="RG503图标" title="RG503">
-      <img src="./img/353p.png" alt="RG353P图标" title="RG353P & RG353PS">
-      <img src="./img/353v.png" alt="RG353V图标" title="RG353V & RG353VS">
-      <img src="./img/353m.png" alt="RG353M图标" title="RG353M">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>RG503 资源分享</td>
-        <td>RG503 镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/13RCUQ76J-Q0Y5qBMRUVB3A?pwd=5503" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>5503</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-rSSW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>yfa6</td>
-      </tr>
-      <tr>
-        <td>RG353系列 资源分享</td>
-        <td>RG353系列 镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/17FzjZmyaS8gwsd9H2O05Hg?pwd=353p" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>353p</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-8SSW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>FK1M</td>
-      </tr>
-    </table>
-  </section>
-
-  <!--安卓部分 -->
-  <section class="card reveal">
-    <h2 class="section-title">安卓系列 RG 5 系（T618），6 系（T820），7 系（8300）</h2>
-    <div class="platform-images">
-      <img src="./img/405m.png" alt="405m图标" title="RG405M">
-      <img src="./img/405v.png" alt="405v图标" title="RG405V">
-      <img src="./img/505.png" alt="505图标" title="RG505">
-      <img src="./img/556.png" alt="556图标" title="RG556">
-      <img src="./img/cube.png" alt="cube图标" title="RGcube">
-      <img src="./img/406h.png" alt="406h图标" title="RG406H">
-      <img src="./img/406v.png" alt="406v图标" title="RG406V">
-      <div style="width:100%;height:0;"></div>
-      <img src="./img/557.png" alt="557图标" title="RG557">
-      <img src="./img/slide.png" alt="slide图标" title="RGSlide">
-      <img src="./img/477m.png" alt="477m图标" title="RG477M">
-      <img src="./img/476h.png" alt="476h图标" title="RG476H">
-      <img src="./img/477v.png" alt="477v图标" title="RG477V">
-      <img src="./img/vita.png" alt="VITA图标" title="RGVITA">
-      <img src="./img/rotate.png" alt="rotate图标" title="RG Rotate">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>T618 资源分享</td>
-        <td>镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/1vLVMmwyd9tjSwkgNhXzDpA?pwd=4505" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>4505</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-qpuW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>tdKA</td>
-      </tr>
-      <tr>
-        <td>T820，8300 资源分享</td>
-        <td>镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/1hR-hI-QpelILCDvEtabiwg?pwd=av9g" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>av9g</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- RG35XX 部分 -->
-  <section class="card reveal">
-    <h2 class="section-title">RG35XX</h2>
-    <div class="platform-images">
-      <img src="./img/35xx.png" alt="RG35XX图标" title="RG35xx">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>RG35XX 资源分享</td>
-        <td>RG35XX 镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/1n1Ujzx0LmoRAy5L8fjUQkg?pwd=ab7m" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>ab7m</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- RG Nano 部分 -->
-  <section class="card reveal">
-    <h2 class="section-title">RG Nano</h2>
-    <div class="platform-images">
-      <img src="./img/nano.png" alt="RG Nano图标" title="RGNano">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>RG Nano 资源分享</td>
-        <td>RG Nano 镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/1pJKwOmundT-1WBNIGtGEIQ?pwd=nano" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>nano</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- RG ARC D+S 部分 -->
-  <section class="card reveal">
-    <h2 class="section-title">RG ARC D &amp; RG ARC S</h2>
-    <div class="platform-images">
-      <img src="./img/403.png" alt="RG ARC图标" title="RG ARC D & RG ARC S">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>RG ARC D+S 资源分享</td>
-        <td>RG ARC D+S 镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/15MTE7aiMj_posz7pd3L-3Q?pwd=403H" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>403H</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-IJUW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>ZOKL</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- H700 系列 -->
-  <section class="card reveal">
-    <h2 class="section-title">RG*XX* 系列机型（H700）</h2>
-    <div class="platform-images">
-      <img src="./img/35xx+.png" alt="RG*XX*图标" title="RG35xx PLUS">
-      <img src="./img/2024.png" alt="RG*XX*图标" title="RG35xx 2024">
-      <img src="./img/xxh.png" alt="RG*XX*图标" title="RG35xx H">
-      <img src="./img/28xx.png" alt="RG*XX*图标" title="RG28xx">
-      <img src="./img/xxsp.png" alt="RG*XX*图标" title="RG35xx SP">
-      <img src="./img/40xxh.png" alt="RG*XX*图标" title="RG40xx H">
-      <div style="width:100%;height:0;"></div>
-      <img src="./img/40xxv.png" alt="RG*XX*图标" title="RG40xx V">
-      <img src="./img/cubexx.png" alt="RG*XX*图标" title="RGcube xx">
-      <img src="./img/34xx.png" alt="RG*XX*图标" title="RG34xx">
-      <img src="./img/34sp.png" alt="RG*XX*图标" title="RG34xx SP">
-      <img src="./img/35pro.png" alt="RG*XX*图标" title="RG35xx PRO">
-      <img src="./img/sp.png" alt="RG*XX*图标" title="RGSP">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>Anbernic H700 资源分享</td>
-        <td>Anbernic H700 镜像、补丁、工具、模拟器。</td>
-        <td><a href="https://pan.baidu.com/s/19T9kQH2uuI4Qc1zICvK_3g?pwd=h5lt" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>h5lt</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-vsUW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>OJ4f</td>
-      </tr>
-      <tr>
-        <td>Anbernic H700 游戏包</td>
-        <td>Anbernic H700 游戏包下载，带预览图。</td>
-        <td><a href="https://pan.baidu.com/s/1hsRqTpeR9BOq01n94lLmfA?pwd=mu9u" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>mu9u</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-vsUW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>OJ4f</td>
-      </tr>
-      <tr>
-        <td>Anbernic H700 64位系统 PORTS 游戏包</td>
-        <td>Anbernic H700 PORTS 游戏包下载。</td>
-        <td><a href="https://pan.baidu.com/s/1Cc9ck--WpqDyoSZTMBKB8A?pwd=qjjt" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>qjjt</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-vsUW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>OJ4f</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- RGds 系列 -->
-  <section class="card reveal">
-    <h2 class="section-title">RGDS(PLUS) 系列机型</h2>
-    <div class="platform-images">
-      <img src="./img/ds.png" alt="RGds图标" title="RGds">
-      <img src="./img/dsplus.png" alt="RGdsplus图标" title="RGdsplus">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>Anbernic RGds(PLUS) 资源分享</td>
-        <td>Anbernic RGds(PLUS) 系统升级补丁。</td>
-        <td><a href="https://pan.baidu.com/s/1P_gKKJZtVNLHdiYKKT8FFQ?pwd=h8xp" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>h8xp</td>
-        <td><a href="https://1814451297.share.123865.com/123pan/20xZVv-54MO3" target="_blank" rel="noopener">123云盘</a></td>
-        <td>jPAI</td>
-      </tr>
-      <tr>
-        <td>Anbernic RGds(PLUS) 游戏包</td>
-        <td>Anbernic H700 游戏包下载，带预览图。(通用)</td>
-        <td><a href="https://pan.baidu.com/s/1hsRqTpeR9BOq01n94lLmfA?pwd=mu9u" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>mu9u</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-vsUW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>OJ4f</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- RGVITAPRO 系列 -->
-  <section class="card reveal">
-    <h2 class="section-title">RG VITA PRO 系列机型</h2>
-    <div class="platform-images">
-      <img src="./img/vitapro.png" alt="RGVITAPRO图标" title="RG VITA PRO">
-    </div>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>RockNIX 系统</td>
-        <td>第三方系统魔改版。</td>
-        <td><a href="https://pan.baidu.com/s/10B0BC8NkmS9yIBheQi__Og?pwd=9zsl" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>9zsl</td>
-        <td><a href="https://www.123912.com/s/20xZVv-WElW3" target="_blank" rel="noopener">123云盘</a></td>
-        <td>NAFu</td>
-      </tr>
-    </table>
-  </section>
-
   <!-- 泡机堂 -->
   <section class="card reveal">
     <h2 class="section-title">泡机堂</h2>
@@ -1218,142 +1488,6 @@ td.code{
     </table>
   </section>
 
-  <!-- 开源系统 -->
-  <section class="card reveal">
-    <h2 class="section-title">开源系统资源</h2>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>JELOS</td>
-        <td>JELOS 系统镜像。</td>
-        <td><a href="https://pan.baidu.com/s/1WLkPaVy5hw7mvL_zLPcaQg?pwd=3566" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>3566</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-a3uW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>3566</td>
-      </tr>
-      <tr>
-        <td>UOS</td>
-        <td>UOS 系统镜像。</td>
-        <td><a href="https://pan.baidu.com/s/11fDEwRHy27-pbz2r3SEtQg?pwd=8vkv" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>8vkv</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-0zuW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>N7LM</td>
-      </tr>
-      <tr>
-        <td>ArkOS</td>
-        <td>ArkOS 离线升级包+魔改升级包。</td>
-        <td><a href="https://pan.baidu.com/s/17cMHEOzD1yp1peaWP7WkeQ?pwd=arko" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>arko</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-njuW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>MdLA</td>
-      </tr>
-      <tr>
-        <td>ROCKNIX</td>
-        <td>ROCKNIX 离线升级包+魔改升级包。</td>
-        <td><a href="https://pan.baidu.com/s/10B0BC8NkmS9yIBheQi__Og?pwd=9zsl" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>9zsl</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-WElW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>NAFu</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- 开源掌机各类资源 -->
-  <section class="card reveal">
-    <h2 class="section-title">开源掌机各类资源</h2>
-    <table>
-      <tr>
-        <th>资源名称</th>
-        <th>详细描述</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-        <th>下载链接</th>
-        <th>提取码</th>
-      </tr>
-      <tr>
-        <td>00.个人原创</td>
-        <td>个人原创的各种开源游戏工具</td>
-        <td><a href="https://pan.baidu.com/s/1oR9vFKwxqTxLrjtxDbxu0Q?pwd=es4y" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>es4y</td>
-      </tr>
-      <tr>
-        <td>01.各类工具</td>
-        <td>开源系统用到的各类工具软件</td>
-        <td><a href="https://pan.baidu.com/s/19E8AeIP1dHTEgMlDD5GYkg?pwd=2l08" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>2l08</td>
-      </tr>
-      <tr>
-        <td>02.游戏roms分类下载</td>
-        <td>游戏资源分类打包下载。</td>
-        <td><a href="https://pan.baidu.com/s/1BquPiDKF6fIshELWLu2Bbg?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>2l08</td>
-      </tr>
-      <tr>
-        <td>03.TF2卡镜像下载</td>
-        <td>双卡机型开源系统卡2游戏镜像。</td>
-        <td><a href="https://pan.baidu.com/s/1pfAGhvzU1LIpJjyuZc97Fw?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>2l08</td>
-      </tr>
-      <tr>
-        <td>04.特殊资源下载</td>
-        <td>一些特殊游戏资源。</td>
-        <td><a href="https://pan.baidu.com/s/1oNcGW4wgq2xzzJDBAHkEdg?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>2l08</td>
-      </tr>
-      <tr>
-        <td>05.ports游戏资源</td>
-        <td>开源系统第三方移植游戏资源。</td>
-        <td><a href="https://pan.baidu.com/s/1-C2064Wleh4rs2LPqYpBMg?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>2l08</td>
-      </tr>
-      <tr>
-        <td>06.主题</td>
-        <td>开源系统主题分享。</td>
-        <td><a href="https://pan.baidu.com/s/1QjrnpgGsdLKsDgvyuKe8dQ?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>2l08</td>
-      </tr>
-      <tr>
-        <td>07.iptv直播源</td>
-        <td>电视直播源文件（不保证有效）。</td>
-        <td><a href="https://pan.baidu.com/s/1QjurKlF3K-sgOuHabST0dg?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>2l08</td>
-      </tr>
-      <tr>
-        <td>08.bios</td>
-        <td>玩游戏必装。</td>
-        <td><a href="https://pan.baidu.com/s/1I1A0TFQO35rERijaEhg1yQ?pwd=2l08" target="_blank" rel="noopener">网盘链接</a></td>
-        <td>2l08</td>
-      </tr>
-      <tr>
-        <td>09.DOS游戏包</td>
-        <td>1800+ DOS游戏，适合开源系统使用。</td>
-        <td><a href="https://pan.baidu.com/s/1HvNEzBpIin6-548EWOjHNw?pwd=2l08" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>2l08</td>
-        <td><a href="https://www.123pan.com/s/20xZVv-sjuW3.html" target="_blank" rel="noopener">123云盘</a></td>
-        <td>Yg79</td>
-      </tr>
-      <tr>
-        <td>10.安卓模拟器和游戏rom下载</td>
-        <td>安卓常用模拟器和游戏rom资源分享。</td>
-        <td><a href="https://pan.baidu.com/s/1Xu6qPyNYKq6nuOD69SrBHw?pwd=hs69" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>hs69</td>
-      </tr>
-      <tr>
-        <td>11.66的年度甄选美化整合包</td>
-        <td>甄选经典游戏，美化整合，含多种比例预览图，适合多种系统使用。</td>
-        <td><a href="https://pan.baidu.com/s/1OpUzQH09NXjV24NSIeo3RQ?pwd=0663" target="_blank" rel="noopener">百度网盘</a></td>
-        <td>0663</td>
-      </tr>
-    </table>
-  </section>
-
   <!-- 捐赠部分 -->
   <section class="card donation-section reveal">
     <h2 class="section-title">捐赠支持</h2>
@@ -1388,6 +1522,105 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* 2. 顶部快速跳转导航：自动抓取各区块标题生成锚点 */
+  var quickNav = document.getElementById('quickNav');
+  var quickNavScroll = document.getElementById('quickNavScroll');
+  var navSections = [];
+  var navLinks = [];
+  var activeNavId = null;
+  var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    function ensureNavVisible(el) {
+    if (!quickNavScroll) return;
+    // 桌面端已换行铺开，无需横向滚动
+    if (quickNavScroll.scrollWidth <= quickNavScroll.clientWidth + 1) return;
+    var pad = 16;
+    var left = el.offsetLeft;
+    var right = left + el.offsetWidth;
+    var viewLeft = quickNavScroll.scrollLeft;
+    var viewRight = viewLeft + quickNavScroll.clientWidth;
+
+    if (left < viewLeft + pad) {
+      quickNavScroll.scrollTo({ left: Math.max(0, left - pad), behavior: reduceMotion ? 'auto' : 'smooth' });
+    } else if (right > viewRight - pad) {
+      quickNavScroll.scrollTo({ left: right - quickNavScroll.clientWidth + pad, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+  }
+
+  function setActiveNav(id, force) {
+    if (!force && id === activeNavId) return;
+    activeNavId = id;
+    for (var i = 0; i < navLinks.length; i++) {
+      var item = navLinks[i];
+      var on = item.id === id;
+      item.el.classList.toggle('active', on);
+      if (on) ensureNavVisible(item.el);
+    }
+  }
+
+  function updateActiveNav() {
+    if (!navLinks.length) return;
+    var threshold = (quickNav ? quickNav.offsetHeight : 0) + 28;
+    var currentId = navLinks[0].id;
+    for (var i = 0; i < navSections.length; i++) {
+      if (navSections[i].getBoundingClientRect().top - threshold <= 0) {
+        currentId = navLinks[i].id;
+      }
+    }
+    // 滚到底部时高亮最后一项
+    if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4) {
+      currentId = navLinks[navLinks.length - 1].id;
+    }
+    setActiveNav(currentId);
+  }
+
+  (function buildQuickNav() {
+    if (!quickNav || !quickNavScroll) return;
+
+    Array.prototype.forEach.call(document.querySelectorAll('section.card'), function (sec, i) {
+      var titleEl = sec.querySelector('.section-title');
+      if (!titleEl) return;
+
+      var name = (titleEl.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!name) return;
+
+      var id = sec.id || ('sec-' + (i + 1));
+      sec.id = id;
+
+      var a = document.createElement('a');
+      a.href = '#' + id;
+      a.textContent = name;
+      a.title = name;
+
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var target = document.getElementById(id);
+        if (!target) return;
+        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        if (history.replaceState) history.replaceState(null, '', '#' + id);
+        setActiveNav(id, true);
+      });
+
+      quickNavScroll.appendChild(a);
+      navSections.push(sec);
+      navLinks.push({ el: a, id: id });
+    });
+
+    if (!navLinks.length) quickNav.style.display = 'none';
+  })();
+
+  /* 导航高度变化时，同步更新锚点偏移，避免跳转被吸顶条遮住 */
+  function syncNavOffset() {
+    if (!quickNav) return;
+    var h = quickNav.offsetHeight;
+    if (!h) return;
+    document.documentElement.style.setProperty('--nav-offset', (h + 24) + 'px');
+  }
+
+  syncNavOffset();
+  window.addEventListener('resize', syncNavOffset);
+  window.addEventListener('load', syncNavOffset);
+
   /* 2. 滚动进入视口的淡入动画 */
   var revealEls = document.querySelectorAll('.reveal');
 
@@ -1414,6 +1647,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!ticking) {
       window.requestAnimationFrame(function () {
         toTop.classList.toggle('show', window.scrollY > 500);
+        updateActiveNav();
         ticking = false;
       });
       ticking = true;
@@ -1539,6 +1773,10 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+
+  /* 5. 初始化导航高亮 */
+  updateActiveNav();
+  window.addEventListener('load', updateActiveNav);
 
 });
 </script>
