@@ -355,8 +355,10 @@ section.card{ scroll-margin-top:var(--nav-offset, 88px); }
   overflow-x:auto;
   overflow-y:hidden;
   -webkit-overflow-scrolling:touch;
+  touch-action: pan-x;
   scrollbar-width:none;
   -ms-overflow-style:none;
+
 }
 .quick-nav-scroll::-webkit-scrollbar{display:none;}
 
@@ -372,6 +374,8 @@ section.card{ scroll-margin-top:var(--nav-offset, 88px); }
   border:1px solid rgba(255,255,255,.08);
   white-space:nowrap;
   transition:color .25s,background .25s,border-color .25s,box-shadow .25s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .quick-nav-scroll a:hover{
@@ -423,7 +427,6 @@ section.card{ scroll-margin-top:var(--nav-offset, 88px); }
     font-size:.76rem;
     padding:.28rem .62rem;
   }
-  section.card{ scroll-margin-top:74px; }
 }
 
 @media (max-width:400px){
@@ -1573,6 +1576,25 @@ document.addEventListener('DOMContentLoaded', function () {
     setActiveNav(currentId);
   }
 
+  function jumpTo(id) {
+    var target = document.getElementById(id);
+    if (!target) return;
+
+    var navH = quickNav ? quickNav.offsetHeight : 0;
+    var extra = window.matchMedia('(max-width:768px)').matches ? 8 : 16;
+    var top = target.getBoundingClientRect().top + window.pageYOffset - navH - extra;
+    if (top < 0) top = 0;
+
+    try {
+      window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
+    } catch (err) {
+      window.scrollTo(0, top);
+    }
+
+    if (history.replaceState) history.replaceState(null, '', '#' + id);
+    setActiveNav(id, true);
+  }
+
   (function buildQuickNav() {
     if (!quickNav || !quickNavScroll) return;
 
@@ -1591,13 +1613,32 @@ document.addEventListener('DOMContentLoaded', function () {
       a.textContent = name;
       a.title = name;
 
+            var touchStartX = 0, touchStartY = 0, touchMoved = false;
+
+      a.addEventListener('touchstart', function (e) {
+        if (!e.touches.length) return;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchMoved = false;
+      }, { passive: true });
+
+      a.addEventListener('touchmove', function (e) {
+        if (!e.touches.length) return;
+        var dx = Math.abs(e.touches[0].clientX - touchStartX);
+        var dy = Math.abs(e.touches[0].clientY - touchStartY);
+        if (dx > 8 || dy > 8) touchMoved = true;
+      }, { passive: true });
+
+      a.addEventListener('touchend', function (e) {
+        if (touchMoved) return;          // 用户是在滑动，不当作点击
+        e.preventDefault();              // 防止随后再触发一次 click，导致跳两次
+        jumpTo(id);
+      }, { passive: false });
+
       a.addEventListener('click', function (e) {
         e.preventDefault();
-        var target = document.getElementById(id);
-        if (!target) return;
-        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-        if (history.replaceState) history.replaceState(null, '', '#' + id);
-        setActiveNav(id, true);
+        e.stopPropagation();
+        jumpTo(id);
       });
 
       quickNavScroll.appendChild(a);
